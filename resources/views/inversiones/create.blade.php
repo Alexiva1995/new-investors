@@ -28,7 +28,7 @@
         </div>
         
         <div class="card-body">
-          <form class="" method="POST" action="{{route('inversiones.store')}}">
+          <form class="" method="POST" action="{{route('inversiones.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="mb-1">
                 <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
