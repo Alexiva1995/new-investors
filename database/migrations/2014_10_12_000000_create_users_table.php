@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('tipo_documento', ['cedula_ciudadana', 'cedula_extranjera', 'pasaporte']);
             $table->bigInteger('num_documento');
             $table->string('ciudad_residencia');
+            $table->enum('admin', [0, 1])->default(0)->comment('permite saber si un usuario es admin o no');
             $table->string('direccion_residencia')->nullable();
             $table->bigInteger('celular')->nullable();
             $table->string('banco'); //ESPEREMOS A VER SI VAN A AVER MAS BANCOS PARA AGREGAR UNA FOREIGN y UNA TABLA BANK

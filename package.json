@@ -8,7 +8,9 @@
     "production": "mix --production"
   },
   "dependencies": {
-    "bootstrap": "5.0.1"
+    "bootstrap": "5.0.1",
+    "signature_pad": "^3.0.0-beta.4",
+    "sweetalert2": "^11.1.3"
   },
   "devDependencies": {
     "axios": "^0.21",

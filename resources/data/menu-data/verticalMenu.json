@@ -24,7 +24,7 @@
     {
       "name": "Inversiones",
       "url": "",
-      "icon": "file-text",
+      "icon": "dollar-sign",
       "slug": "formulario",
       "submenu": [
         {
@@ -32,6 +32,20 @@
           "name": "Nueva inversion",
           "icon": "circle",
           "slug": "inversiones/create"
+        }
+      ]
+    },
+    {
+      "name": "Contratos",
+      "url": "",
+      "icon": "file-text",
+      "slug": "formulario",
+      "submenu": [
+        {
+          "url": "contratos/",
+          "name": "Buscar",
+          "icon": "circle",
+          "slug": "contratos/buscar"
         }
       ]
     },

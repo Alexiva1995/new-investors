@@ -16,6 +16,7 @@ use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\InversionesController;
+use App\Http\Controllers\ContratoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,23 @@ use App\Http\Controllers\InversionesController;
 
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
-Route::get('/', [DashboardController::class, 'dashboardEcommerce']);
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [DashboardController::class, 'dashboardEcommerce']);
 
+    //INVERSIONES
+    Route::group(['prefix' => 'inversiones'], function () {
+        Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
+        Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
+    });
+
+    //CONTRATOS
+    Route::group(['prefix' => 'contratos'], function () {
+        Route::get('/', [ContratoController::class, 'index'])->name('contratos.index');
+        Route::get('/download_pdf/{id}', [ContratoController::class, 'download_pdf'])->name('contratos.download_pdf');
+        Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
+    });
+
+});
 Auth::routes(['verify' => true]);
 
 /* Route Dashboards */
@@ -221,7 +237,3 @@ Route::get('/maps/leaflet', [ChartsController::class, 'maps_leaflet'])->name('ma
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
-Route::group(['prefix' => 'inversiones'], function () {
-    Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
-    Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
-});

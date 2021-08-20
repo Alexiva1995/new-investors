@@ -6,6 +6,8 @@ return [
     "Dashboards" => "Dashboards",
     "Inversiones" => "Inversiones",
     "Nueva inversion" => "Nueva inversion",
+    "Contratos" => "Contratos",
+    "Buscar" => "Buscar",
     "Analytics" => "Analytics",
     "eCommerce" => "eCommerce",
     "Apps" => "Apps",

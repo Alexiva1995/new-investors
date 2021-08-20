@@ -28,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'banco',
         'tipo_cuenta',
         'num_cuenta',
+        'admin'
     ];
 
     /**
@@ -48,4 +49,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function inversiones()
+    {
+        return $this->hasMany('App\Models\Inversion', 'user_id');
+    }
 }

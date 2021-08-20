@@ -80,5 +80,6 @@ data-asset-path="{{ asset('/')}}">
       }
     })
   </script>
+  @stack('custom-scripts')
 </body>
 </html>

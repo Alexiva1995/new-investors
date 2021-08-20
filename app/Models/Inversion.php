@@ -21,4 +21,14 @@ class Inversion extends Model
         'comprobante_consignacion',
         'periodo_mes'
     ];
+
+    public function getUser()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+
+    public function contrato()
+    {
+        return $this->hasOne('App\Models\Contrato', 'inversion_id');
+    }
 }
