@@ -17,6 +17,8 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\InversionesController;
 use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +34,9 @@ use App\Http\Controllers\ContratoController;
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/', [DashboardController::class, 'dashboardEcommerce']);
+
+    // Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
+    Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard')->middleware(['auth']);
 
     //INVERSIONES
     Route::group(['prefix' => 'inversiones'], function () {
@@ -46,6 +50,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/download_pdf/{id}', [ContratoController::class, 'download_pdf'])->name('contratos.download_pdf');
         Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
     });
+
+        //rutas para la lista de usuarios
+    Route::prefix('user')->group(function(){
+        Route::get('/list-user',[UserController::class,'listUser'])->name('users.list-user');
+        Route::get('show-user/{id}',[UserController::class,'showUser'])->name('users.show-user');
+    });
+    
 
 });
 Auth::routes(['verify' => true]);

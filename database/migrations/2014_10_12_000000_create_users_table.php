@@ -19,13 +19,14 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('state', ['En espera', 'Verificado', 'Rechazado']);
             $table->enum('tipo_documento', ['cedula_ciudadana', 'cedula_extranjera', 'pasaporte']);
             $table->bigInteger('num_documento');
             $table->string('ciudad_residencia');
             $table->enum('admin', [0, 1])->default(0)->comment('permite saber si un usuario es admin o no');
             $table->string('direccion_residencia')->nullable();
             $table->bigInteger('celular')->nullable();
-            $table->string('banco'); //ESPEREMOS A VER SI VAN A AVER MAS BANCOS PARA AGREGAR UNA FOREIGN y UNA TABLA BANK
+            $table->string('banco'); //ESPEREMOS A VER SI VAN A HABER MAS BANCOS PARA AGREGAR UNA FOREIGN y UNA TABLA BANK
             $table->enum('tipo_cuenta', ['corriente', 'ahorro']);
             $table->bigInteger('num_cuenta');
             $table->rememberToken();

@@ -3,7 +3,8 @@
 return [
     "Apps & Pages" => "Apps & Pages",
     "User Interface" => "User Interface",
-    "Dashboards" => "Dashboards",
+    "Dashboard" => "Dashboard",
+    "Usuarios" => "Usuarios",
     "Inversiones" => "Inversiones",
     "Nueva inversion" => "Nueva inversion",
     "Contratos" => "Contratos",
