@@ -11,7 +11,47 @@
       "name": "Usuarios",
       "icon": "users",
       "slug": "user/list-user",
-      "url": "/user/list-user"
+      "url": "/user/list-user",
+      "submenu": [
+        {
+          "name": "Lista de Usuarios",
+          "icon": "circle",
+          "slug": "user/list-user",
+          "url": "/user/list-user"
+        },
+        {
+          "url": "",
+          "name": "Perfil",
+          "icon": "circle",
+          "slug": ""
+        }
+      ]
+    },
+    {
+      "name": "Contratos",
+      "url": "",
+      "icon": "file-text",
+      "slug": "formulario",
+      "submenu": [
+        {
+          "url": "",
+          "name": "Nuevos inversores",
+          "icon": "circle",
+          "slug": ""
+        },
+        {
+          "url": "",
+          "name": "Firma del Investor",
+          "icon": "circle",
+          "slug": ""
+        },
+        {
+          "url": "",
+          "name": "Firmados",
+          "icon": "circle",
+          "slug": ""
+        }
+      ]
     },
     {
       "name": "Inversiones",
@@ -26,20 +66,9 @@
           "slug": "inversiones/create"
         }
       ]
-    },
-    {
-      "name": "Contratos",
-      "url": "",
-      "icon": "file-text",
-      "slug": "formulario",
-      "submenu": [
-        {
-          "url": "contratos/",
-          "name": "Buscar",
-          "icon": "circle",
-          "slug": "contratos/buscar"
-        }
-      ]
     }
+
   ]
 }
+
+
