@@ -13,6 +13,7 @@ return [
     "Firma del Investor" => "Firma del Investor",
     "Firmados" => "Firmados",
     "Contratos" => "Contratos",
+    "Inversores" => "Inversores",
     "Buscar" => "Buscar",
     "Analytics" => "Analytics",
     "eCommerce" => "eCommerce",
