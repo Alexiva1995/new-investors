@@ -82,7 +82,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-content">
-                <div class="card-body">
+                <div class="card-body">  
                     <div class="form-body">
                         <div class="row">
                             <h2 class="my-1 font-bold col-12 text-center">Información de Contratos</h2>

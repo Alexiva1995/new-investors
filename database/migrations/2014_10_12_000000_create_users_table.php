@@ -28,7 +28,8 @@ class CreateUsersTable extends Migration
             $table->bigInteger('celular')->nullable();
             $table->string('banco'); //ESPEREMOS A VER SI VAN A HABER MAS BANCOS PARA AGREGAR UNA FOREIGN y UNA TABLA BANK
             $table->enum('tipo_cuenta', ['corriente', 'ahorro']);
-            $table->bigInteger('num_cuenta');
+            $table->string('num_cuenta');
+            $table->longtext('photoDB')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
