@@ -51,7 +51,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
         Route::get('/firmaInversor', [ContratoController::class, 'firmaInversor'])->name('contratos.firmaInversor');
     });
-
         //rutas para la lista de usuarios
     Route::prefix('user')->group(function(){
         Route::get('/list-user',[UserController::class,'listUser'])->name('users.list-user');
@@ -65,6 +64,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     });
     
+    Route::get('inversores', [InversionesController::class, 'inversores'])->name('inversores');
+    Route::post('dropzone-store', [InversionesController::class, 'dropZoneStore'])->name('dropZoneStore');
 
 });
 Auth::routes(['verify' => true]);
@@ -97,6 +98,7 @@ Route::group(['prefix' => 'app'], function () {
     Route::get('user/view', [AppsController::class, 'user_view'])->name('app-user-view');
     Route::get('user/edit', [AppsController::class, 'user_edit'])->name('app-user-edit');
 });
+
 /* Route Apps */
 
 /* Route UI */
