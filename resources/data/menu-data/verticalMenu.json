@@ -50,6 +50,12 @@
       ]
     },
     {
+      "url": "inversores",
+      "name": "Inversores",
+      "icon": "dollar-sign",
+      "slug": "inversores"
+    },
+    {
       "navheader": "Apps & Pages",
       "slug": ""
     },

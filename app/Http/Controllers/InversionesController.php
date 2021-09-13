@@ -7,6 +7,7 @@ use App\Http\Requests\InversionCreateRequest;
 use App\Models\User;
 use App\Models\Inversion;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class InversionesController extends Controller
 {
@@ -50,5 +51,24 @@ class InversionesController extends Controller
         Inversion::create($request->all());
 
         return back();
+    }
+
+    public function inversores()
+    {
+        $users = User::orderBy('id', 'desc')->get();
+
+        return view('inversores.index', compact('users'));
+    }
+
+    public function dropZoneStore(Request $request)
+    {
+        $image = $request->file('file');
+        $imageName = time().$image->getClientOriginalName(). '.'.$image->extension();
+        $ruta = $request->user .'/pdf/'.$imageName;
+        Storage::disk('public')->put($ruta,  \File::get($image));
+
+        return response()->json([
+            'success' => $imageName
+        ]);
     }
 }

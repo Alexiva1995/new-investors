@@ -7,6 +7,7 @@ return [
     "Inversiones" => "Inversiones",
     "Nueva inversion" => "Nueva inversion",
     "Contratos" => "Contratos",
+    "Inversores" => "Inversores",
     "Buscar" => "Buscar",
     "Analytics" => "Analytics",
     "eCommerce" => "eCommerce",
