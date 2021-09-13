@@ -28,9 +28,13 @@
               </tr>
             </thead>
             <tbody>
-              @forelse ($inversiones as $inversion)
+              @forelse ($inversiones as $inv)
                   <tr>
-
+                    <td>{{$inv->id}}</td>
+                    <td>{{$inv->getUser->fullname}}</td>
+                    <td>{{"000999222333"}}</td>
+                    <td>{{$inv->getUser->email}}</td>
+                    <td>{{date('M-d-Y', strtotime($inv->created_at))}}</td>
                   </tr>
               @empty
                   <tr class="text-center">

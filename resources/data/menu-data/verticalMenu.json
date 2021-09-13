@@ -34,19 +34,47 @@
       "slug": "formulario",
       "submenu": [
         {
+          "url": "inversores",
+          "name": "Nuevos inversores",
+          "icon": "circle",
+          "slug": "inversores"
+        },
+        {
+          "url": "contratos/firmaInversor",
+          "name": "Firma del Investor",
+          "icon": "circle",
+          "slug": "contratos/firmaInversor"
+        },
+        {
+          "url": "",
+          "name": "Firmados",
+          "icon": "circle",
+          "slug": ""
+        },
+        {
           "url": "contratos/",
           "name": "Buscar",
           "icon": "circle",
           "slug": "contratos/buscar"
         }
+
       ]
     },
     {
-      "url": "inversores",
-      "name": "Inversores",
+      "name": "Inversiones",
+      "url": "",
       "icon": "dollar-sign",
-      "slug": "inversores"
+      "slug": "formulario",
+      "submenu": [
+        {
+          "url": "inversiones/create",
+          "name": "Nueva inversion",
+          "icon": "circle",
+          "slug": "inversiones/create"
+        }
+      ]
     },
+
     {
       "navheader": "Apps & Pages",
       "slug": ""
