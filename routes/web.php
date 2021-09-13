@@ -49,6 +49,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/', [ContratoController::class, 'index'])->name('contratos.index');
         Route::get('/download_pdf/{id}', [ContratoController::class, 'download_pdf'])->name('contratos.download_pdf');
         Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
+        Route::get('/firmaInversor', [ContratoController::class, 'firmaInversor'])->name('contratos.firmaInversor');
     });
 
         //rutas para la lista de usuarios

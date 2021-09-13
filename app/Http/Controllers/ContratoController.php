@@ -101,4 +101,10 @@ class ContratoController extends Controller
                         ], 400);
         }
     }
+
+    public function firmaInversor(){
+
+        $inversiones = Inversion::all();
+        return view('contratos.FirmaInversor', compact('inversiones'));
+    }
 }
