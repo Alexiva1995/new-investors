@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Inversion;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -36,9 +38,11 @@ class UserController extends Controller
         // //    $timezone = Timezone::orderBy('list_utc','ASC')->get();
 
         $user = Auth::user();
+        $inv = Inversion::where('user_id', $user->id)->get();
 
         return view('users.profile')
-            ->with('user', $user);
+            ->with('user', $user)
+            ->with('inv', $inv);        
             // ->with('countries', $countries);
     }
 
@@ -46,12 +50,20 @@ class UserController extends Controller
     {
         $user = User::find(Auth::user()->id);
 
-        $msj = [
-            'fullname.required' => 'El nombre es requerido',
-            'email.unique' => 'El correo debe ser unico'
+        $fields = [
+            "fullname" => ['required'],
+            "email" => ['required','string','email','max:255'],
+            "celular" => ['required','numeric'],
+
         ];
 
-        $this->validate($request, $msj);
+        $msj = [
+            'fullname.required' => 'El nombre es requerido',
+            'email.unique' => 'El correo debe ser unico',
+            'celular.numeric' => 'El celular solo puede ser numerico'
+        ];
+
+        $this->validate($request, $fields, $msj);
 
         $user->update($request->all());
 
@@ -64,10 +76,10 @@ class UserController extends Controller
 
             Storage::disk('public')->put($ruta,  \File::get($file));
             $user->photoDB = $ruta;
-            $user->save();
         }
+        $user->save();
 
 
-        return redirect()->route('profile')->with('msj-success', 'Se actualizo tu perfil');
+        return redirect()->route('dashboard')->with('msj-success', 'Se actualizo tu perfil');
     }
 }
