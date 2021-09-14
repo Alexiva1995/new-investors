@@ -11,21 +11,7 @@
       "name": "Usuarios",
       "icon": "users",
       "slug": "user/list-user",
-      "url": "/user/list-user",
-      "submenu": [
-        {
-          "name": "Lista de Usuarios",
-          "icon": "circle",
-          "slug": "user/list-user",
-          "url": "/user/list-user"
-        },
-        {
-          "url": "",
-          "name": "Perfil",
-          "icon": "circle",
-          "slug": ""
-        }
-      ]
+      "url": "/user/list-user"
     },
     {
       "name": "Contratos",
