@@ -420,10 +420,10 @@
           "slug": "/contratos/firmaInversor"
         },
         {
-          "url": "",
+          "url": "firmados",
           "name": "Firmados",
           "icon": "circle",
-          "slug": ""
+          "slug": "inversores/firmados"
         }
       ]
     },

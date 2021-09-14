@@ -60,6 +60,16 @@ class InversionesController extends Controller
         return view('inversores.index', compact('users'));
     }
 
+
+    public function firmados()
+    {
+        $users = User::orderBy('id', 'desc')->get();
+
+        return view('inversores.firmados', compact('users'));
+    }
+
+
+    
     public function dropZoneStore(Request $request)
     {
         $image = $request->file('file');
