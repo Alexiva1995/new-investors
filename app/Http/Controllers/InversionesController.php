@@ -65,7 +65,7 @@ class InversionesController extends Controller
     {
         $users = User::orderBy('id', 'desc')->get();
 
-        return view('inversores.firmados', compact('users'));
+        return view('contratos.firmados', compact('users'));
     }
 
 
