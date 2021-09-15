@@ -26,12 +26,13 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <table class="table">
+        <table class="table" id="myTable">
           <thead>
             <tr>
               <th>id</th>
               <th>Nombre</th>
               <th>N° Documento</th>
+              <th>Monto</th>
               <th>Correo</th>
               <th>Fecha</th>
               <th>Action</th>
@@ -43,6 +44,7 @@
               <td>{{$user->id}}</td>
               <td>{{$user->fullname}}</td>
               <td>{{$user->num_documento}}</td>
+              <td></td>
               <td>{{$user->email}}</td>
               <td>{{$user->created_at->format('Y/m/d')}}</td>
               <td>
@@ -136,4 +138,37 @@
     });
   </script>
 --}}
+  <script>
+    $('#myTable').DataTable({
+        processing: true,
+        responsive: true,
+        order: [[ 0, "desc" ]],
+        searching: true,
+        bLengthChange: true,
+        pageLength: 10,
+        language: {
+            processing:     "Procesando...",
+            search:         "",
+            searchPlaceholder: "Buscar",
+            info:           "",
+            lengthMenu:     "Mostrar _MENU_ Utilidades",
+            infoEmpty:      "Vacío",
+            infoFiltered:   "Información refinada",
+            infoPostFix:    "",
+            loadingRecords: "Procesando...",
+            zeroRecords:    "Vacio",
+            emptyTable:     "Vacio",
+            paginate: {
+                first:      "Primero",
+                previous:   "Anterior",
+                next:       "Siguiente",
+                last:       "Último"
+            },
+            aria: {
+                sortAscending:  ": Ordenar ascendente",
+                sortDescending: ": Ordenar descendente"
+            }
+        },
+    })
+  </script>
 @endpush
