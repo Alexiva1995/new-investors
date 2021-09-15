@@ -78,7 +78,7 @@ class ContratoController extends Controller
 
             $contrato = Contrato::where('inversion_id', $request->inversion_id)->first();
 
-            $user = User::create($request->all());
+           
 
             if ($contrato == null) {
                 $contrato = new Contrato();
