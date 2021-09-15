@@ -35,8 +35,11 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 Route::middleware(['auth', 'admin'])->group(function () {
 
+    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
+
     // Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
-    Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard')->middleware(['auth']);
+    Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
+    Route::get('/dashboard-prueba2', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard.prueba2');
 
     //INVERSIONES
     Route::group(['prefix' => 'inversiones'], function () {
