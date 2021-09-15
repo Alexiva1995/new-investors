@@ -100,6 +100,7 @@
                                                         <th>Invertido</th>
                                                         <th>Tipo de Interés</th>
                                                         <th>Fecha de consignación</th>
+                                                        <th>Estado</th>
                                                         <th>Referente</th>
                                                     </tr>
                                                 </thead>
@@ -111,6 +112,17 @@
                                                             <td>{{ number_format($item->invertido,2,',','.')}}</td>
                                                             <td>{{ $item->tipo_interes}}</td>
                                                             <td>{{ $item->fecha_consignacion}}</td>
+                                                            <td>
+                                                                @if($item->contrato == null || $item->contrato->status == "por_firmar")
+                                                                  <span class="badge rounded-pill badge-light-danger me-1">Por firmar</span>
+                                                                @elseif($item->contrato->status == "firma_cliente")
+                                                                  <span class="badge rounded-pill badge-light-warning me-1">Espera</span>
+                                                                @elseif($item->contrato->status == "firmado")
+                                                                <span class="badge rounded-pill badge-light-success me-1">Firmado</span>
+                                                                @endif
+                                                                
+                                                              </td>
+                                          
                                                             <td>{{ $item->referente}}</td>                                                                                                                        
                                                         </tr>
                                                     @empty 
