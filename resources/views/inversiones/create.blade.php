@@ -36,19 +36,19 @@
     <div class="panel panel-default row align-items-start mt-4 ">
 
       <div class="col-3 ">
-        <a href="#1" class="active" data-toggle="tab">1 Información Personal</a>
+        <a href="#" id="inf">1 Información Personal</a>
         <div class="line-mf"></div>
       </div>
 
 
       <div class="col-3">
-        <a id="inft" href="#2" data-toggle="tab"> 2 Información Bancaria</a>
-        <div class="line-mft"></div>
+        <a id="inf" href="#"> 2 Información Bancaria</a>
+        <div class="line-mf"></div>
       </div>
 
       <div class="col-4">
-        <a id="inft" href="#3" data-toggle="tab"> 3 Información de inversión</a>
-        <div class="line-mft"></div>
+        <a id="inf" href="#"> 3 Información de inversión</a>
+        <div class="line-mf"></div>
       </div>
     </div>
   </div>
@@ -66,7 +66,8 @@
 
       <div class="panel-body">
         <div class="tab-content ">
-          <div class="tab-pane active" id="1">
+
+          <div class="tab-pane active m-5" id="1">
 
             <div class="container mt-4">
               <div class="row align-items-start">
@@ -95,7 +96,7 @@
                 <div class="col mb-1">
                   <label class="form-label" for="num_documento"> Documento de Identidad <span style="color: red;">*</span></label>
 
-                  <input type="number" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required />
+                  <input type="text" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required />
                   <div class="valid-feedback">valido!</div>
                   <div class="invalid-feedback">Por favor ingresa tu Numero de Documento de Identidad.</div>
                 </div>
@@ -121,7 +122,7 @@
                 <div class="col mb-1">
                   <label class="form-label input-phone" for="celular">Numero de Celular <span style="color: red;">*</span></label>
 
-                  <input type="number" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required />
+                  <input type="text" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required />
                   <div class="valid-feedback">valido!</div>
                   <div class="invalid-feedback">Por favor ingresa tu Numero de Celular.</div>
                 </div>
@@ -141,12 +142,10 @@
             </div>
           </div>
 
-
-
-          <div class="tab-pane mt-5 container" id="2">
+          <div class="tab-pane mt-5 container m-5" id="2">
             <div class="row align-items-start">
               <div class="col-4">
-                <label class="form-label" for="banco">Banco<span style="color: red;">*</span></label>
+                <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
                 <select class="form-select {{ $errors->has('banco') ? ' is-invalid' : '' }}" id="banco" required name="banco">
                   <option value="">Selecciona un Banco</option>
                   <option value="Bancolombia">Bancolombia</option>
@@ -178,24 +177,17 @@
               <div class="col-4">
                 <label class="form-label" for="num_cuenta">Numero de Cuenta Bancaria <span style="color: red;">*</span></label>
 
-                <input type="number" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="Documento de indentidad" aria-describedby="numero de cuenta" required />
+                <input type="text" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="Documento de indentidad" aria-describedby="numero de cuenta" required />
                 <div class="valid-feedback">valido!</div>
                 <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
               </div>
 
               <div class="col-4 mt-3">
-              <label class="form-label" for="basic-default-password1">Password <span style="color: red;">*</span></label>
-              <input
-                type="password"
-                id="basic-default-password1"
-                name="password"
-                class="form-control"
-                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                required
-              />
-              <div class="valid-feedback">valido!</div>
-              <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
-            </div>
+                <label class="form-label" for="basic-default-password1">Password <span style="color: red;">*</span></label>
+                <input type="password" id="basic-default-password1" name="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" required />
+                <div class="valid-feedback">valido!</div>
+                <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
+              </div>
 
               <div class="row align-items-end">
                 <div class="col-10">
@@ -210,7 +202,7 @@
 
 
 
-          <div class="tab-pane" id="3">
+          <div class="tab-pane m-5" id="3">
 
 
             <div id="Información-de-inversión">
@@ -219,7 +211,7 @@
                   <div class="col-4">
                     <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
 
-                    <input type="number" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required />
+                    <input type="text" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required />
                     <div class="valid-feedback">valido!</div>
                     <div class="invalid-feedback">Por favor ingresa tu Valor a Administrar.</div>
                   </div>
@@ -295,17 +287,15 @@
             </div>
 
             <div class="row align-items-end">
-              <div class="col-8">
-                <a class="btn-int  mb-5 mt-5" href="#2" data-toggle="tab">Atras</a>
+              <div class="col-10">
+                <button class="btn-int  active mb-5 mt-5" href="#2" data-toggle="tab">Atras</button>
               </div>
-              <div class="col-3">
-                <button type="submit" class="btn btn-primarys text-white mb-5 mt-5">Guardar y Continuar</button>
+              <div class="col-2">
+                <button type="submit" class="btn btn-primarys text-white mb-5 mt-5">Continuar</button>
               </div>
 
 
             </div>
-
-
 </section>
 
 
