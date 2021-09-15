@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Contrato;
 use App\Models\User;
 
+
+
+
+
+
+
 class ContratoController extends Controller
 {
     //
@@ -17,34 +23,33 @@ class ContratoController extends Controller
     {
         $user = Auth::user();
 
-        if($user->admin == 1){
-            if(isset($request->tipo_documento) && isset($request->num_documento)){
+        if ($user->admin == 1) {
+            if (isset($request->tipo_documento) && isset($request->num_documento)) {
                 $user = User::where('tipo_documento', $request->tipo_documento)->where('num_documento', $request->num_documento)->first();
-                if($user != null){
+                if ($user != null) {
                     $inversiones = $user->inversiones;
-                }else{
+                } else {
                     $inversiones = [];
                 }
-                
-            }else{
+            } else {
                 $inversiones = Inversion::all();
             }
-        }else{
+        } else {
             $inversiones = Inversion::where('user_id', $user->id)->get();
         }
-        
+
         return view('contratos.index', compact('inversiones'));
     }
 
     public function download_pdf($id)
     {
         $inversion = Inversion::findOrFail($id);
-        
+
         $pdf = PDF::loadView('pdf.contrato', compact('inversion'));
 
         $pdf->getDomPDF()->set_option("enable_php", true);
         //$pdf->setPaper('A4', 'landscape');
-        
+
         $html = $pdf->stream();
         //$html = $pdf->download('reporte-socios-'. Carbon::now()->format('d/m/Y').'.pdf');
 
@@ -59,51 +64,59 @@ class ContratoController extends Controller
         //return $request->imagen64;
         $user =  Auth::user();
 
-        if($user->admin == 1){
+        if ($user->admin == 1) {
             $name = "firma_administrador.png";
             $firmante = "admin";
-        }else{
+        } else {
             $name = "firma_cliente.png";
             $firmante = "cliente";
         }
 
-        $ruta = $user->id .'/'.$request->inversion_id.'/'.$name;
+        $ruta = $user->id . '/' . $request->inversion_id . '/' . $name;
 
-        if ( Storage::disk('public')->put($ruta,  $data)) {
-            
+        if (Storage::disk('public')->put($ruta,  $data)) {
+
             $contrato = Contrato::where('inversion_id', $request->inversion_id)->first();
 
-            if($contrato == null){
+            $user = User::create($request->all());
+
+            if ($contrato == null) {
                 $contrato = new Contrato();
                 $contrato->inversion_id = $request->inversion_id;
             }
 
-            if($firmante == "cliente"){
+            if ($firmante == "cliente") {
                 $contrato->doc_cliente_firmado = $ruta;
                 $contrato->status = "firma_cliente";
-            }else{
+            } else {
                 $contrato->doc_admin_firmado = $ruta;
             }
 
-            if($contrato->doc_cliente_firmado != null &&$contrato->doc_admin_firmado != null){
+            if ($contrato->doc_cliente_firmado != null && $contrato->doc_admin_firmado != null) {
                 $contrato->status = "firmado";
+               
+               
             }
             $contrato->save();
-
+            
+            $user->notify(new \App\Notifications\firmado);
+            
             return response()->json([
-                              'message' => 'Firma digital registrada exitosamente',
-                              'success' => true
-                              ], 200);
-        }else{
+                'message' => 'Firma digital registrada exitosamente',
+                'success' => true
+                
+            ], 200);
+        } else {
             return response()->json([
-                        'message' => 'Error',
-                        'success' => false
-                        ], 400);
+                'message' => 'Error',
+                'success' => false
+            ], 400);
         }
     }
 
-    public function firmaInversor(){
-
+    public function firmaInversor()
+    {
+        
         $inversiones = Inversion::all();
         return view('contratos.FirmaInversor', compact('inversiones'));
     }

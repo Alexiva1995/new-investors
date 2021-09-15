@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InversionesController extends Controller
 {
-    //
+    
     public function create()
     {
     
@@ -27,6 +27,8 @@ class InversionesController extends Controller
     
         $user = User::create($request->all());
 
+        $user->notify(new \App\Notifications\sendform);
+
         if($request->hasFile('comprobante_consignacion')){
 
             $file = $request->file('comprobante_consignacion');
@@ -38,7 +40,7 @@ class InversionesController extends Controller
             $request->merge([
                 'comprobante_consignacion' => $name
             ]);
-        }
+        }  
 
         $request->merge([
             'user_id' => $user->id
@@ -47,6 +49,8 @@ class InversionesController extends Controller
         Inversion::create($request->all());
 
         return back();
+
+        
     }
 
     public function inversores()
