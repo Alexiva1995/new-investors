@@ -2,6 +2,8 @@
 
 return [
     "Apps & Pages" => "Apps & Pages",
+    "Dashboard Prueba" => "Dashboard Prueba",
+    "Dashboard Prueba2" => "Dashboard Prueba2",
     "User Interface" => "User Interface",
     "Dashboard" => "Dashboard",
     "Usuarios" => "Usuarios",

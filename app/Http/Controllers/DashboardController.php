@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+  public function dashboard()
+  {
+    return view('/content/dashboard/dashboard');
+  }
   // Dashboard - Analytics
   public function dashboardAnalytics()
   {
