@@ -25,17 +25,12 @@
           "icon": "circle",
           "slug": "inversores"
         },
+       
         {
-          "url": "contratos/firmaInversor",
-          "name": "Firma del Investor",
-          "icon": "circle",
-          "slug": "contratos/firmaInversor"
-        },
-        {
-          "url": "",
+          "url": "firmados",
           "name": "Firmados",
           "icon": "circle",
-          "slug": ""
+          "slug": "contratos/firmados"
         },
         {
           "url": "contratos/",

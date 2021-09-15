@@ -14,12 +14,8 @@ class InversionesController extends Controller
     //
     public function create()
     {
-    $breadcrumbs = [
-        ['link' => "/", 'name' => "Inversiones"], ['link' => "javascript:void(0)", 'name' => "Nueva"]
-      ];
-      return view('/inversiones/create', [
-        'breadcrumbs' => $breadcrumbs
-      ]);
+    
+      return view('/inversiones/create');
     }
 
     public function store(InversionCreateRequest $request)
@@ -65,7 +61,7 @@ class InversionesController extends Controller
     {
         $users = User::orderBy('id', 'desc')->get();
 
-        return view('inversores.firmados', compact('users'));
+        return view('contratos.firmados', compact('users'));
     }
 
 
