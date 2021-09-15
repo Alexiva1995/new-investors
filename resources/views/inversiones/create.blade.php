@@ -20,7 +20,7 @@
 
 
 <div class="capa-exterior">
-  <img class="margin" src="{{asset('images/svg/Frame.svg')}}" alt="">
+  <img class="margin" href="#" src="{{asset('images/svg/Frame.svg')}}" alt="">
 
   <div>
     <h3 class="capa-interior">the new investor</h3>
@@ -137,7 +137,7 @@
 
               </div>
 
-              <a class="btn text-white mb-5 mt-5" href="#2" data-toggle="tab">Siguiente</a>
+              <a class="btn  btn-primarys float-right text-white mb-5 mt-5" href="#2" data-toggle="tab">Siguiente</a>
             </div>
           </div>
 
@@ -188,7 +188,7 @@
                   <button class="btn-int  active mb-5 mt-5" href="#1" data-toggle="tab">Atras</button>
                 </div>
                 <div class="col">
-                  <a class="btn text-white mb-5 mt-5" href="#3" data-toggle="tab">Siguiente</a>
+                  <a class="btn btn-primarys text-white mb-5 mt-5" href="#3" data-toggle="tab">Siguiente</a>
                 </div>
               </div>
             </div>
@@ -285,7 +285,7 @@
                 <a class="btn-int  mb-5 mt-5" href="#2" data-toggle="tab">Atras</a>
               </div>
               <div class="col-3">
-                <button type="submit" class="btn text-white mb-5 mt-5">Guardar y Continuar</button>
+                <button type="submit" class="btn btn-primarys text-white mb-5 mt-5">Guardar y Continuar</button>
               </div>
 
 
@@ -295,7 +295,7 @@
 </section>
 
 
-<footer class="footer">
+<footer class="footert">
   <span>
     <img src="{{asset('images/svg/Frame.svg')}}" alt="">
     </label>
