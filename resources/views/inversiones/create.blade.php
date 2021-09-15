@@ -36,7 +36,7 @@
     <div class="panel panel-default row align-items-start mt-4 ">
 
       <div class="col-3 ">
-        <a  href="#1" class="active" data-toggle="tab">1 Información Personal</a>
+        <a href="#1" class="active" data-toggle="tab">1 Información Personal</a>
         <div class="line-mf"></div>
       </div>
 
@@ -182,6 +182,20 @@
                 <div class="valid-feedback">valido!</div>
                 <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
               </div>
+
+              <div class="col-4 mt-3">
+              <label class="form-label" for="basic-default-password1">Password <span style="color: red;">*</span></label>
+              <input
+                type="password"
+                id="basic-default-password1"
+                name="password"
+                class="form-control"
+                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                required
+              />
+              <div class="valid-feedback">valido!</div>
+              <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
+            </div>
 
               <div class="row align-items-end">
                 <div class="col-10">
