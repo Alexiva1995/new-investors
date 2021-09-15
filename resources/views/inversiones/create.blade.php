@@ -143,7 +143,7 @@
 
 
 
-          <div class="tab-pane mt-5" id="2">
+          <div class="tab-pane mt-5 container" id="2">
             <div class="row align-items-start">
               <div class="col-4">
                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span></label>
