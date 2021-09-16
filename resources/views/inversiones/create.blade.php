@@ -56,9 +56,6 @@
 </div>
 
 
-
-
-
 <div class="container ">
 
   <div id="exTab2" class="container row">
@@ -68,7 +65,6 @@
         <a href="#" id="inf">1 Información Personal</a>
         <div class="line-mf"></div>
       </div>
-
 
       <div class="col-3">
         <a id="inf" href="#"> 2 Información Bancaria</a>
