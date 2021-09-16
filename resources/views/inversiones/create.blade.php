@@ -1,5 +1,6 @@
 @extends('layouts/fullLayoutMaster')
 
+@section('title', 'Nueva Inversión')
 
 @section('vendor-style')
 {{-- Vendor Css files --}}
@@ -18,27 +19,33 @@
 <!-- Validation -->
 
 <style>
+  .form-select {
+    background-color: white;
+    display: block;
+    color: black;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    width: 100%;
+    max-width: 100%;
+    /* useful when width is set to anything other than 100% */
+    box-sizing: border-box;
+    margin: 0;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 
-.form-select{
-  background-color: white;
-  display: block;
-	color: black;
-	line-height: 1.3;
-	padding: .6em 1.4em .5em .8em;
-	width: 100%;
-	max-width: 100%; /* useful when width is set to anything other than 100% */
-	box-sizing: border-box;
-	margin: 0;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-}
+  option {
+    background-color: black;
+    color: white;
+  }
 
-
-
+  body {
+    margin: 0 auto;
+  }
 </style>
 
-<div class="capa-exterior">
+<div class="capa-exterior" style="">
   <img class="margin" href="#" src="{{asset('images/svg/Frame.svg')}}" alt="">
 
   <div>
@@ -257,7 +264,7 @@
                   <div class="col-4 mb-3">
                     <label class="form-label" for="fecha_consignacion">Fecha de Consignación <span style="color: red;">*</span></label>
 
-                    <input type="date" id="fecha_consignacion" name="fecha_consignacion" class="form-control {{ $errors->has('fecha_consignacion') ? ' is-invalid' : '' }}" placeholder="Fecha de Consignación" aria-label="Fecha de Consignación" aria-describedby="Fecha de Consignaciónr" required />
+                    <input type="date" id="fecha_consignacion" name="fecha_consignacion" class="form-control {{ $errors->has('fecha_consignacion') ? ' is-invalid' : '' }}" placeholder="Fecha de Consignación " aria-label="Fecha de Consignación" aria-describedby="Fecha de Consignaciónr" required />
                     <div class="valid-feedback">valido!</div>
                     <div class="invalid-feedback">Por favor ingresa tu Fecha de Consignación.</div>
                   </div>
@@ -282,7 +289,7 @@
                   </div>
 
 
-                  <div class="col-4">
+                  <div class="col-4 mt-2">
                     <label for="comprobante_consignacion" class="form-label">subir comprobante de consignación <span style="color: red;">*</span></label>
                     <input class="form-control" type="file" id="comprobante_consignacion" name="comprobante_consignacion" />
                   </div>
