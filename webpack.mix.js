@@ -76,6 +76,10 @@ mix
   .sass('resources/sass/base/custom-rtl.scss', 'public/css-rtl', { sassOptions })
   .sass('resources/assets/scss/style-rtl.scss', 'public/css-rtl', { sassOptions })
   .sass('resources/assets/scss/style.scss', 'public/css', { sassOptions })
+  .copy(
+      'node_modules/@fortawesome/fontawesome-free/webfonts',
+      'public/webfonts'
+  );
 
 mix.then(() => {
   if (process.env.MIX_CONTENT_DIRECTION === 'rtl') {
