@@ -1,6 +1,6 @@
 @extends('layouts/fullLayoutMaster')
 
-@section('title', 'Login | New Investors')
+@section('title', 'Login | The New Investors')
 
 @section('page-style')
 {{-- Page Css files --}}
@@ -34,6 +34,14 @@
   color: white;
 }
 
+.card-body{
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.form-label{
+  font-size: 1rem;
+}
+
 </style>
 @endsection
 
@@ -46,21 +54,21 @@
         <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
           @csrf
           <div class="d-flex justify-content-center">
-            <img  class="imagen" src="{{asset('/images/logo2.png')}}" alt="">
+            <img  class="imagen" src="{{asset('/images/logo1.png')}}" alt="">
           </div>
-          <div class="mt-2 mb-4">
-            <p class="titulo text-left">{{ __('Iniciar Sesión') }}</p>
-            <p class="subtitulo text-left ">Inicie sesion en su cuenta para empezar</p>
+          <div class="mt-4 mb-3">
+            <p class="titulo text-left text-white">{{ __('Iniciar Sesión') }}</p>
+            {{-- <p class="subtitulo text-left ">Inicie sesion en su cuenta para empezar</p> --}}
           </div>
 
           <div class="my-2">
-            <label for="login-email" class="form-label">Email</label>
+            <label for="login-email" class="form-label text-white">Correo Electronico</label>
             <input
               type="text"
               class="form-control @error('email') is-invalid @enderror"
               id="login-email"
               name="email"
-              placeholder="john@example.com"
+              placeholder="Ingrese su correo electronico"
               aria-describedby="login-email"
               tabindex="1"
               autofocus
@@ -75,7 +83,7 @@
 
           <div class="my-2 mb-4">
             <div class="d-flex justify-content-between">
-              <label class="form-label" for="login-password">Password</label>
+              <label class="form-label text-white" for="login-password">Contraseña</label>
               {{-- @if (Route::has('password.request'))
               <a href="{{ route('password.request') }}">
                 <small>Forgot Password?</small>
