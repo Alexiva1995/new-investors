@@ -19,7 +19,7 @@
 @else
 <link rel="stylesheet" href="{{ asset(mix('css/base/core/menu/menu-types/vertical-menu.css')) }}" />
 @endif
-
+{{----}}
 {{-- Page Styles --}}
 @yield('page-style')
 
