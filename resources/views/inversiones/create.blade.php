@@ -17,7 +17,26 @@
 
 <!-- Validation -->
 
+<style>
 
+.form-select{
+  background-color: white;
+  display: block;
+	color: black;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 100%; /* useful when width is set to anything other than 100% */
+	box-sizing: border-box;
+	margin: 0;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+
+
+</style>
 
 <div class="capa-exterior">
   <img class="margin" href="#" src="{{asset('images/svg/Frame.svg')}}" alt="">
@@ -28,6 +47,9 @@
     <p class="capa-exterior2">Te damos la bienvenida a nuestro sistema de inversión, agradecemos diligenciar el siguiente formulario para poder brindarte un mejor servicio y garantizar consignar tus rentabilidades mensuales directamente a tu cuenta bancaria.</p>
   </div>
 </div>
+
+
+
 
 
 <div class="container ">
