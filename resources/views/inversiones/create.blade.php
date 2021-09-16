@@ -94,10 +94,11 @@
         <div class="tab-content ">
 
         
-          <div class="tab-pane active m-5" id="1">
+          <div class="tab-pane active " id="1">
             <div class="container mt-4">
               <div class="row align-items-start">
-                <div class="col">
+
+                <div class="col-4">
                   <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
 
                   <input type="text" id="fullname" name="fullname" class=" form-control  {{ $errors->has('fullname') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Nombre Completo" aria-label="nombre y apellido" aria-describedby="nombre completo de la persona" required />
@@ -106,7 +107,7 @@
                 </div>
 
 
-                <div class="col mb-3">
+                <div class="col-4 mb-3">
                   <label class="form-label" for="tipo_documento">Tipo Documento de Identidad <span style="color: red;">*</span></label>
                   <select class="form-select {{ $errors->has('tipo_documento') ? ' is-invalid' : '' }}" id="tipo_documento" required name="tipo_documento">
                     <option value="">Seleccionar</option>
@@ -119,7 +120,7 @@
                 </div>
 
 
-                <div class="col mb-1">
+                <div class="col-4 mb-1">
                   <label class="form-label" for="num_documento"> Documento de Identidad <span style="color: red;">*</span></label>
 
                   <input type="text" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required />
@@ -168,7 +169,7 @@
             </div>
           </div>
 
-          <div class="tab-pane mt-5 container m-5" id="2">
+          <div class="tab-pane mt-5 container" id="2">
             <div class="row align-items-start">
               <div class="col-4">
                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
@@ -228,11 +229,10 @@
 
 
 
-          <div class="tab-pane m-5" id="3">
-
+          <div class="tab-pane " id="3">
 
             <div id="Información-de-inversión">
-              <div class="container mt-4 mb-3 row">
+              <div class="container mt-4  mb-3 row">
                 <div class="row align-items-start">
                   <div class="col-4">
                     <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
