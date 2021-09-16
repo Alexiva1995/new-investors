@@ -45,7 +45,7 @@
   }
 </style>
 
-<div class="capa-exterior " style="">
+<div class="capa-exterior">
   <img class="margin" href="#" src="{{asset('images/svg/Frame.svg')}}" alt="">
 
   <div>
@@ -59,7 +59,7 @@
 
 
 
-<div class="container" style="background-color: #FFFFFF !important;>
+<div class="container" style="background-color: #FFFFFF !important;">
 
   <div id="exTab2" class="container row">
     <div class="panel panel-default row align-items-start mt-4 ">
@@ -68,7 +68,6 @@
         <a href="#" id="inf">1 Información Personal</a>
         <div class="line-mf"></div>
       </div>
-
 
       <div class="col-3">
         <a id="inf" href="#"> 2 Información Bancaria</a>
@@ -85,22 +84,18 @@
 
 
 <section class="bs-validation" style="background-color: #FFFFFF !important;">
-  <div class="container row " >
+  <div class="container row ">
     <form class="" method="POST" action="{{route('inversiones.store')}}" enctype="multipart/form-data">
       @csrf
 
 
       <div class="panel-body">
         <div class="tab-content ">
-
-        
           <div class="tab-pane active " id="1">
             <div class="container mt-4">
               <div class="row align-items-start">
-
                 <div class="col-4">
                   <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
-
                   <input type="text" id="fullname" name="fullname" class=" form-control  {{ $errors->has('fullname') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Nombre Completo" aria-label="nombre y apellido" aria-describedby="nombre completo de la persona" required />
                   <div class="valid-feedback">valido!</div>
                   <div class="invalid-feedback">Por favor ingresa tu nombre y apellido.</div>
@@ -169,7 +164,7 @@
             </div>
           </div>
 
-          <div class="tab-pane mt-5 container" id="2">
+          <div class="tab-pane mt-5 container " id="2">
             <div class="row align-items-start">
               <div class="col-4">
                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
@@ -231,8 +226,9 @@
 
           <div class="tab-pane " id="3">
 
+
             <div id="Información-de-inversión">
-              <div class="container mt-4  mb-3 row">
+              <div class="container mt-4 mb-3 row">
                 <div class="row align-items-start">
                   <div class="col-4">
                     <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
@@ -312,17 +308,18 @@
               </div>
             </div>
 
+            
             <div class="row align-items-end">
               <div class="col-10">
                 <button class="btn-int  active mb-5 mt-5" href="#2" data-toggle="tab">Atras</button>
               </div>
+
               <div class="col-2">
-                <button type="submit" class="btn btn-primarys text-white mb-5 mt-5">Continuar</button>
+                <button type="buttom" class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
-
-
-            </div>
+              </form>
 </section>
+
 
 
 <footer class="footert">
@@ -333,8 +330,15 @@
       <p class="li nav-item">The New Investor 2021 | Todos los Derechos Reservados</p>
     </div>
 </footer>
+
+
+</section>
+
+
+
 <!-- /Validation -->
 @endsection
+
 
 @section('vendor-script')
 <!-- vendor files -->
