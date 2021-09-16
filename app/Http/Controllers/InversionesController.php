@@ -63,9 +63,11 @@ class InversionesController extends Controller
 
     public function firmados()
     {
-        $users = User::orderBy('id', 'desc')->get();
+        // $users = User::orderBy('id', 'desc')->get();
 
-        return view('contratos.firmados', compact('users'));
+        $inv = Inversion::all();
+
+        return view('contratos.firmados', compact('inv'));
     }
 
 
