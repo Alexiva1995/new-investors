@@ -37,6 +37,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/',[InversionesController::class, 'create'])->name('home');
 
+    //Ruta original
+//    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
+
     // Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
     Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
     Route::get('/dashboard-prueba2', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard.prueba2');
