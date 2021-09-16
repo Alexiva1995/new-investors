@@ -45,9 +45,7 @@
   }
 </style>
 
-<div class="capa-exterior" style="background-image:url('../../images/svg/header.svg');
-    min-height: 400px;
-    position: relative;">
+<div class="capa-exterior" style="">
   <img class="margin" href="#" src="{{asset('images/svg/Frame.svg')}}" alt="">
 
   <div>
