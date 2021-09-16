@@ -35,7 +35,10 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
+    Route::get('/',[InversionesController::class, 'create'])->name('home');
+
+    //Ruta original
+//    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
 
     // Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
     Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');

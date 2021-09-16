@@ -43,9 +43,183 @@
   body {
     margin: 0 auto;
   }
+
+
+.form-label {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #3b3b44;
+}
+
+.btn-primarys {
+    background: #00c2ef;
+    border: 1px solid #00c2ef;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 35px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    float: right;
+}
+
+.btn-int {
+    background: #fff;
+    color: #00c2ef;
+    border: 1px solid #00c2ef;
+
+    border-radius: 35px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    float: right;
+}
+
+#img-logo {
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 50px;
+}
+
+#title {
+    position: absolute;
+    height: 63px;
+    left: 55px;
+    top: 140px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 52px;
+    line-height: 63px;
+
+    color: #ffffff;
+}
+
+.text {
+    position: absolute;
+
+    height: 40px;
+    left: 55px;
+    top: 230px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+}
+
+.line-mft {
+    height: 5px;
+    background: #c9c9c9;
+    margin: 0 auto;
+}
+
+#inft {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 24px;
+    color: #c9c9c9;
+}
+
+#inf {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 24px;
+    color: #00c2ef;
+}
+
+.line-mf {
+    height: 5px;
+    background: #00c2ef;
+    margin: 0 auto;
+}
+
+.capa-exterior {
+    background-image:url('../../images/bg-login.png');
+    min-height: 400px;
+    position: relative;
+}
+
+.capa-interior {
+    position: absolute;
+    width: 554px;
+    height: 63px;
+    left: 77px;
+    top: 170px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 52px;
+    line-height: 63px;
+    color: #ffffff;
+}
+
+.capa-exterior2 {
+    position: absolute;
+    width: 1208px;
+    height: 40px;
+    left: 80px;
+    top: 303px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+
+    color: #ffffff;
+}
+
+.margin {
+    margin-left: 70px;
+    margin-top: 30px;
+}
+
+.footert {
+    background: #0f161c;
+    color: #fff;
+    padding: 1rem;
+    height: 100px;
+}
+
+.footert span {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.footert .ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: auto;
+}
+
+.footert .li {
+    padding: 0 0.5rem;
+}
+
 </style>
 
-<div class="capa-exterior" style="">
+<div class="capa-exterior">
   <img class="margin" href="#" src="{{asset('images/svg/Frame.svg')}}" alt="">
 
   <div>
@@ -59,7 +233,7 @@
 
 
 
-<div class="container ">
+<div class="container" style="background-color: #FFFFFF !important;">
 
   <div id="exTab2" class="container row">
     <div class="panel panel-default row align-items-start mt-4 ">
@@ -68,7 +242,6 @@
         <a href="#" id="inf">1 Información Personal</a>
         <div class="line-mf"></div>
       </div>
-
 
       <div class="col-3">
         <a id="inf" href="#"> 2 Información Bancaria</a>
@@ -84,32 +257,26 @@
 </div>
 
 
-
-
-
-<section class="bs-validation">
-  <div class="container row">
+<section class="bs-validation" style="background-color: #FFFFFF !important;">
+  <div class="container row ">
     <form class="" method="POST" action="{{route('inversiones.store')}}" enctype="multipart/form-data">
       @csrf
 
 
       <div class="panel-body">
         <div class="tab-content ">
-
-          <div class="tab-pane active m-5" id="1">
-
+          <div class="tab-pane active " id="1">
             <div class="container mt-4">
               <div class="row align-items-start">
-                <div class="col">
+                <div class="col-4">
                   <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
-
                   <input type="text" id="fullname" name="fullname" class=" form-control  {{ $errors->has('fullname') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Nombre Completo" aria-label="nombre y apellido" aria-describedby="nombre completo de la persona" required />
                   <div class="valid-feedback">valido!</div>
                   <div class="invalid-feedback">Por favor ingresa tu nombre y apellido.</div>
                 </div>
 
 
-                <div class="col mb-3">
+                <div class="col-4 mb-3">
                   <label class="form-label" for="tipo_documento">Tipo Documento de Identidad <span style="color: red;">*</span></label>
                   <select class="form-select {{ $errors->has('tipo_documento') ? ' is-invalid' : '' }}" id="tipo_documento" required name="tipo_documento">
                     <option value="">Seleccionar</option>
@@ -122,7 +289,7 @@
                 </div>
 
 
-                <div class="col mb-1">
+                <div class="col-4 mb-1">
                   <label class="form-label" for="num_documento"> Documento de Identidad <span style="color: red;">*</span></label>
 
                   <input type="text" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required />
@@ -171,7 +338,7 @@
             </div>
           </div>
 
-          <div class="tab-pane mt-5 container m-5" id="2">
+          <div class="tab-pane mt-5 container " id="2">
             <div class="row align-items-start">
               <div class="col-4">
                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
@@ -231,7 +398,7 @@
 
 
 
-          <div class="tab-pane m-5" id="3">
+          <div class="tab-pane " id="3">
 
 
             <div id="Información-de-inversión">
@@ -315,17 +482,18 @@
               </div>
             </div>
 
+            
             <div class="row align-items-end">
               <div class="col-10">
                 <button class="btn-int  active mb-5 mt-5" href="#2" data-toggle="tab">Atras</button>
               </div>
+
               <div class="col-2">
-                <button type="submit" class="btn btn-primarys text-white mb-5 mt-5">Continuar</button>
+                <button type="buttom" class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
-
-
-            </div>
+              </form>
 </section>
+
 
 
 <footer class="footert">
@@ -336,8 +504,15 @@
       <p class="li nav-item">The New Investor 2021 | Todos los Derechos Reservados</p>
     </div>
 </footer>
+
+
+</section>
+
+
+
 <!-- /Validation -->
 @endsection
+
 
 @section('vendor-script')
 <!-- vendor files -->
