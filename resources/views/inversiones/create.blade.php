@@ -45,7 +45,7 @@
   }
 </style>
 
-<div class="capa-exterior" style="">
+<div class="capa-exterior " style="">
   <img class="margin" href="#" src="{{asset('images/svg/Frame.svg')}}" alt="">
 
   <div>
@@ -59,7 +59,7 @@
 
 
 
-<div class="container ">
+<div class="container" style="background-color: #FFFFFF !important;>
 
   <div id="exTab2" class="container row">
     <div class="panel panel-default row align-items-start mt-4 ">
@@ -84,11 +84,8 @@
 </div>
 
 
-
-
-
-<section class="bs-validation">
-  <div class="container row">
+<section class="bs-validation" style="background-color: #FFFFFF !important;">
+  <div class="container row " >
     <form class="" method="POST" action="{{route('inversiones.store')}}" enctype="multipart/form-data">
       @csrf
 
@@ -96,8 +93,8 @@
       <div class="panel-body">
         <div class="tab-content ">
 
+        
           <div class="tab-pane active m-5" id="1">
-
             <div class="container mt-4">
               <div class="row align-items-start">
                 <div class="col">
