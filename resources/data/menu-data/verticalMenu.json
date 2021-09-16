@@ -31,14 +31,7 @@
           "name": "Firmados",
           "icon": "circle",
           "slug": "contratos/firmados"
-        },
-        {
-          "url": "contratos/",
-          "name": "Buscar",
-          "icon": "circle",
-          "slug": "contratos/buscar"
         }
-
       ]
     },
     {
