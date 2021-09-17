@@ -61,13 +61,12 @@ data-asset-path="{{ asset('/')}}">
     $(window).on('load', function() {
       if (feather) {
         feather.replace({
-          width: 14,
-          height: 14
+          width: 14, height: 14
         });
       }
     })
   </script>
-
+  @stack('custom-scripts')
 </body>
 
 </html>
