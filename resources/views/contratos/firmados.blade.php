@@ -49,8 +49,8 @@
     <!-- Basic Tables start -->
     <div id="record">
         <div class="col-12">
-            <div class="card">
-                <div class="card-content">
+            <div class="card"> 
+                <div class="card-content clas">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
                             <p> <img src="{{ asset('assets/img/sistema/btn-plus.png') }}" alt=""></p>
@@ -61,7 +61,7 @@
                                     bg-purple-alt2">
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    {{-- <th>Nº Documento</th> --}}
+                                    <th>Nº Documento</th>
                                     <th>Correo</th>
                                     <th>Fecha</th>
                                     <th>Contrato</th>
@@ -74,6 +74,7 @@
                                         <tr class="text-center">
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->getUser->fullname }}</td>
+                                            <td>{{ $item->getUser->num_documento}}</td>
                                             <td>{{ $item->getUser->email }}</td>
 						                    <td>{{date('M-d-Y', strtotime($item->created_at))}}</td>                                            
 											<td>{{ isset($item->contrato->id) ? $item->contrato->id : "SN"  }}</td>
