@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Inversion;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Contrato;
 
 class InversionesController extends Controller
 {
@@ -16,6 +17,64 @@ class InversionesController extends Controller
     {
     
       return view('/inversiones/create');
+    }
+
+    public function firmar(Request $request)
+    {
+        $img = str_replace('data:image/png;base64,', '', $request->imagen64);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        //return $request->imagen64;
+        $user =  Auth::user();
+
+        if ($user->admin == 1) {
+            $name = "firma_administrador.png";
+            $firmante = "admin";
+        } else {
+            $name = "firma_cliente.png";
+            $firmante = "cliente";
+        }
+
+        $ruta = $user->id . '/' . $request->inversion_id . '/' . $name;
+
+        if (Storage::disk('public')->put($ruta,  $data)) {
+
+            $contrato = Contrato::where('inversion_id', $request->inversion_id)->first();
+
+           
+
+            if ($contrato == null) {
+                $contrato = new Contrato();
+                $contrato->inversion_id = $request->inversion_id;
+            }
+
+            if ($firmante == "cliente") {
+                $contrato->doc_cliente_firmado = $ruta;
+                $contrato->status = "firma_cliente";
+            } else {
+                $contrato->doc_admin_firmado = $ruta;
+            }
+
+            if ($contrato->doc_cliente_firmado != null && $contrato->doc_admin_firmado != null) {
+                $contrato->status = "firmado";
+               
+               
+            }
+            $contrato->save();
+            
+            $user->notify(new \App\Notifications\firmado);
+            
+            return response()->json([
+                'message' => 'Firma digital registrada exitosamente',
+                'success' => true
+                
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Error',
+                'success' => false
+            ], 400);
+        }
     }
 
     public function store(InversionCreateRequest $request)
