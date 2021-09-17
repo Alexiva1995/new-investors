@@ -18,207 +18,6 @@
 
 <!-- Validation -->
 
-<style>
-  .form-select {
-    background-color: white;
-    display: block;
-    color: black;
-    line-height: 1.3;
-    padding: .6em 1.4em .5em .8em;
-    width: 100%;
-    max-width: 100%;
-    /* useful when width is set to anything other than 100% */
-    box-sizing: border-box;
-    margin: 0;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
-  option {
-    background-color: black;
-    color: white;
-  }
-
-  body {
-    margin: 0 auto;
-  }
-
-
-.form-label {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
-    color: #3b3b44;
-}
-
-.btn-primarys {
-    background: #00c2ef;
-    border: 1px solid #00c2ef;
-    box-sizing: border-box;
-    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
-    border-radius: 35px;
-    font-size: 18px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
-    float: right;
-}
-
-.btn-int {
-    background: #fff;
-    color: #00c2ef;
-    border: 1px solid #00c2ef;
-
-    border-radius: 35px;
-    font-size: 18px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
-    float: right;
-}
-
-#img-logo {
-    position: absolute;
-    margin-top: 15px;
-    margin-left: 50px;
-}
-
-#title {
-    position: absolute;
-    height: 63px;
-    left: 55px;
-    top: 140px;
-
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 52px;
-    line-height: 63px;
-
-    color: #ffffff;
-}
-
-.text {
-    position: absolute;
-
-    height: 40px;
-    left: 55px;
-    top: 230px;
-
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #ffffff;
-}
-
-.line-mft {
-    height: 5px;
-    background: #c9c9c9;
-    margin: 0 auto;
-}
-
-#inft {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    line-height: 24px;
-    color: #c9c9c9;
-}
-
-#inf {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    line-height: 24px;
-    color: #00c2ef;
-}
-
-.line-mf {
-    height: 5px;
-    background: #00c2ef;
-    margin: 0 auto;
-}
-
-.capa-exterior {
-    background-image:url('../../images/bg-login.png');
-    min-height: 400px;
-    position: relative;
-}
-
-.capa-interior {
-    position: absolute;
-    width: 554px;
-    height: 63px;
-    left: 77px;
-    top: 170px;
-
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 52px;
-    line-height: 63px;
-    color: #ffffff;
-}
-
-.capa-exterior2 {
-    position: absolute;
-    width: 1208px;
-    height: 40px;
-    left: 80px;
-    top: 303px;
-
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-
-    color: #ffffff;
-}
-
-.margin {
-    margin-left: 70px;
-    margin-top: 30px;
-}
-
-.footert {
-    background: #0f161c;
-    color: #fff;
-    padding: 1rem;
-    height: 100px;
-}
-
-.footert span {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.footert .ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-left: auto;
-}
-
-.footert .li {
-    padding: 0 0.5rem;
-}
-
-</style>
-
 <div class="capa-exterior">
   <img class="margin" href="#" src="{{asset('images/svg/Frame.svg')}}" alt="">
 
@@ -228,8 +27,6 @@
     <p class="capa-exterior2">Te damos la bienvenida a nuestro sistema de inversión, agradecemos diligenciar el siguiente formulario para poder brindarte un mejor servicio y garantizar consignar tus rentabilidades mensuales directamente a tu cuenta bancaria.</p>
   </div>
 </div>
-
-
 
 
 
@@ -244,13 +41,13 @@
       </div>
 
       <div class="col-3">
-        <a id="inf" href="#"> 2 Información Bancaria</a>
-        <div class="line-mf"></div>
+        <a id="inft" href="#"> 2 Información Bancaria</a>
+        <div class="line-mft"></div>
       </div>
 
       <div class="col-4">
-        <a id="inf" href="#"> 3 Información de inversión</a>
-        <div class="line-mf"></div>
+        <a id="inft" href="#"> 3 Información de inversión</a>
+        <div class="line-mft"></div>
       </div>
     </div>
   </div>
