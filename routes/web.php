@@ -47,6 +47,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //INVERSIONES
     Route::group(['prefix' => 'inversiones'], function () {
         Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
+        Route::get('/FirmaModal', [InversionesController::class, 'FirmaModal'])->name('inversiones.FirmaModal');
         Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
     });
 
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
         Route::get('/firmaInversor', [ContratoController::class, 'firmaInversor'])->name('contratos.firmaInversor');
     });
+
         //rutas para la lista de usuarios
     Route::prefix('user')->group(function(){
         Route::get('/list-user',[UserController::class,'listUser'])->name('users.list-user');

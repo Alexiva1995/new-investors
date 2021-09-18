@@ -12,12 +12,35 @@ use App\Models\Contrato;
 
 class InversionesController extends Controller
 {
-    
+
     public function create()
     {
-    
-      return view('/inversiones/create');
+
+        return view('/inversiones/create');
     }
+
+    public function FirmaModal(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($user->admin == 1) {
+            if (isset($request->tipo_documento) && isset($request->num_documento)) {
+                $user = User::where('tipo_documento', $request->tipo_documento)->where('num_documento', $request->num_documento)->first();
+                if ($user != null) {
+                    $inversiones = $user->inversiones;
+                } else {
+                    $inversiones = [];
+                }
+            } else {
+                $inversiones = Inversion::all();
+            }
+        } else {
+            $inversiones = Inversion::where('user_id', $user->id)->get();
+        }
+
+        return view('/inversiones/FirmaModal')->with('inversiones', $inversiones);
+    }
+
 
     public function firmar(Request $request)
     {
@@ -41,7 +64,7 @@ class InversionesController extends Controller
 
             $contrato = Contrato::where('inversion_id', $request->inversion_id)->first();
 
-           
+
 
             if ($contrato == null) {
                 $contrato = new Contrato();
@@ -57,17 +80,15 @@ class InversionesController extends Controller
 
             if ($contrato->doc_cliente_firmado != null && $contrato->doc_admin_firmado != null) {
                 $contrato->status = "firmado";
-               
-               
             }
             $contrato->save();
-            
+
             $user->notify(new \App\Notifications\firmado);
-            
+
             return response()->json([
                 'message' => 'Firma digital registrada exitosamente',
                 'success' => true
-                
+
             ], 200);
         } else {
             return response()->json([
@@ -77,39 +98,38 @@ class InversionesController extends Controller
         }
     }
 
+
     public function store(InversionCreateRequest $request)
     {
         $request->password = bcrypt($request->password);
         $request->merge([
             'password' => bcrypt($request->password)
         ]);
-    
+
         $user = User::create($request->all());
 
         $user->notify(new \App\Notifications\sendform);
 
-        if($request->hasFile('comprobante_consignacion')){
+        if ($request->hasFile('comprobante_consignacion')) {
 
             $file = $request->file('comprobante_consignacion');
-            $name = time().$file->getClientOriginalName();
-            $ruta = $user->id .'/comprobantes/'.$name;
+            $name = time() . $file->getClientOriginalName();
+            $ruta = $user->id . '/comprobantes/' . $name;
 
             Storage::disk('public')->put($ruta,  \File::get($file));
-        
+
             $request->merge([
                 'comprobante_consignacion' => $name
             ]);
-        }  
+        }
 
         $request->merge([
             'user_id' => $user->id
         ]);
-        
+
         Inversion::create($request->all());
 
-        return back();
-
-        
+        return redirect('/inversiones/FirmaModal');
     }
 
     public function inversores()
@@ -130,12 +150,12 @@ class InversionesController extends Controller
     }
 
 
-    
+
     public function dropZoneStore(Request $request)
     {
         $image = $request->file('file');
-        $imageName = time().$image->getClientOriginalName(). '.'.$image->extension();
-        $ruta = $request->user .'/pdf/'.$imageName;
+        $imageName = time() . $image->getClientOriginalName() . '.' . $image->extension();
+        $ruta = $request->user . '/pdf/' . $imageName;
         Storage::disk('public')->put($ruta,  \File::get($image));
 
         return response()->json([
