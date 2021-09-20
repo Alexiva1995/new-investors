@@ -15,6 +15,7 @@ class InversionesController extends Controller
     public function create()
     {
     
+        
       return view('/inversiones/create');
     }
 
