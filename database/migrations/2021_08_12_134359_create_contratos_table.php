@@ -17,7 +17,7 @@ class CreateContratosTable extends Migration
             $table->id();
             $table->string('doc_cliente_firmado')->nullable();
             $table->string('doc_admin_firmado')->nullable();
-            $table->enum('status', ['por_firmar', 'firma_cliente', 'firmado'])->default('por_firmar');
+            $table->enum('status', ['por_firmar', 'firma_cliente', 'firmado', 'finalizado'])->default('por_firmar');
             $table->bigInteger('inversion_id')->unsigned();
             $table->foreign('inversion_id')->references('id')->on('inversiones');
             $table->timestamps();
