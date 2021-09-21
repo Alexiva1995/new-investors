@@ -49,7 +49,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 // Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
 Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
-Route::get('/dashboard-prueba2', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard.prueba2');
 
 //INVERSIONES
 Route::group(['prefix' => 'inversiones'], function () {
