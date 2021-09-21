@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\InversionCreateRequest;
+use App\Models\Contrato;
 use App\Models\User;
 use App\Models\Inversion;
 use Illuminate\Support\Facades\Storage;
@@ -65,7 +66,7 @@ class InversionesController extends Controller
     {
         // $users = User::orderBy('id', 'desc')->get();
 
-        $inv = Inversion::all();
+        $inv = Contrato::where('status', '<>', 'finalizado')->get();
 
         return view('contratos.firmados', compact('inv'));
     }

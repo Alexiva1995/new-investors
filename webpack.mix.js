@@ -68,6 +68,7 @@ mix.copyDirectory('resources/images', 'public/images')
 mix.copyDirectory('resources/data', 'public/data')
 
 mix
+  .js('resources/js/app.js', 'public/js')
   .js('resources/js/core/app-menu.js', 'public/js/core')
   .js('resources/js/core/app.js', 'public/js/core')
   .js('resources/assets/js/scripts.js', 'public/js/core')

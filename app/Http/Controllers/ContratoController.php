@@ -9,12 +9,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Contrato;
 use App\Models\User;
-
-
-
-
-
-
+use Illuminate\Support\Facades\Log;
 
 class ContratoController extends Controller
 {
@@ -119,5 +114,25 @@ class ContratoController extends Controller
         
         $inversiones = Inversion::all();
         return view('contratos.FirmaInversor', compact('inversiones'));
+    }
+
+    public function finalizar(Request $request)
+    {
+        try{
+            $validate = $request->validate([
+                'contratoId' => 'required',
+            ]);
+
+            if ($validate) {
+                $contrato = Contrato::findOrFail($request->contratoId);
+                $contrato->status = 'finalizado';
+                $contrato->save();
+
+                return response()->json(true);
+            }
+        } catch (\Throwable $th) {
+            Log::error('SolicitudController - solicitar -> Error: '.$th);
+            abort(403, "Ocurrio un error, contacte con el administrador");
+        }
     }
 }
