@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
+<<<<<<< HEAD
 
 
 
@@ -41,15 +42,21 @@ Route::get('/', [InversionesController::class, 'create'])->name('home');
 //Ruta original
 //    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
 
+=======
+>>>>>>> 2ccb65cbb60f488b43721ba5aedf1f09b2307c01
 // Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
 Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
-Route::get('/dashboard-prueba2', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard.prueba2');
 
 //INVERSIONES
 Route::group(['prefix' => 'inversiones'], function () {
     Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
     Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
 
+    //INVERSIONES
+    Route::group(['prefix' => 'inversiones'], function () {
+        Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
+        Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
+    //});
 
     //CONTRATOS
     Route::group(['prefix' => 'contratos'], function () {
@@ -57,6 +64,7 @@ Route::group(['prefix' => 'inversiones'], function () {
         Route::get('/download_pdf/{id}', [ContratoController::class, 'download_pdf'])->name('contratos.download_pdf');
         Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
         Route::get('/firmaInversor', [ContratoController::class, 'firmaInversor'])->name('contratos.firmaInversor');
+        Route::post('/finalizar', [ContratoController::class, 'finalizar'])->name('contratos.finalizar');
     });
     //rutas para la lista de usuarios
     Route::prefix('user')->group(function () {

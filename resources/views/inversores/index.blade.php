@@ -53,10 +53,10 @@
                       <i data-feather='more-vertical'></i>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
-                    <li><a class="dropdown-item" href="#">Reenviar contrato</a></li>
+                    <li><a class="dropdown-item" href="#"><i data-feather='user'></i> Ver perfil</a></li>
+                    <li><a class="dropdown-item" href="#"><i data-feather='arrow-left'></i> Reenviar contrato</a></li>
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                      data-bs-target="#modalAprobar">Aprobar</a></li>
+                      data-bs-target="#modalAprobar"><i data-feather='check-circle'></i> Aprobar</a></li>
                   </ul>
                 </div>
               </td>
