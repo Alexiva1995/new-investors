@@ -19,6 +19,7 @@
 @section('content')
 <!-- Full calendar start -->
 <section>
+  
   <div class="app-calendar overflow-hidden border">
     <div class="row g-0">
       <!-- Sidebar -->
