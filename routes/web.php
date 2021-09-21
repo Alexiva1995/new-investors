@@ -33,7 +33,22 @@ use Illuminate\Support\Facades\Auth;
 
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
-//Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
+    //TEST
+    Route::get('/test',function(){
+        return view('test/create');
+    });
+});
+    //
+    Route::get('/',[InversionesController::class, 'create'])->name('home');
+
+    Route::get('/', [InversionesController::class, 'create'])->name('home');
+
+//Ruta original
+//    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
+
+// Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
+Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
 
     Route::get('/',[InversionesController::class, 'create'])->name('home');
 
@@ -44,11 +59,6 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
     Route::get('/dashboard-prueba2', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard.prueba2');
 
-    //INVERSIONES
-    Route::group(['prefix' => 'inversiones'], function () {
-        Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
-        Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
-    //});
 
     //CONTRATOS
     Route::group(['prefix' => 'contratos'], function () {
