@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 
 
+
 Route::get('/', [InversionesController::class, 'create'])->name('home');
 
 //Ruta original
