@@ -311,7 +311,7 @@
               </div>
 
               <div class="col-2">
-                <button class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
+                <button class=" btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
 
     </form>

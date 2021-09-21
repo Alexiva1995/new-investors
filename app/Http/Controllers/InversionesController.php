@@ -107,7 +107,7 @@ class InversionesController extends Controller
 
         Inversion::create($request->all());
 
-        return redirect('/inversiones/FirmaModal');
+        return back();
     }
 
     public function inversores()
