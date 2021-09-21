@@ -45,7 +45,7 @@ Route::group(['prefix' => 'inversiones'], function () {
     Route::group(['prefix' => 'inversiones'], function () {
         Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
         Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
-    //});
+    });
 
     //CONTRATOS
     Route::group(['prefix' => 'contratos'], function () {

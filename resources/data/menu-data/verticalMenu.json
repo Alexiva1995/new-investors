@@ -24,8 +24,8 @@
     {
       "name": "Usuarios",
       "icon": "users",
-      "slug": "user/list-user",
-      "url": "/user/list-user"
+      "slug": "inversiones/user/list-user",
+      "url": "inversiones/user/list-user"
     },
     {
       "name": "Contratos",
@@ -34,17 +34,17 @@
       "slug": "formulario",
       "submenu": [
         {
-          "url": "inversores",
+          "url": "inversiones/inversores",
           "name": "Nuevos inversores",
           "icon": "circle",
-          "slug": "inversores"
+          "slug": "inversiones/inversores"
         },
        
         {
-          "url": "firmados",
+          "url": "inversiones/firmados",
           "name": "Firmados",
           "icon": "circle",
-          "slug": "contratos/firmados"
+          "slug": "inversiones/firmados"
         }  
       ]
     },
