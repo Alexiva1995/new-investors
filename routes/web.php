@@ -60,6 +60,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/download_pdf/{id}', [ContratoController::class, 'download_pdf'])->name('contratos.download_pdf');
         Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
         Route::get('/firmaInversor', [ContratoController::class, 'firmaInversor'])->name('contratos.firmaInversor');
+        Route::post('/finalizar', [ContratoController::class, 'finalizar'])->name('contratos.finalizar');
     });
         //rutas para la lista de usuarios
     Route::prefix('user')->group(function(){
