@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
-Route::middleware(['auth', 'admin'])->group(function () {
+//Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/',[InversionesController::class, 'create'])->name('home');
 
@@ -48,7 +48,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::group(['prefix' => 'inversiones'], function () {
         Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
         Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
-    });
+    //});
 
     //CONTRATOS
     Route::group(['prefix' => 'contratos'], function () {
