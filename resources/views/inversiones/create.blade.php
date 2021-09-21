@@ -29,31 +29,6 @@
 </div>
 
 
-
-<div class="container" style="background-color: #FFFFFF !important;">
-
-  <div id="exTab2" class="container row">
-    <div class="panel panel-default row align-items-start mt-4 ">
-
-      <div class="col-3 ">
-        <a href="#" id="inf">1 Información Personal</a>
-        <div class="line-mf"></div>
-      </div>
-
-      <div class="col-3">
-        <a id="inft" href="#"> 2 Información Bancaria</a>
-        <div class="line-mft"></div>
-      </div>
-
-      <div class="col-4">
-        <a id="inft" href="#"> 3 Información de inversión</a>
-        <div class="line-mft"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <section class="bs-validation" style="background-color: #FFFFFF !important;">
   <div class="container row ">
     <form class="" method="POST" action="{{route('inversiones.store')}}" enctype="multipart/form-data">
@@ -63,8 +38,32 @@
       <div class="panel-body">
         <div class="tab-content ">
           <div class="tab-pane active " id="1">
-            <div class="container mt-4">
-              <div class="row align-items-start">
+            <div class="">
+
+              <div class="container" style="background-color: #FFFFFF !important;">
+
+                <div id="exTab2" class="container row">
+                  <div class="panel panel-default row align-items-start mt-4 ">
+
+                    <div class="col-3 ">
+                      <a href="#" id="inf">1 Información Personal</a>
+                      <div class="line-mf"></div>
+                    </div>
+
+                    <div class="col-3">
+                      <a id="inft" href="#"> 2 Información Bancaria</a>
+                      <div class="line-mft"></div>
+                    </div>
+
+                    <div class="col-4">
+                      <a id="inft" href="#"> 3 Información de inversión</a>
+                      <div class="line-mft"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-start mt-3">
                 <div class="col-4">
                   <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
                   <input type="text" id="fullname" name="fullname" class=" form-control  {{ $errors->has('fullname') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Nombre Completo" aria-label="nombre y apellido" aria-describedby="nombre completo de la persona" required />
@@ -135,8 +134,34 @@
             </div>
           </div>
 
-          <div class="tab-pane mt-5 container " id="2">
-            <div class="row align-items-start">
+
+
+          <div class="tab-pane  " id="2">
+
+            <div class="container" style="background-color: #FFFFFF !important;">
+
+              <div id="exTab2" class="container row">
+                <div class="panel panel-default row align-items-start mt-4 ">
+
+                  <div class="col-3 ">
+                    <a href="#" id="inft">1 Información Personal</a>
+                    <div class="line-mft"></div>
+                  </div>
+
+                  <div class="col-3">
+                    <a id="inf" href="#"> 2 Información Bancaria</a>
+                    <div class="line-mf"></div>
+                  </div>
+
+                  <div class="col-4">
+                    <a id="inft" href="#"> 3 Información de inversión</a>
+                    <div class="line-mft"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row align-items-start mt-4">
               <div class="col-4">
                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
                 <select class="form-select {{ $errors->has('banco') ? ' is-invalid' : '' }}" id="banco" required name="banco">
@@ -197,7 +222,28 @@
 
           <div class="tab-pane " id="3">
 
+            <div class="container" style="background-color: #FFFFFF !important;">
 
+              <div id="exTab2" class="container row">
+                <div class="panel panel-default row align-items-start mt-4 ">
+
+                  <div class="col-3 ">
+                    <a href="#" id="inft">1 Información Personal</a>
+                    <div class="line-mft"></div>
+                  </div>
+
+                  <div class="col-3">
+                    <a id="inft" href="#"> 2 Información Bancaria</a>
+                    <div class="line-mft"></div>
+                  </div>
+
+                  <div class="col-4">
+                    <a id="inf" href="#"> 3 Información de inversión</a>
+                    <div class="line-mf"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div id="Información-de-inversión">
               <div class="container mt-4 mb-3 row">
                 <div class="row align-items-start">
@@ -233,7 +279,6 @@
                     <div class="invalid-feedback">Por favor ingresa tu Fecha de Consignación.</div>
                   </div>
                 </div>
-
 
                 <div class="row align-items-center">
                   <div class="col-4">
@@ -279,16 +324,17 @@
               </div>
             </div>
 
-            
             <div class="row align-items-end">
               <div class="col-10">
                 <button class="btn-int  active mb-5 mt-5" href="#2" data-toggle="tab">Atras</button>
               </div>
 
               <div class="col-2">
-                <button type="buttom" class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
+                <button class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
-              </form>
+
+    </form>
+
 </section>
 
 
@@ -306,10 +352,8 @@
 </section>
 
 
-
 <!-- /Validation -->
 @endsection
-
 
 @section('vendor-script')
 <!-- vendor files -->
