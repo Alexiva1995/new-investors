@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\Inversion;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Contrato;
 
 class InversionesController extends Controller
 {
