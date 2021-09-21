@@ -13,9 +13,6 @@ use App\Models\User;
 
 
 
-
-
-
 class ContratoController extends Controller
 {
     //

@@ -280,7 +280,6 @@
                   </div>
                 </div>
 
-
                 <div class="row align-items-center">
                   <div class="col-4">
                     <label class="form-label" for="referente">¿Como conoció nuestro sistema de Inversión? <span style="color: red;">*</span></label>
@@ -325,16 +324,17 @@
               </div>
             </div>
 
-
             <div class="row align-items-end">
               <div class="col-10">
                 <button class="btn-int  active mb-5 mt-5" href="#2" data-toggle="tab">Atras</button>
               </div>
 
               <div class="col-2">
-                <button type="buttom" class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
+                <button class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
+
     </form>
+
 </section>
 
 
@@ -352,10 +352,8 @@
 </section>
 
 
-
 <!-- /Validation -->
 @endsection
-
 
 @section('vendor-script')
 <!-- vendor files -->
