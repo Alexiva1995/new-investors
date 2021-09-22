@@ -107,10 +107,10 @@ class InversionesController extends Controller
         $request = collect($request)->merge([
             'user_id' => $user->id
         ]);
-  
-        $inversion = Inversion::create($request->all());
-        
-        return redirect('/inversiones/FirmaModal');
+
+        Inversion::create($request->all());
+
+        return back();
     }
 
     public function inversores()
