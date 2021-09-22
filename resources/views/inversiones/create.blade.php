@@ -311,48 +311,49 @@
               </div>
 
               <div class="col-2">
-                <button class=" btn btn-primarys text-white mb-5 mt-5">Firmar</button>
-              </div>
-
-              <!-- Vertical modal -->
-              <!-- Modal -->
-              <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalCenterTitle">Vertically Centered</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div id="signature-pad" class="signature-pad" style="margin: 0px auto;">
-                        <div class="signature-pad--body">
-                          <p>Colocar tu firma aqui</p>
-                          <canvas style="border: 1px solid #000; width: 100%;"></canvas>
-                          <form method="POST" id="formContrato">
-                            @csrf
-                            <input type="hidden" id="imagen64" name="imagen64">
-                            <input type="hidden" id="inversion_id" name="inversion_id">
-                          </form>
-                        </div>
-                        <div class="signature-pad--footer">
-                          <div class="text-center">Accion</div>
-                          <div class="text-center">
-                            <button type="button" class="button clear btn btn-info btn-round" data-action="clear" id="limpiar">Limpiar</button>
-                            <button type="button" class="button btn btn-info btn-round" data-action="undo" id="btnGuardar">Firmar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-                  </div>
-                </div>
+                <button class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
 
     </form>
 
 </section>
+
+
+<!-- Vertical modal -->
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Vertically Centered</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="signature-pad" class="signature-pad" style="margin: 0px auto;">
+          <div class="signature-pad--body">
+            <p>Colocar tu firma aqui</p>
+            <canvas style="border: 1px solid #000; width: 100%;"></canvas>
+            <form method="POST" id="formContrato">
+              @csrf
+              <input type="hidden" id="imagen64" name="imagen64">
+              <input type="hidden" id="inversion_id" name="inversion_id">
+            </form>
+          </div>
+          <div class="signature-pad--footer">
+            <div class="text-center">Accion</div>
+            <div class="text-center">
+              <button type="button" class="button clear btn btn-info btn-round" data-action="clear" id="limpiar">Limpiar</button>
+              <button type="button" class="button btn btn-info btn-round" data-action="undo" id="btnGuardar">Firmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <footer class="footert">
@@ -469,15 +470,7 @@
       }
     });
   })
-
-  var botonModal = document.getElementsByClassName('btn-primarys')
-  
-  botonModal.addEventListener("click", function (event) {
-    console.log("Aqui el modal");
-  },false)
-
 </script>
-
 
 @endpush
 @section('vendor-script')

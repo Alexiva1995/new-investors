@@ -71,7 +71,6 @@ class InversionesController extends Controller
 
     public function store(InversionCreateRequest $request)
     {
-        dd('El metodo del controlador');
     
         $request->password = bcrypt($request->password);
         $request->merge([
