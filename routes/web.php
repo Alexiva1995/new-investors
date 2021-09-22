@@ -59,6 +59,11 @@ Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics
     Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
     Route::get('/dashboard-prueba2', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard.prueba2');
 
+//INVERSIONES
+Route::group(['prefix' => 'inversiones'], function () {
+    Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
+    Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
+
 
     //CONTRATOS
     Route::group(['prefix' => 'contratos'], function () {
@@ -66,20 +71,20 @@ Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics
         Route::get('/download_pdf/{id}', [ContratoController::class, 'download_pdf'])->name('contratos.download_pdf');
         Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
         Route::get('/firmaInversor', [ContratoController::class, 'firmaInversor'])->name('contratos.firmaInversor');
+        Route::post('/finalizar', [ContratoController::class, 'finalizar'])->name('contratos.finalizar');
     });
-        //rutas para la lista de usuarios
-    Route::prefix('user')->group(function(){
-        Route::get('/list-user',[UserController::class,'listUser'])->name('users.list-user');
-        Route::get('show-user/{id}',[UserController::class,'showUser'])->name('users.show-user');
-        Route::get('profile',[UserController::class,'editProfile'])->name('profile');
-        Route::patch('profile-update',[UserController::class,'updateProfile'])->name('profile.update');
+    //rutas para la lista de usuarios
+    Route::prefix('user')->group(function () {
+        Route::get('/list-user', [UserController::class, 'listUser'])->name('users.list-user');
+        Route::get('show-user/{id}', [UserController::class, 'showUser'])->name('users.show-user');
+        Route::get('profile', [UserController::class, 'editProfile'])->name('profile');
+        Route::patch('profile-update', [UserController::class, 'updateProfile'])->name('profile.update');
 
-        
+
         Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
         Route::get('change-password', [ChangePasswordController::class, 'change-password'])->name('profile.change-password');
-
     });
-    
+
     Route::get('inversores', [InversionesController::class, 'inversores'])->name('inversores');
     Route::get('firmados', [InversionesController::class, 'firmados'])->name('firmados');
 
