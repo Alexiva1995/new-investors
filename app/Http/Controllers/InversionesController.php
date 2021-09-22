@@ -79,6 +79,7 @@ class InversionesController extends Controller
 
     public function store(InversionCreateRequest $request)
     {
+    
         $request->password = bcrypt($request->password);
         $request->merge([
             'password' => bcrypt($request->password)
@@ -86,27 +87,29 @@ class InversionesController extends Controller
 
         $user = User::create($request->all());
 
-        $user->notify(new \App\Notifications\sendform);
+        //$user->notify(new \App\Notifications\sendform);
 
         if ($request->hasFile('comprobante_consignacion')) {
 
             $file = $request->file('comprobante_consignacion');
             $name = time() . $file->getClientOriginalName();
             $ruta = $user->id . '/comprobantes/' . $name;
-
+            
             Storage::disk('public')->put($ruta,  \File::get($file));
 
-            $request->merge([
-                'comprobante_consignacion' => $name
+            $request = collect($request->except('comprobante_consignacion'))->merge([
+                'comprobante_consignacion' => $ruta
             ]);
+
+
         }
 
-        $request->merge([
+        $request = collect($request)->merge([
             'user_id' => $user->id
         ]);
-
-        Inversion::create($request->all());
-
+  
+        $inversion = Inversion::create($request->all());
+        
         return redirect('/inversiones/FirmaModal');
     }
 

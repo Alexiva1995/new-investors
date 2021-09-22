@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap4.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">
 @endsection
 
 @section('page-style')
@@ -53,10 +52,9 @@
                       <i data-feather='more-vertical'></i>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#"><i data-feather='user'></i> Ver perfil</a></li>
-                    <li><a class="dropdown-item" href="#"><i data-feather='arrow-left'></i> Reenviar contrato</a></li>
+                    <li><a class="dropdown-item" href="#"><i data-feather='user'></i> Ver contrato</a></li>
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                      data-bs-target="#modalAprobar"><i data-feather='check-circle'></i> Aprobar</a></li>
+                      data-bs-target="#modalAprobar"><i data-feather='check-circle'></i> Verificacion</a></li>
                   </ul>
                 </div>
               </td>
@@ -82,16 +80,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-       
-          <form action="{{route('dropZoneStore')}}" method="POST" enctype="multipart/form-data"  class="dropzone dropzone-area" id="dpz-single-file">
-            <input type="hidden" name="user" value="{{$user->id}}">
-            @csrf
-            <div class="dz-message">Suelta los archivos aquí o haz clic para subir.</div>
-          </form>
-              
+          
+          
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Accept</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Rechazar</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aprobar</button>
         </div>
       </div>
     </div>
@@ -120,12 +114,10 @@
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 
-  <script src="{{ asset(mix('vendors/js/file-uploaders/dropzone.min.js')) }}"></script>
 @endsection
 @section('page-script')
   {{-- Page js files --}}
   <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
-  <script src="{{ asset(mix('js/scripts/forms/form-file-uploader.js')) }}"></script>
 
 @endsection
 
