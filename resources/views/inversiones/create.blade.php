@@ -314,12 +314,7 @@
                 <button class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
 
-    </form>
-
-</section>
-
-
-<!-- Vertical modal -->
+              <!-- Vertical modal -->
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -354,6 +349,13 @@
     </div>
   </div>
 </div>
+
+
+    </form>
+
+</section>
+
+
 
 
 <footer class="footert">
