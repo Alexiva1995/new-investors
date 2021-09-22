@@ -38,14 +38,14 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($users as $user)            
+            @foreach ($inversiones as $inversion)            
             <tr>
-              <td>{{$user->id}}</td>
-              <td>{{$user->fullname}}</td>
-              <td>{{$user->num_documento}}</td>
+              <td>{{$inversion->id}}</td>
+              <td>{{$inversion->getUser->fullname}}</td>
+              <td>{{$inversion->getUser->num_documento}}</td>
               <td></td>
-              <td>{{$user->email}}</td>
-              <td>{{$user->created_at->format('Y/m/d')}}</td>
+              <td>{{$inversion->getUser->email}}</td>
+              <td>{{$inversion->created_at->format('Y/m/d')}}</td>
               <td>
                 <div class="dropdown">
                   <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -80,8 +80,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          
-          
+          <img style="width: 100%;" src="{{asset('storage/'.$inversion->comprobante_consignacion)}}" alt="consignacion">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Rechazar</button>

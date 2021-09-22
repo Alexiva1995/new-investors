@@ -73,10 +73,10 @@
                                 <tbody>
                                     @forelse ($inv as $item)
                                         <tr class="text-center">
-                                            <td>{{ $item->getInversion->id }}</td>
-                                            <td>{{ $item->getInversion->getUser->fullname }}</td>
-                                            <td>{{ $item->getInversion->getUser->num_documento}}</td>
-                                            <td>{{ $item->getInversion->getUser->email }}</td>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->getUser->fullname }}</td>
+                                            <td>{{ $item->getUser->num_documento}}</td>
+                                            <td>{{ $item->getUser->email }}</td>
 						                    <td>{{date('M-d-Y', strtotime($item->created_at))}}</td>                                            
 											<td>{{ $item->id }}</td>
                                             <td>

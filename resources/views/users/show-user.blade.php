@@ -113,11 +113,11 @@
                                                             <td>{{ $item->tipo_interes}}</td>
                                                             <td>{{ $item->fecha_consignacion}}</td>
                                                             <td>
-                                                                @if($item->contrato == null || $item->contrato->status == "por_firmar")
+                                                                @if($item->status == "por_firmar")
                                                                   <span class="badge rounded-pill badge-light-danger me-1">Por firmar</span>
                                                                 @elseif($item->contrato->status == "firma_cliente")
                                                                   <span class="badge rounded-pill badge-light-warning me-1">Espera</span>
-                                                                @elseif($item->contrato->status == "firmado")
+                                                                @elseif($item->status == "firmado")
                                                                 <span class="badge rounded-pill badge-light-success me-1">Firmado</span>
                                                                 @endif
                                                                 

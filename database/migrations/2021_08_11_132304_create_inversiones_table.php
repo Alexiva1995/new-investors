@@ -23,6 +23,10 @@ class CreateInversionesTable extends Migration
             $table->enum('periodo_mes', ['1', '2'])->comment('1 - del 1 al 15, 2 - del 16 al 30 o (31)');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            //tablas de contratos(old)
+            $table->string('doc_cliente_firmado')->nullable();
+            $table->string('doc_admin_firmado')->nullable();
+            $table->enum('status', ['por_firmar', 'firma_cliente', 'firmado', 'finalizado'])->default('por_firmar');
             $table->timestamps();
         });
     }

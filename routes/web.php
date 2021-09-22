@@ -79,7 +79,6 @@ Route::group(['prefix' => 'inversiones'], function () {
     Route::get('inversores', [InversionesController::class, 'inversores'])->name('inversores');
     Route::get('firmados', [InversionesController::class, 'firmados'])->name('firmados');
 
-    Route::post('dropzone-store', [InversionesController::class, 'dropZoneStore'])->name('dropZoneStore');
 });
 Auth::routes(['verify' => true]);
 

@@ -26,9 +26,4 @@ class Inversion extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
-
-    public function contrato()
-    {
-        return $this->hasOne('App\Models\Contrato', 'inversion_id');
-    }
 }

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\InversionCreateRequest;
-use App\Models\Contrato;
 use App\Models\User;
 use App\Models\Inversion;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use DB;
 
 class InversionesController extends Controller
 {
@@ -22,38 +23,25 @@ class InversionesController extends Controller
 
     public function firmar(Request $request)
     {
-        $img = str_replace('data:image/png;base64,', '', $request->imagen64);
-        $img = str_replace(' ', '+', $img);
-        $data = base64_decode($img);
-        //return $request->imagen64;
-        $user =  Auth::user();
+        try{
+            DB::beginTransaction();
+            $user =  Auth::user();
 
-        if ($user->admin == 1) {
-            $name = "firma_administrador.png";
-            $firmante = "admin";
-        } else {
-            $name = "firma_cliente.png";
-            $firmante = "cliente";
-        }
-
-        $ruta = $user->id . '/' . $request->inversion_id . '/' . $name;
-
-        if (Storage::disk('public')->put($ruta,  $data)) {
-
-            $contrato = Contrato::where('inversion_id', $request->inversion_id)->first();
-
-
-
-            if ($contrato == null) {
-                $contrato = new Contrato();
-                $contrato->inversion_id = $request->inversion_id;
+            if ($user->admin == 1) {
+                $name = "firma_administrador.png";
+                $firmante = "admin";
+            } else {
+                $name = "firma_cliente.png";
+                $firmante = "cliente";
             }
 
+            $contrato = Inversion::findOrFail($request->inversion_id);
+     
             if ($firmante == "cliente") {
-                $contrato->doc_cliente_firmado = $ruta;
+                $contrato->doc_cliente_firmado = $request->imagen64;
                 $contrato->status = "firma_cliente";
             } else {
-                $contrato->doc_admin_firmado = $ruta;
+                $contrato->doc_admin_firmado = $request->imagen64;
             }
 
             if ($contrato->doc_cliente_firmado != null && $contrato->doc_admin_firmado != null) {
@@ -63,12 +51,16 @@ class InversionesController extends Controller
 
             $user->notify(new \App\Notifications\firmado);
 
+            DB::commit();
             return response()->json([
                 'message' => 'Firma digital registrada exitosamente',
                 'success' => true
 
             ], 200);
-        } else {
+    
+        } catch (\Throwable $th) {
+            DB::rollback();
+            Log::error('InversionesController - firmar -> Error: '.$th);
             return response()->json([
                 'message' => 'Error',
                 'success' => false
@@ -115,32 +107,17 @@ class InversionesController extends Controller
 
     public function inversores()
     {
-        $users = User::orderBy('id', 'desc')->get();
+        $inversiones = Inversion::orderBy('id', 'desc')->get();
 
-        return view('inversores.index', compact('users'));
+        return view('inversores.index', compact('inversiones'));
     }
 
 
     public function firmados()
     {
-        // $users = User::orderBy('id', 'desc')->get();
-
-        $inv = Contrato::where('status', '<>', 'finalizado')->get();
+        $inv = Inversion::where('status', '<>', 'finalizado')->get();
 
         return view('contratos.firmados', compact('inv'));
     }
 
-
-
-    public function dropZoneStore(Request $request)
-    {
-        $image = $request->file('file');
-        $imageName = time() . $image->getClientOriginalName() . '.' . $image->extension();
-        $ruta = $request->user . '/pdf/' . $imageName;
-        Storage::disk('public')->put($ruta,  \File::get($image));
-
-        return response()->json([
-            'success' => $imageName
-        ]);
-    }
 }
