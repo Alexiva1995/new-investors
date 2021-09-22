@@ -33,28 +33,21 @@
   <div class="container row ">
     <form class="" method="POST" action="{{route('inversiones.store')}}" enctype="multipart/form-data">
       @csrf
-
-
       <div class="panel-body">
         <div class="tab-content ">
           <div class="tab-pane active " id="1">
             <div class="">
-
               <div class="container" style="background-color: #FFFFFF !important;">
-
                 <div id="exTab2" class="container row">
                   <div class="panel panel-default row align-items-start mt-4 ">
-
                     <div class="col-3 ">
                       <a href="#" id="inf">1 Información Personal</a>
                       <div class="line-mf"></div>
                     </div>
-
                     <div class="col-3">
                       <a id="inft" href="#"> 2 Información Bancaria</a>
                       <div class="line-mft"></div>
                     </div>
-
                     <div class="col-4">
                       <a id="inft" href="#"> 3 Información de inversión</a>
                       <div class="line-mft"></div>
@@ -62,7 +55,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="row align-items-start mt-3">
                 <div class="col-4">
                   <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
@@ -137,22 +129,17 @@
 
 
           <div class="tab-pane  " id="2">
-
             <div class="container" style="background-color: #FFFFFF !important;">
-
               <div id="exTab2" class="container row">
                 <div class="panel panel-default row align-items-start mt-4 ">
-
                   <div class="col-3 ">
                     <a href="#" id="inft">1 Información Personal</a>
                     <div class="line-mft"></div>
                   </div>
-
                   <div class="col-3">
                     <a id="inf" href="#"> 2 Información Bancaria</a>
                     <div class="line-mf"></div>
                   </div>
-
                   <div class="col-4">
                     <a id="inft" href="#"> 3 Información de inversión</a>
                     <div class="line-mft"></div>
@@ -160,7 +147,6 @@
                 </div>
               </div>
             </div>
-
             <div class="row align-items-start mt-4">
               <div class="col-4">
                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
@@ -217,13 +203,8 @@
               </div>
             </div>
           </div>
-
-
-
           <div class="tab-pane " id="3">
-
             <div class="container" style="background-color: #FFFFFF !important;">
-
               <div id="exTab2" class="container row">
                 <div class="panel panel-default row align-items-start mt-4 ">
 
@@ -330,13 +311,49 @@
               </div>
 
               <div class="col-2">
-                <button class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
+                <button class=" btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
 
     </form>
 
 </section>
 
+
+<!-- Vertical modal -->
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Vertically Centered</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="signature-pad" class="signature-pad" style="margin: 0px auto;">
+          <div class="signature-pad--body">
+            <p>Colocar tu firma aqui</p>
+            <canvas style="border: 1px solid #000; width: 100%;"></canvas>
+            <form method="POST" id="formContrato">
+              @csrf
+              <input type="hidden" id="imagen64" name="imagen64">
+              <input type="hidden" id="inversion_id" name="inversion_id">
+            </form>
+          </div>
+          <div class="signature-pad--footer">
+            <div class="text-center">Accion</div>
+            <div class="text-center">
+              <button type="button" class="button clear btn btn-info btn-round" data-action="clear" id="limpiar">Limpiar</button>
+              <button type="button" class="button btn btn-info btn-round" data-action="undo" id="btnGuardar">Firmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <footer class="footert">
@@ -354,7 +371,108 @@
 
 <!-- /Validation -->
 @endsection
+@push('custom-scripts')
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+  var modal = document.getElementById('modal')
 
+  $('.subir').click(function() {
+
+    $('#inversion_id').val($('.subir').attr('inversion'));
+    var myModal = new bootstrap.Modal(modal);
+
+    myModal.show();
+
+  });
+
+  modal.addEventListener('shown.bs.modal', function(event) {
+
+    var wrapper = document.getElementById("signature-pad");
+
+    var canvas = wrapper.querySelector("canvas");
+    var signaturePad = new SignaturePad(canvas, {
+      backgroundColor: 'rgb(255, 255, 255)'
+    });
+
+    function resizeCanvas() {
+
+      var ratio = Math.max(window.devicePixelRatio || 1, 1);
+
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+
+      signaturePad.clear();
+    }
+
+    window.onresize = resizeCanvas;
+    resizeCanvas();
+
+    $('#limpiar').click(function() {
+      signaturePad.clear();
+    })
+
+    $('#btnGuardar').click(function() {
+
+      event.preventDefault();
+      if (signaturePad.isEmpty()) {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-danger'
+          },
+          buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+          title: "Debe realizar la firma!"
+        });
+      } else {
+        document.getElementById('imagen64').value = signaturePad.toDataURL();
+        //$("#loading").modal('show');
+        var datos = $('#formContrato').serialize();
+        $.ajax({
+          method: "GET",
+          url: "{{route('contratos.firmar')}}",
+          data: datos
+        }).done(function(response) {
+          //$("#loading").modal('hide');
+
+          if (response.success == true) {
+            const swalWithBootstrapButtons = Swal.mixin({
+              customClass: {
+                confirmButton: 'btn btn-success'
+              },
+              buttonsStyling: false
+            })
+            swalWithBootstrapButtons.fire({
+              title: "Contrato creado exitosamente.",
+              text: "Un asesor se encargará de validar la firma del contrato y pronto se habilitará el botón de Pago para que empieces a disfrutar los beneficios.",
+              icon: "success",
+              backdrop: true,
+              allowOutsideClick: false
+            }).then(function(e) {
+              location.href = "{{ route('contratos.index') }}";
+            });
+          } else {
+            const swalWithBootstrapButtons = Swal.mixin({
+              customClass: {
+                confirmButton: 'btn btn-danger'
+              },
+              buttonsStyling: false
+            })
+            swalWithBootstrapButtons.fire({
+              title: "Opss! Algo no salio bien",
+              text: "El contrato no se creó!",
+              icon: "warning"
+            });
+          }
+        });
+      }
+    });
+  })
+</script>
+
+@endpush
 @section('vendor-script')
 <!-- vendor files -->
 <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
