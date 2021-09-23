@@ -142,13 +142,6 @@
                 strokeOpacity: 1,
                 strokeDashArray: 0,
                 fillOpacity: 1,
-                discrete: [{
-                    seriesIndex: 0,
-                    dataPointIndex: 5,
-                    fillColor: '#ffffff',
-                    strokeColor: window.colors.solid.info,
-                    size: 5
-                }],
                 shape: 'circle',
                 radius: 2,
                 hover: {
@@ -226,13 +219,6 @@
                 strokeOpacity: 1,
                 strokeDashArray: 0,
                 fillOpacity: 1,
-                discrete: [{
-                    seriesIndex: 0,
-                    dataPointIndex: 5,
-                    fillColor: '#ffffff',
-                    strokeColor: window.colors.solid.info,
-                    size: 5
-                }],
                 shape: 'circle',
                 radius: 2,
                 hover: {
