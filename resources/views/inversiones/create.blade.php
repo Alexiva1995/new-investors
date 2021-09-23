@@ -31,7 +31,7 @@
 
 <section class="bs-validation" style="background-color: #FFFFFF !important;">
   <div class="container row ">
-    <form class="" method="POST" action="{{route('inversiones.store')}}" enctype="multipart/form-data">
+    <form class="" id="formInvestor" method="POST" action="{{route('inversiones.store')}}" enctype="multipart/form-data">
       @csrf
       <div class="panel-body">
         <div class="tab-content ">
@@ -239,16 +239,11 @@
 
                   <div class="col-4">
                     <label class="form-label">Tipo de interes <span style="color: red;">*</span></label>
-
-
                     <select class="form-select {{ $errors->has('tipo_interes') ? ' is-invalid' : '' }}" id="tipo_interes1" name="tipo_interes" required>
                       <option value="">Seleccionar</option>
                       <option class="form-check-input" type="radio" name="tipo_interes" id="tipo_interes2" value="compuesto" value="1">LINEAL</option>
                       <option class="form-check-input" type="radio" name="tipo_interes" id="tipo_interes2" value="compuesto" value="2">COMPUESTO</option>
                     </select>
-
-
-
                   </div>
 
 
@@ -284,6 +279,9 @@
                     <input class="form-control" type="file" id="comprobante_consignacion" name="comprobante_consignacion" />
                   </div>
 
+                  <input class="form-control" type="file" id="doc_cliente_firmado" name="doc_cliente_firmado" style="display:none;"/>
+
+
                   <div class="col-4">
                     <label class="form-label" for="periodo_mes">¿La consignación se realizó en cual periodo del mes? <span style="color: red;">*</span></label>
                     <select class="form-select {{ $errors->has('periodo_mes') ? ' is-invalid' : '' }}" id="periodo_mes" name="periodo_mes" required>
@@ -311,15 +309,14 @@
               </div>
 
               <div class="col-2">
-                <button class=" btn btn-primarys text-white mb-5 mt-5">Firmar</button>
+                <button type="button" class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
               </div>
+
+
 
     </form>
 
-</section>
-
-
-<!-- Vertical modal -->
+                  <!-- Vertical modal -->
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -336,7 +333,6 @@
             <form method="POST" id="formContrato">
               @csrf
               <input type="hidden" id="imagen64" name="imagen64">
-              <input type="hidden" id="inversion_id" name="inversion_id">
             </form>
           </div>
           <div class="signature-pad--footer">
@@ -354,6 +350,10 @@
     </div>
   </div>
 </div>
+
+</section>
+
+
 
 
 <footer class="footert">
@@ -379,7 +379,8 @@
 
   $('.subir').click(function() {
 
-    $('#inversion_id').val($('.subir').attr('inversion'));
+    // $('#inversion_id').val($('.subir').attr('inversion'));
+    $('#inversion_id').val(1);
     var myModal = new bootstrap.Modal(modal);
 
     myModal.show();
@@ -415,7 +416,6 @@
 
     $('#btnGuardar').click(function() {
 
-      event.preventDefault();
       if (signaturePad.isEmpty()) {
         const swalWithBootstrapButtons = Swal.mixin({
           customClass: {
@@ -427,46 +427,16 @@
           title: "Debe realizar la firma!"
         });
       } else {
-        document.getElementById('imagen64').value = signaturePad.toDataURL();
+        // document.getElementById('imagen64').value = signaturePad.toDataURL();
         //$("#loading").modal('show');
-        var datos = $('#formContrato').serialize();
-        $.ajax({
-          method: "GET",
-          url: "{{route('contratos.firmar')}}",
-          data: datos
-        }).done(function(response) {
-          //$("#loading").modal('hide');
+        // var datos = $('#formContrato').serialize();
+        // console.log(datos);
 
-          if (response.success == true) {
-            const swalWithBootstrapButtons = Swal.mixin({
-              customClass: {
-                confirmButton: 'btn btn-success'
-              },
-              buttonsStyling: false
-            })
-            swalWithBootstrapButtons.fire({
-              title: "Contrato creado exitosamente.",
-              text: "Un asesor se encargará de validar la firma del contrato y pronto se habilitará el botón de Pago para que empieces a disfrutar los beneficios.",
-              icon: "success",
-              backdrop: true,
-              allowOutsideClick: false
-            }).then(function(e) {
-              location.href = "{{ route('contratos.index') }}";
-            });
-          } else {
-            const swalWithBootstrapButtons = Swal.mixin({
-              customClass: {
-                confirmButton: 'btn btn-danger'
-              },
-              buttonsStyling: false
-            })
-            swalWithBootstrapButtons.fire({
-              title: "Opss! Algo no salio bien",
-              text: "El contrato no se creó!",
-              icon: "warning"
-            });
-          }
-        });
+      document.getElementById('imagen64').value = signaturePad.toDataURL();
+      //$("#loading").modal('show');
+      document.getElementsByClassName('doc_cliente_firmado').value = document.getElementById('imagen64').value
+      // console.log(document.getElementsByClassName('doc_cliente_firmado').value)
+      document.forms["formInvestor"].submit()        
       }
     });
   })
