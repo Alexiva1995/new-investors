@@ -39,37 +39,26 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('test/create');
     });
 });
-    //
-    Route::get('/',[InversionesController::class, 'create'])->name('home');
+Route::get('/',[InversionesController::class, 'create'])->name('home');
 
-    Route::get('/', [InversionesController::class, 'create'])->name('home');
+//DASHBOARD ADMIN
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
 
-//Ruta original
-   Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
-
-// Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
+//DASHBOARDS DE PRUEBA DE LA PLANTILLA 
 Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
-
-    Route::get('/',[InversionesController::class, 'create'])->name('home');
-
-    //Ruta original
-//    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
-
-    // Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
-    Route::get('/dashboard-prueba', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard.prueba');
-    Route::get('/dashboard-prueba2', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard.prueba2');
+Route::get('/dashboard-prueba2', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard.prueba2');
 
 //INVERSIONES
 Route::group(['prefix' => 'inversiones'], function () {
     Route::get('/create', [InversionesController::class, 'create'])->name('inversiones.create');
-    Route::post('/', [InversionesController::class, 'store'])->name('inversiones.store');
+    Route::post('/store', [InversionesController::class, 'store'])->name('inversiones.store');
 
 
     //CONTRATOS
     Route::group(['prefix' => 'contratos'], function () {
         Route::get('/', [ContratoController::class, 'index'])->name('contratos.index');
         Route::get('/download_pdf/{id}', [ContratoController::class, 'download_pdf'])->name('contratos.download_pdf');
-        Route::get('/firmar/', [ContratoController::class, 'firmar'])->name('contratos.firmar');
+        Route::get('/firmar', [ContratoController::class, 'firmar'])->name('contratos.firmar');
         Route::get('/firmaInversor', [ContratoController::class, 'firmaInversor'])->name('contratos.firmaInversor');
         Route::post('/finalizar', [ContratoController::class, 'finalizar'])->name('contratos.finalizar');
     });

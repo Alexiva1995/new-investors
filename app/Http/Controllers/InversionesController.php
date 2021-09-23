@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\InversionCreateRequest;
 use App\Models\User;
 use App\Models\Inversion;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\InversionCreateRequest;
 
 class InversionesController extends Controller
 {
@@ -38,13 +39,13 @@ class InversionesController extends Controller
             $contrato = Inversion::findOrFail($request->inversion_id);
      
             if ($firmante == "cliente") {
-                $contrato->doc_cliente_firmado = $request->imagen64;
+                $contrato->firma_cliente = $request->imagen64;
                 $contrato->status = "firma_cliente";
             } else {
-                $contrato->doc_admin_firmado = $request->imagen64;
+                $contrato->firma_admin = $request->imagen64;
             }
 
-            if ($contrato->doc_cliente_firmado != null && $contrato->doc_admin_firmado != null) {
+            if ($contrato->firma_cliente != null && $contrato->firma_admin != null) {
                 $contrato->status = "firmado";
             }
             $contrato->save();
@@ -81,6 +82,7 @@ class InversionesController extends Controller
                 "tipo_documento" => $request->tipo_documento,
                 "num_documento" => $request->num_documento,
                 "ciudad_residencia" => $request->ciudad_residencia,
+                "direccion_residencia"  =>  $request->direccion_residencia,
                 "celular" => $request->celular,
                 "banco" => $request->banco,
                 "tipo_cuenta" => $request->tipo_cuenta,
@@ -93,7 +95,7 @@ class InversionesController extends Controller
                     "tipo_interes" => $request->tipo_interes,
                     "fecha_consignacion" => $request->fecha_consignacion,
                     "referente" => $request->referente,
-                    "doc_cliente_firmado" => $request->doc_cliente_firmado,
+                    "firma_cliente" => $request->imagen64,
                     "periodo_mes" => $request->periodo_mes,
                     "terminos" => $request->terminos,
                     "status" => "firma_cliente",
@@ -104,9 +106,9 @@ class InversionesController extends Controller
                     $name = time() . $file->getClientOriginalName();
                     $ruta = $user->id . '/comprobantes/' . $name;
                     
-                    Storage::disk('public')->put($ruta,  \File::get($file));
-
-                    $inversion->$request->comprobante_consignacion = $ruta;
+                    Storage::disk('public')->put($ruta,  File::get($file));
+                    
+                    $request->comprobante_consignacion = $ruta;
                 }
                 if($inversion){
                     DB::commit();

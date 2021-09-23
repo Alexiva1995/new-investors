@@ -36,13 +36,13 @@ class InversionCreateRequest extends FormRequest
             "num_cuenta" => "required",
             "password" => "required",
             "invertido" => "required",
-            //"tipo_interes" => "on",
+            "tipo_interes" => "required",
+            "comprobante_consignacion" => "required",
             "fecha_consignacion" => "required",
             "referente" => "required",
-            //"comprobante_consignacion" => "",
             "periodo_mes" => "required",
             "terminos" => "required",
-            "doc_cliente_firma" => "required",
+            "imagen64" => "required"
         ];
     }
 }

@@ -200,13 +200,13 @@
             </tr>
             <tr>
               <td style="width: 50%;">
-                @if($inversion->contrato != null && $inversion->contrato->doc_admin_firmado) 
-                  <img width="300" src="{{public_path('storage/'.$inversion->contrato->doc_admin_firmado)}}" alt=""> 
+                @if($inversion->contrato != null && $inversion->contrato->firma_admin) 
+                  <img width="300" src="{{public_path('storage/'.$inversion->contrato->firma_admin)}}" alt=""> 
                 @endif
               </td>
               <td style="width: 50%;">
-                @if($inversion->contrato != null && $inversion->contrato->doc_cliente_firmado	) 
-                  <img width="300" src="{{public_path('storage/'.$inversion->contrato->doc_cliente_firmado	)}}" alt=""> 
+                @if($inversion->contrato != null && $inversion->contrato->firma_cliente	) 
+                  <img width="300" src="{{public_path('storage/'.$inversion->contrato->firma_cliente	)}}" alt=""> 
                 @endif
               </td>
             </tr>

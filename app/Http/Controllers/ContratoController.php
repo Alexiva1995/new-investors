@@ -67,13 +67,13 @@ class ContratoController extends Controller
             $contrato = Inversion::findOrFail($request->inversion_id);
      
             if ($firmante == "cliente") {
-                $contrato->doc_cliente_firmado = $request->imagen64;
+                $contrato->firma_cliente = $request->imagen64;
                 $contrato->status = "firma_cliente";
             } else {
-                $contrato->doc_admin_firmado = $request->imagen64;
+                $contrato->firma_admin = $request->imagen64;
             }
 
-            if ($contrato->doc_cliente_firmado != null && $contrato->doc_admin_firmado != null) {
+            if ($contrato->firma_cliente != null && $contrato->firma_admin != null) {
                 $contrato->status = "firmado";
             }
             $contrato->save();
