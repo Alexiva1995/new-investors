@@ -72,6 +72,8 @@ class InversionesController extends Controller
 
     public function store(InversionCreateRequest $request)
     {
+
+        // dd($request->imagen64);
         try{
             DB::beginTransaction();
             $user = User::create([
@@ -95,7 +97,7 @@ class InversionesController extends Controller
                     "tipo_interes" => $request->tipo_interes,
                     "fecha_consignacion" => $request->fecha_consignacion,
                     "referente" => $request->referente,
-                    "firma_cliente" => $request->imagen64,
+                    "firma_cliente" => base64_encode($request->imagen64),                    
                     "periodo_mes" => $request->periodo_mes,
                     "terminos" => $request->terminos,
                     "status" => "firma_cliente",
@@ -106,17 +108,20 @@ class InversionesController extends Controller
                     $name = time() . $file->getClientOriginalName();
                     $ruta = $user->id . '/comprobantes/' . $name;
                     
-                    Storage::disk('public')->put($ruta,  File::get($file));
+                    Storage::disk('public')->put($ruta,  \File::get($file));
                     
-                    $request->comprobante_consignacion = $ruta;
+                    $inversion->comprobante_consignacion = $ruta;
+                    $inversion->save();
                 }
                 if($inversion){
                     DB::commit();
-                    return response()->json([
-                        'message' => 'Inversión registrada exitosamente',
-                        'success' => true
+                    return redirect()->route('login')->withSuccess(['La inversión se ha registrado exitosamente!']);
+
+                    // return response()->json([
+                    //     'message' => 'Inversión registrada exitosamente',
+                    //     'success' => true
         
-                    ], 200);
+                    // ], 200);
                 }else{
                     DB::rollback();
                     return response()->json([

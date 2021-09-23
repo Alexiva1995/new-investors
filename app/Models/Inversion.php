@@ -19,7 +19,9 @@ class Inversion extends Model
         'fecha_consignacion',
         'referente',
         'comprobante_consignacion',
-        'periodo_mes'
+        'periodo_mes',
+        'firma_cliente',
+        'firma_admin'
     ];
 
     public function getUser()
