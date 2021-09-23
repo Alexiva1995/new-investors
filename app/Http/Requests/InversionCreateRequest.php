@@ -42,6 +42,7 @@ class InversionCreateRequest extends FormRequest
             //"comprobante_consignacion" => "",
             "periodo_mes" => "required",
             "terminos" => "required",
+            "doc_cliente_firma" => "required",
         ];
     }
 }

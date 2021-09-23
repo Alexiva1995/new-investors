@@ -9,7 +9,7 @@ use App\Models\Inversion;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class InversionesController extends Controller
 {
@@ -71,36 +71,102 @@ class InversionesController extends Controller
 
     public function store(InversionCreateRequest $request)
     {
-    
-        $request->password = bcrypt($request->password);
-        $request->merge([
-            'password' => bcrypt($request->password)
-        ]);
-
-        $user = User::create($request->all());
-
-        //$user->notify(new \App\Notifications\sendform);
-
-        if ($request->hasFile('comprobante_consignacion')) {
-
-            $file = $request->file('comprobante_consignacion');
-            $name = time() . $file->getClientOriginalName();
-            $ruta = $user->id . '/comprobantes/' . $name;
-            
-            Storage::disk('public')->put($ruta,  \File::get($file));
-
-            $request = collect($request->except('comprobante_consignacion'))->merge([
-                'comprobante_consignacion' => $ruta
+        try{
+            DB::beginTransaction();
+            $user = User::create([
+                "fullname" => $request->fullname,
+                "email" => $request->email,
+                "password" => $request->password,
+                "state" => "En espera",
+                "tipo_documento" => $request->tipo_documento,
+                "num_documento" => $request->num_documento,
+                "ciudad_residencia" => $request->ciudad_residencia,
+                "celular" => $request->celular,
+                "banco" => $request->banco,
+                "tipo_cuenta" => $request->tipo_cuenta,
+                "num_cuenta" => $request->num_cuenta
             ]);
 
+            if($user){
+                $inversion = Inversion::create([
+                    "invertido" => $request->invertido,
+                    "tipo_interes" => $request->tipo_interes,
+                    "fecha_consignacion" => $request->fecha_consignacion,
+                    "referente" => $request->referente,
+                    "doc_cliente_firmado" => $request->doc_cliente_firmado,
+                    "periodo_mes" => $request->periodo_mes,
+                    "terminos" => $request->terminos,
+                    "status" => "firma_cliente",
+                    "user_id" => $user->id
+                ]);
+                if ($request->hasFile('comprobante_consignacion')) {
+                    $file = $request->file('comprobante_consignacion');
+                    $name = time() . $file->getClientOriginalName();
+                    $ruta = $user->id . '/comprobantes/' . $name;
+                    
+                    Storage::disk('public')->put($ruta,  \File::get($file));
 
+                    $inversion->$request->comprobante_consignacion = $ruta;
+                }
+                if($inversion){
+                    DB::commit();
+                    return response()->json([
+                        'message' => 'Inversión registrada exitosamente',
+                        'success' => true
+        
+                    ], 200);
+                }else{
+                    DB::rollback();
+                    return response()->json([
+                        'message' => 'Error al crear la inversión',
+                        'success' => false
+                    ], 400);    
+                }
+            }else{
+                DB::rollback();
+                return response()->json([
+                    'message' => 'Error al crear el usuario',
+                    'success' => false
+                ], 400);
+            }
+        } catch (\Throwable $th) {
+            DB::rollback();
+            Log::error('InversionesController - firmar -> Error: '.$th);
+            return response()->json([
+                'message' => 'Error',
+                'success' => false
+            ], 400);
         }
+    
+        // $request->password = bcrypt($request->password);
+        // $request->merge([
+        //     'password' => bcrypt($request->password)
+        // ]);
 
-        $request = collect($request)->merge([
-            'user_id' => $user->id
-        ]);
+        // $user = User::create($request->all());
 
-        Inversion::create($request->all());
+        // //$user->notify(new \App\Notifications\sendform);
+
+        // if ($request->hasFile('comprobante_consignacion')) {
+
+        //     $file = $request->file('comprobante_consignacion');
+        //     $name = time() . $file->getClientOriginalName();
+        //     $ruta = $user->id . '/comprobantes/' . $name;
+            
+        //     Storage::disk('public')->put($ruta,  \File::get($file));
+
+        //     $request = collect($request->except('comprobante_consignacion'))->merge([
+        //         'comprobante_consignacion' => $ruta
+        //     ]);
+
+
+        // }
+
+        // $request = collect($request)->merge([
+        //     'user_id' => $user->id
+        // ]);
+
+        // Inversion::create($request->all());
 
         return back();
     }
