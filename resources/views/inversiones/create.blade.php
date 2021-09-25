@@ -19,6 +19,11 @@
 <!-- Validation -->
 
 <div class="capa-exterior">
+    {{-- @if(session()->has('msj'))        
+        <div class="alert alert-success" role="alert">{{ session('msj')}}</div>
+    @else
+        <div class="alert alert-success" role="alert">Error al guardar los datos</div>            
+    @endif --}}
     <img class="margin" href="#" src="{{ asset('images/svg/Frame.svg') }}" alt="">
     <div>
         <h3 class="capa-interior">the new investor</h3>

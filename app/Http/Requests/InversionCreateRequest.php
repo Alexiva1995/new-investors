@@ -34,7 +34,7 @@ class InversionCreateRequest extends FormRequest
             "banco" => "required",
             "tipo_cuenta" => "required",
             "num_cuenta" => "required",
-            "password" => "required",
+            // "password" => "required",
             "invertido" => "required",
             "tipo_interes" => "required",
             "comprobante_consignacion" => "required",

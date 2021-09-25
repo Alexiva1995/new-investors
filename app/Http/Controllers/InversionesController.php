@@ -80,7 +80,6 @@ class InversionesController extends Controller
             $user = User::create([
                 "fullname" => $request->fullname,
                 "email" => $request->email,
-                "password" => $request->password,
                 "state" => "En espera",
                 "tipo_documento" => $request->tipo_documento,
                 "num_documento" => $request->num_documento,
@@ -118,7 +117,9 @@ class InversionesController extends Controller
                 }
                 if($inversion){
                     DB::commit();
-                    return redirect()->route('login')->withSuccess(['La inversión se ha registrado exitosamente!']);
+                    return redirect()->route('home');
+
+                    
 
                     // return response()->json([
                     //     'message' => 'Inversión registrada exitosamente',
@@ -147,38 +148,7 @@ class InversionesController extends Controller
                 'success' => false
             ], 400);
         }
-    
-        // $request->password = bcrypt($request->password);
-        // $request->merge([
-        //     'password' => bcrypt($request->password)
-        // ]);
-
-        // $user = User::create($request->all());
-
-        // //$user->notify(new \App\Notifications\sendform);
-
-        // if ($request->hasFile('comprobante_consignacion')) {
-
-        //     $file = $request->file('comprobante_consignacion');
-        //     $name = time() . $file->getClientOriginalName();
-        //     $ruta = $user->id . '/comprobantes/' . $name;
-            
-        //     Storage::disk('public')->put($ruta,  \File::get($file));
-
-        //     $request = collect($request->except('comprobante_consignacion'))->merge([
-        //         'comprobante_consignacion' => $ruta
-        //     ]);
-
-
-        // }
-
-        // $request = collect($request)->merge([
-        //     'user_id' => $user->id
-        // ]);
-
-        // Inversion::create($request->all());
-
-        return back();
+        // return back();
     }
 
     public function inversores()
