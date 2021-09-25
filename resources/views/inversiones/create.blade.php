@@ -187,13 +187,6 @@
                                 <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
                             </div>
 
-                            <div class="col-4 mt-3">
-                                <label class="form-label" for="basic-default-password1">Password <span style="color: red;">*</span></label>
-                                <input type="password" id="basic-default-password1" name="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" required />
-                                <div class="valid-feedback">valido!</div>
-                                <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
-                            </div>
-
                             <div class="row " style="margin-left: 30px !important;">
                                 <div class="col-10">
                                     <button class="btn-int  active mb-5 mt-5" href="#1" data-toggle="tab">Atras</button>
@@ -229,7 +222,7 @@
 
                         <div id="Información-de-inversión">
                             <div class="container mt-4 mb-3 ">
-                                <div class="row" style="margin-left: 30px !important;">
+                                <div class="row" style="margin-left:5px !important;">
                                     <div class="col-4">
                                         <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
 
@@ -258,7 +251,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row " style="margin-left: 30px !important;">
+                                <div class="row " style="margin-left: 5px !important;">
                                     <div class="col-4">
                                         <label class="form-label" for="referente">¿Como conoció nuestro sistema de
                                             Inversión? <span style="color: red;">*</span></label>
