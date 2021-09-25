@@ -42,15 +42,15 @@
                                 <div id="exTab2" class="container row">
                                     <div class="panel panel-default row align-items-start mt-4 ">
                                         <div class="col-3 ">
-                                            <a href="#" id="inf">1 Información Personal</a>
+                                            <a href="#" id="inf">1. Información Personal</a>
                                             <div class="line-mf"></div>
                                         </div>
                                         <div class="col-3">
-                                            <a id="inft" href="#"> 2 Información Bancaria</a>
+                                            <a id="inft" href="#"> 2. Información Bancaria</a>
                                             <div class="line-mft"></div>
                                         </div>
                                         <div class="col-4">
-                                            <a id="inft" href="#"> 3 Información de inversión</a>
+                                            <a id="inft" href="#"> 3. Información de inversión</a>
                                             <div class="line-mft"></div>
                                         </div>
                                     </div>
@@ -133,15 +133,15 @@
                             <div id="exTab2" class="container row">
                                 <div class="panel panel-default row align-items-start mt-4 ">
                                     <div class="col-3 ">
-                                        <a href="#" id="inft">1 Información Personal</a>
+                                        <a href="#" id="inft">1. Información Personal</a>
                                         <div class="line-mft"></div>
                                     </div>
                                     <div class="col-3">
-                                        <a id="inf" href="#"> 2 Información Bancaria</a>
+                                        <a id="inf" href="#"> 2. Información Bancaria</a>
                                         <div class="line-mf"></div>
                                     </div>
                                     <div class="col-4">
-                                        <a id="inft" href="#"> 3 Información de inversión</a>
+                                        <a id="inft" href="#"> 3. Información de inversión</a>
                                         <div class="line-mft"></div>
                                     </div>
                                 </div>
@@ -203,17 +203,17 @@
                                 <div class="panel panel-default row mt-4">
 
                                     <div class="col-3 ">
-                                        <a href="#" id="inft">1 Información Personal</a>
+                                        <a href="#" id="inft">1. Información Personal</a>
                                         <div class="line-mft"></div>
                                     </div>
 
                                     <div class="col-3">
-                                        <a id="inft" href="#"> 2 Información Bancaria</a>
+                                        <a id="inft" href="#"> 2. Información Bancaria</a>
                                         <div class="line-mft"></div>
                                     </div>
 
                                     <div class="col-4">
-                                        <a id="inf" href="#"> 3 Información de inversión</a>
+                                        <a id="inf" href="#"> 3. Información de inversión</a>
                                         <div class="line-mf"></div>
                                     </div>
                                 </div>

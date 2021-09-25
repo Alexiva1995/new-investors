@@ -76,6 +76,7 @@ class InversionesController extends Controller
         // dd($request->imagen64);
         try{
             DB::beginTransaction();
+            
             $user = User::create([
                 "fullname" => $request->fullname,
                 "email" => $request->email,
@@ -92,6 +93,7 @@ class InversionesController extends Controller
             ]);
 
             if($user){
+
                 $inversion = Inversion::create([
                     "invertido" => $request->invertido,
                     "tipo_interes" => $request->tipo_interes,
@@ -103,6 +105,7 @@ class InversionesController extends Controller
                     "status" => "firma_cliente",
                     "user_id" => $user->id
                 ]);
+
                 if ($request->hasFile('comprobante_consignacion')) {
                     $file = $request->file('comprobante_consignacion');
                     $name = time() . $file->getClientOriginalName();
