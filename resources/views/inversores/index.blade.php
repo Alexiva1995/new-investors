@@ -1,7 +1,7 @@
 
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Inversores')
+@section('title', 'Verficación de Contratos')
 
 @section('vendor-style')
   {{-- vendor css files --}}
@@ -34,7 +34,7 @@
               <th>Monto</th>
               <th>Correo</th>
               <th>Fecha</th>
-              <th>Action</th>
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody>
@@ -52,10 +52,10 @@
                       <i data-feather='more-vertical'></i>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                      data-bs-target="#modalContrato"><i data-feather='user'></i> Ver contrato</a></li>
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                      data-bs-target="#modalAprobar"><i data-feather='check-circle'></i> Verificacion</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)"  onclick="verContrato({{$inversion->id}})"
+                      ><i data-feather='user'></i> Ver contrato</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)"  onclick="verificacion({{$inversion->id}})"
+                      ><i data-feather='check-circle'></i> Verificacion</a></li>
                   </ul>
                 </div>
               </td>
@@ -81,6 +81,61 @@
 
 
 @section('vendor-script')
+  <script>
+        // Para mostrar la imagen
+        function verificacion(id){
+          var URLactual = location.href;          
+          var url = URLactual.replace('inversiones/inversores', "");
+
+          $.ajax({
+            url: 'getImage'+'/'+id,
+                type: 'GET',
+                success: function (json) {
+                  $('#modalVerificacion').modal('toggle')
+                  $('#imagen_url').attr("src", url+'storage/'+json.url_imagen);
+                  $('#idVerificacion').attr("value", id)
+                }
+            });
+        }
+        
+        // Para ver los detalles del contrato
+        function verContrato(id){
+          var URLactual = location.href;          
+          var url = URLactual.replace('inversiones/inversores', "");
+
+          $.ajax({
+            url: 'ver-inversor'+'/'+id,
+                type: 'GET',
+                success: function (json) {
+                  var obj = JSON.parse(json);
+                  $('#modalContrato').modal('toggle')
+                  $('#invertido').attr("value", obj.invertido)
+                  $('#tipo_interes').attr("value", obj.tipo_interes)
+                  $('#fecha_consignacion').attr("value", obj.fecha_consignacion)
+                  $('#referente').attr("value", obj.referente)
+                  let pm = obj.periodo_mes == 1 ? "Del 1 al 15": "Del 16 al 30 o (31)"
+                  $('#periodo_mes').attr("value", pm)
+                  $('#status').attr("value", obj.status)
+                }
+            });
+        }
+
+        function aprobar(){
+          id = $('#idVerificacion').val()
+          $.ajax({
+            url: 'aprobar-inversor'+'/'+id,
+                type: 'GET',
+                success: function (json) {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'El contrato ha sido Firmado exitosamente!',
+                    confirmButtonText:
+                      '<a href="{{ route('firmados')}}" class="btn btn-primary">Aceptar</a>',
+                  })
+                }
+            });
+        }
+  </script>
   {{-- vendor files --}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
@@ -95,6 +150,7 @@
   <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 @endsection

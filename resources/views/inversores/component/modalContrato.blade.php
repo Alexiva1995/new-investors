@@ -15,17 +15,11 @@
             <div class="modal-body">
                 <div class="row match-height d-flex justify-content-center">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="form-body">
-                                        <div class="row">
-                                            @include('inversores.component.datosContrato')
-                                            <br>
-                                            @include('inversores.component.datosCliente')
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="form-body">
+                            <div class="row">
+                                @include('inversores.component.datosContrato')
+                                {{-- <br> --}}
+                                {{-- @include('inversores.component.datosCliente') --}}
                             </div>
                         </div>
                     </div>

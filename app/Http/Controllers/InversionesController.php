@@ -180,9 +180,34 @@ class InversionesController extends Controller
         $inversor = Inversion::where('id', $id)->first();
         $inversor->status = 'rechazado';
         $inversor->save();
+        
+        $msj = "La inversión se ha aprobado satisfactoriamente";
+        return response()->json(['msj', $msj]);
+    }
 
-        $inversiones = Inversion::where('status', '<>', 'firmado')->orderBy('id', 'desc')->get();
-        return view('inversores.index', compact('inversiones'));
+    public function getImage($id){
+        $inv = Inversion::where('id', $id)->first();
+
+        $url_imagen = $inv->comprobante_consignacion;
+
+        return response()->json(['url_imagen' => $url_imagen]);
+
+    }
+
+    public function verInversor($id){
+        $inv = Inversion::where('id', $id)->first();
+
+        $data = [
+            'invertido' => $inv->invertido,
+            'tipo_interes' => $inv->tipo_interes,
+            'fecha_consignacion' => $inv->fecha_consignacion,
+            'referente' => $inv->referente,
+            'periodo_mes' => $inv->periodo_mes,
+            'created_at' => $inv->created_at,
+            'status' => $inv->status
+        ];
+
+        return json_encode($data);
     }
 
     public function firmados()
