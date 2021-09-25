@@ -180,11 +180,37 @@ class InversionesController extends Controller
 
     public function inversores()
     {
-        $inversiones = Inversion::orderBy('id', 'desc')->get();
+        $inversiones = Inversion::where('status', '<>', 'firmado')->orderBy('id', 'desc')->get();
 
         return view('inversores.index', compact('inversiones'));
     }
 
+    public function getInversor($id)
+    {
+        $inversor = Inversion::where('id', $id)->get();
+
+        return $inversor;
+
+        // return view('inversores.index', compact('inversor'));
+    }
+
+    public function editInversor($id){
+        $inversor = Inversion::where('id', $id)->first();
+        $inversor->status = 'firmado';
+        $inversor->save();
+
+        $inv = Inversion::where('status', '<>', 'finalizado')->get();
+        return view('contratos.firmados', compact('inv'));
+    }
+
+    public function rechazarInversor($id){
+        $inversor = Inversion::where('id', $id)->first();
+        $inversor->status = 'rechazado';
+        $inversor->save();
+
+        $inversiones = Inversion::where('status', '<>', 'firmado')->orderBy('id', 'desc')->get();
+        return view('inversores.index', compact('inversiones'));
+    }
 
     public function firmados()
     {

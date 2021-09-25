@@ -35,14 +35,14 @@
       "submenu": [
         {
           "url": "inversiones/inversores",
-          "name": "Nuevos inversores",
+          "name": "Verificación de contratos",
           "icon": "circle",
           "slug": "inversiones/inversores"
         },
        
         {
           "url": "inversiones/firmados",
-          "name": "Firmados",
+          "name": "Contratos Verificados",
           "icon": "circle",
           "slug": "inversiones/firmados"
         }  

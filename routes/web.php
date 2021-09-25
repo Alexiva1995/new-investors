@@ -75,6 +75,9 @@ Route::group(['prefix' => 'inversiones'], function () {
     });
 
     Route::get('inversores', [InversionesController::class, 'inversores'])->name('inversores');
+    Route::get('inversores/{id}', [InversionesController::class, 'getInversor'])->name('getInversor');
+    Route::get('aprobar-Inversor/{id}', [InversionesController::class, 'editInversor'])->name('edit-inversor');
+    Route::get('rechazar-Inversor/{id}', [InversionesController::class, 'rechazarInversor'])->name('rechazar-inversor');
     Route::get('firmados', [InversionesController::class, 'firmados'])->name('firmados');
 
 });

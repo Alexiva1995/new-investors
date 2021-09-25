@@ -42,8 +42,8 @@
             <tr>
               <td>{{$inversion->id}}</td>
               <td>{{$inversion->getUser->fullname}}</td>
-              <td>{{$inversion->getUser->num_documento}}</td>
-              <td></td>
+              <td>{{number_format($inversion->getUser->num_documento,0,",",".")}}</td>
+              <td>{{number_format($inversion->invertido,2,",",".")}}</td>
               <td>{{$inversion->getUser->email}}</td>
               <td>{{$inversion->created_at->format('Y/m/d')}}</td>
               <td>
@@ -52,7 +52,8 @@
                       <i data-feather='more-vertical'></i>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#"><i data-feather='user'></i> Ver contrato</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                      data-bs-target="#modalContrato"><i data-feather='user'></i> Ver contrato</a></li>
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                       data-bs-target="#modalAprobar"><i data-feather='check-circle'></i> Verificacion</a></li>
                   </ul>
@@ -66,29 +67,11 @@
     </div>
   </div>
   <!-- Modal to add new record -->
-  <div
-    class="modal fade modal-secondary text-start"
-    id="modalAprobar"
-    tabindex="-1"
-    aria-labelledby="myModalLabel1660"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel1660">Subir archivo</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <img style="width: 100%;" src="{{asset('storage/'.$inversion->comprobante_consignacion)}}" alt="consignacion">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Rechazar</button>
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aprobar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+@include('inversores.component.modalVerificacion')
+@include('inversores.component.modalContrato')
+</>
 </section>
 <!--/ Basic table -->
 
@@ -112,6 +95,7 @@
   <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+
 
 @endsection
 @section('page-script')
