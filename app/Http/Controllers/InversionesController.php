@@ -214,7 +214,7 @@ class InversionesController extends Controller
 
     public function firmados()
     {
-        $inv = Inversion::where('status', '<>', 'finalizado')->get();
+        $inv = Inversion::where('status', 'firmado')->get();
 
         return view('contratos.firmados', compact('inv'));
     }
