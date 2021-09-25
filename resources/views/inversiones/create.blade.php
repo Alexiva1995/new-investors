@@ -148,7 +148,7 @@
                             </div>
                         </div>
 
-                        <div class="row mt-4 " style="margin-left: 30px !important;">
+                        <div class="row mt-4 " style="margin-left: 30px !important; margin-top:80px !important;">
                             <div class="col-4">
                                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
                                 <select class="form-select {{ $errors->has('banco') ? ' is-invalid' : '' }}" id="banco" required name="banco">
