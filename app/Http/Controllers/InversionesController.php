@@ -76,10 +76,10 @@ class InversionesController extends Controller
         // dd($request->imagen64);
         try{
             DB::beginTransaction();
+            
             $user = User::create([
                 "fullname" => $request->fullname,
                 "email" => $request->email,
-                "password" => $request->password,
                 "state" => "En espera",
                 "tipo_documento" => $request->tipo_documento,
                 "num_documento" => $request->num_documento,
@@ -92,6 +92,7 @@ class InversionesController extends Controller
             ]);
 
             if($user){
+
                 $inversion = Inversion::create([
                     "invertido" => $request->invertido,
                     "tipo_interes" => $request->tipo_interes,
@@ -103,6 +104,7 @@ class InversionesController extends Controller
                     "status" => "firma_cliente",
                     "user_id" => $user->id
                 ]);
+
                 if ($request->hasFile('comprobante_consignacion')) {
                     $file = $request->file('comprobante_consignacion');
                     $name = time() . $file->getClientOriginalName();
@@ -115,7 +117,9 @@ class InversionesController extends Controller
                 }
                 if($inversion){
                     DB::commit();
-                    return redirect()->route('login')->withSuccess(['La inversión se ha registrado exitosamente!']);
+                    return redirect()->route('home');
+
+                    
 
                     // return response()->json([
                     //     'message' => 'Inversión registrada exitosamente',
@@ -144,51 +148,71 @@ class InversionesController extends Controller
                 'success' => false
             ], 400);
         }
-    
-        // $request->password = bcrypt($request->password);
-        // $request->merge([
-        //     'password' => bcrypt($request->password)
-        // ]);
-
-        // $user = User::create($request->all());
-
-        // //$user->notify(new \App\Notifications\sendform);
-
-        // if ($request->hasFile('comprobante_consignacion')) {
-
-        //     $file = $request->file('comprobante_consignacion');
-        //     $name = time() . $file->getClientOriginalName();
-        //     $ruta = $user->id . '/comprobantes/' . $name;
-            
-        //     Storage::disk('public')->put($ruta,  \File::get($file));
-
-        //     $request = collect($request->except('comprobante_consignacion'))->merge([
-        //         'comprobante_consignacion' => $ruta
-        //     ]);
-
-
-        // }
-
-        // $request = collect($request)->merge([
-        //     'user_id' => $user->id
-        // ]);
-
-        // Inversion::create($request->all());
-
-        return back();
+        // return back();
     }
 
     public function inversores()
     {
-        $inversiones = Inversion::orderBy('id', 'desc')->get();
+        $inversiones = Inversion::where('status', '<>', 'firmado')->orderBy('id', 'desc')->get();
 
         return view('inversores.index', compact('inversiones'));
     }
 
+    public function getInversor($id)
+    {
+        $inversor = Inversion::where('id', $id)->get();
+
+        return $inversor;
+
+        // return view('inversores.index', compact('inversor'));
+    }
+
+    public function editInversor($id){
+        $inversor = Inversion::where('id', $id)->first();
+        $inversor->status = 'firmado';
+        $inversor->save();
+
+        $inv = Inversion::where('status', '<>', 'finalizado')->get();
+        return view('contratos.firmados', compact('inv'));
+    }
+
+    public function rechazarInversor($id){
+        $inversor = Inversion::where('id', $id)->first();
+        $inversor->status = 'rechazado';
+        $inversor->save();
+        
+        $msj = "La inversión se ha aprobado satisfactoriamente";
+        return response()->json(['msj', $msj]);
+    }
+
+    public function getImage($id){
+        $inv = Inversion::where('id', $id)->first();
+
+        $url_imagen = $inv->comprobante_consignacion;
+
+        return response()->json(['url_imagen' => $url_imagen]);
+
+    }
+
+    public function verInversor($id){
+        $inv = Inversion::where('id', $id)->first();
+
+        $data = [
+            'invertido' => $inv->invertido,
+            'tipo_interes' => $inv->tipo_interes,
+            'fecha_consignacion' => $inv->fecha_consignacion,
+            'referente' => $inv->referente,
+            'periodo_mes' => $inv->periodo_mes,
+            'created_at' => $inv->created_at,
+            'status' => $inv->status
+        ];
+
+        return json_encode($data);
+    }
 
     public function firmados()
     {
-        $inv = Inversion::where('status', '<>', 'finalizado')->get();
+        $inv = Inversion::where('status', 'firmado')->get();
 
         return view('contratos.firmados', compact('inv'));
     }

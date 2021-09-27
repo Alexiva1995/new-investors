@@ -32,14 +32,12 @@
                                         <td>{{ $item->email}}</td>
                                    
                                         <td>
-                                            <a href="{{ route('users.show-user',$item->id) }}" class="btn text-bold-600" style="background-color: rgba(0, 194, 239, 1)"><i class="fas fa-eye text-white"></i>
-                                            </tr>
-
-                                           
-                           
-                                @endforeach
-                          
-                    
+                                            @if($item->id != 1)
+                                                <a href="{{ route('users.show-user',$item->id) }}" class="btn text-bold-600" style="background-color: rgba(0, 194, 239, 1)"><i class="fas fa-eye text-white"></i>
+                                            @endif
+                                        </td>
+                                    </tr>                                                                   
+                                @endforeach                                            
                           </tbody>
                         </table>
                     </div>

@@ -25,11 +25,11 @@ class UserController extends Controller
     {
 
         $user = user::find($id);
-        $inv = Inversion::where('user_id', $user->id)->get();
+        $inversion = Inversion::where('user_id', $user->id)->first();
         
         return view('users.show-user')
             ->with('user', $user)
-            ->with('inv', $inv);
+            ->with('inversion', $inversion);
     }
 
     public function editProfile()

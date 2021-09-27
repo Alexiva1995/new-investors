@@ -8,46 +8,25 @@
       "url": "/"
     },
     {
-      "name": "Dashboard Prueba",
-      "badgeClass": "badge badge-light-warning rounded-pill ms-auto me-1",
-      "icon": "home",
-      "slug": "dashboard.prueba",
-      "url": "/dashboard-prueba"
-    },
-    {
-      "name": "Dashboard Prueba2",
-      "badgeClass": "badge badge-light-warning rounded-pill ms-auto me-1",
-      "icon": "home",
-      "slug": "dashboard.prueba2",
-      "url": "/dashboard-prueba2"
-    },
-    {
       "name": "Usuarios",
       "icon": "users",
       "slug": "inversiones/user/list-user",
       "url": "inversiones/user/list-user"
     },
     {
-      "name": "Contratos",
-      "url": "",
+      "url": "inversiones/inversores",
+      "name": "Verificación de contratos",
       "icon": "file-text",
-      "slug": "formulario",
-      "submenu": [
-        {
-          "url": "inversiones/inversores",
-          "name": "Nuevos inversores",
-          "icon": "circle",
-          "slug": "inversiones/inversores"
-        },
-       
-        {
-          "url": "inversiones/firmados",
-          "name": "Firmados",
-          "icon": "circle",
-          "slug": "inversiones/firmados"
-        }  
-      ]
+      "slug": "inversiones/inversores"
     },
+    
+    {
+      "url": "inversiones/firmados",
+      "name": "Contratos Verificados",
+      "icon": "file-text",
+      "slug": "inversiones/firmados"
+    } ,
+  
     {
       "name": "Inversiones",
       "url": "",
