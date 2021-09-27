@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inversion;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
   public function dashboard()
   {
-    return view('/content/dashboard/dashboard');
+    $ultimosContratos = Inversion::orderBy('id', 'desc')->take(10)->get();
+    return view('/content/dashboard/dashboard', compact('ultimosContratos'));
   }
   // Dashboard - Analytics
   public function dashboardAnalytics()

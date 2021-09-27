@@ -25,9 +25,9 @@
 		<div class="col-6">
 			<div class="card card-tiny-line-stats">
 				<div class="card-body pb-50">
-					<h6>Últimos 7 días</h6>
-					<h2 class="fw-bolder mb-1">15 Contratos</h2>
-					<div id="contratosSemana"></div>
+					<h6>Último Año</h6>
+					<h2 class="fw-bolder mb-1"><span id="totalContratos">0</span> Contratos</h2>
+					<div id="contratosMes"></div>
 				</div>
 			</div>
 		</div>
@@ -75,11 +75,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($ultimosContratos as $contrato)
                                     <tr class="text-center">
-                                        <td>1</td>
-                                        <td>Eulin Palma</td>
-                                        <td>eulinpalma@valdusoft.com</td>
+                                        <td>{{$contrato->id}}</td>
+                                        <td>{{$contrato->getUser->fullname}}</td>
+                                        <td>{{$contrato->getUser->email}}</td>
                                     </tr>
+                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -88,16 +91,30 @@
             </div>
         </div>
     </div>
+    <div class="row justify-content-end">
+        <div class="col-6">
+            <div class="card card-tiny-line-stats">
+                <div class="card-body pb-50">
+                    <h6>Total Capital</h6>
+                    <h2 class="fw-bolder mb-1"><span id="totalCapital">0</span> $</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </section>
 <!-- Dashboard Analytics end -->
 
 <script>
+    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     document.addEventListener('DOMContentLoaded', function () {
 		let monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
-        let contratosSemana = document.querySelector('#contratosSemana');
-        let montosMes = document.querySelector('#montosMes');
+        let contratosMeses = document.querySelector('#contratosMes');
+        let totalContratos = document.querySelector('#totalContratos');
+        let montosMeses = document.querySelector('#montosMes');
+        let totalCapital = document.querySelector('#totalCapital');
 
-        contratosSemanaOptions = {
+        contratosMesOptions = {
             chart: {
                 height: 100,
                 type: 'line',
@@ -131,9 +148,9 @@
             },
             colors: [window.colors.solid.info],
             series: [{
-				name: 'Contratos',
-                data: [0, 3, 3, 2, 3, 2, 2]
-            }],
+                    name: 'Número de contratos',
+                    data: [0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0]
+                    }],
             markers: {
                 size: 2,
                 colors: window.colors.solid.info,
@@ -149,6 +166,7 @@
                 }
             },
             xaxis: {
+                categories: monthNames,
                 labels: {
                     show: true,
                     style: {
@@ -166,13 +184,15 @@
                 show: false
             },
             tooltip: {
-                x: {
-                    show: false
+                y: {
+                    formatter: function (val) {
+                        return val.toFixed(0)
+                    }
                 }
             }
         };
-        contratosSemana = new ApexCharts(contratosSemana, contratosSemanaOptions);
-        contratosSemana.render();
+        contratosMes = new ApexCharts(contratosMeses, contratosMesOptions);
+        contratosMes.render();
 
 		montosMesOptions = {
             chart: {
@@ -185,6 +205,7 @@
                     enabled: false
                 }
             },
+            
             grid: {
                 borderColor: '#00C2EF',
                 strokeDashArray: 5,
@@ -208,9 +229,12 @@
             },
             colors: [window.colors.solid.info],
             series: [{
-				name: '$',
-                data: [1000, 2000, 4000, 3400, 5400, 3600, 2300 ,1300, 2500, 5000, 7400, 8600]
-            }],
+                    name: 'Lineal',
+                    data: [0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0]
+                    },{
+                    name: 'Compuesto',
+                    data: [0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0]
+                    }],
             markers: {
                 size: 2,
                 colors: window.colors.solid.info,
@@ -244,16 +268,57 @@
                 show: false
             },
             tooltip: {
-                x: {
-                    show: false
+                y: {
+                    formatter: function (val) {
+                        return "$ " + val.toFixed(2)
+                    }
                 }
             }
         };
-        montosMes = new ApexCharts(montosMes, montosMesOptions);
+        montosMes = new ApexCharts(montosMeses, montosMesOptions);
         montosMes.render();
 
+        ejecutarConsulta();
+        
 
     })
+
+    function ejecutarConsulta(){
+            fetch(`{{route("grafico.dashboard")}}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json, text-plain, */*",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRF-TOKEN": token
+                },
+                method: 'get',
+            })
+            .then(response => response.text())
+            .then(resultText => (
+                data = JSON.parse(resultText),
+                console.log(data),
+                totalContratos.innerHTML = data.countContratos,
+                totalCapital.innerHTML = data.invertidoTotal.toFixed(2),
+                montosMes.updateOptions({
+                    series: [{
+                            data: data.linealMeses
+                        },
+                        {
+                            data: data.compuestoMeses
+                        }
+                    ],
+                }),
+                contratosMes.updateOptions({
+                    series: [{
+                            data: data.countContratosMeses
+                        },
+                    ],
+                })
+            ))
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
 
 </script>
 @endsection

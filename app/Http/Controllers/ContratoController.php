@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Inversion;
-use Barryvdh\DomPDF\Facade as PDF;
-use Illuminate\Support\Facades\Storage;
+use stdClass;
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Inversion;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ContratoController extends Controller
 {
@@ -122,5 +125,72 @@ class ContratoController extends Controller
             Log::error('SolicitudController - solicitar -> Error: '.$th);
             abort(403, "Ocurrio un error, contacte con el administrador");
         }
+    }
+
+    /**
+     * Método para devolver la información de los gráficos del dashboard
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function graficoDashboard()
+    {
+        $data = new stdClass();
+        $date = Carbon::now();
+        $from = $date->subYear()->format('Y-m-d')." 00:00:00";
+        $inversiones = Inversion::all();
+
+        /////INVERSIONES///////
+        $invertidoLineal = $inversiones->where('tipo_interes', 'lineal')->sum('invertido');
+        $invertidocompuesto = $inversiones->where('tipo_interes', 'compuesto')->sum('invertido');
+        $invertidoTotal = $invertidoLineal + $invertidocompuesto;
+
+        /////INVERSION DIVIDIDO POR 12 MESES Y POR LINEAL/COMPUESTO///////
+        $linealMeses = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        $compuestoMeses = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        $inversionMes = Inversion::select(
+            DB::raw("DATE_FORMAT(created_at,'%m') as mes"),
+            DB::raw('sum(case when tipo_interes = "lineal" then invertido end) as lineal'), 
+            DB::raw('sum(case when tipo_interes = "compuesto" then invertido end) as compuesto'),     
+            )
+            ->groupBy('mes')
+            ->whereDate('created_at', '>=', $from)
+            ->get();
+        foreach($inversionMes as $registro) {
+            /* Rellenamos el mes adecuado de la matriz */
+            if($registro->lineal == null){
+                $registro->lineal = 0; 
+            }
+            if($registro->compuesto == null){
+                $registro->compuesto = 0; 
+            }
+            $linealMeses[intval($registro->mes) - 1] = intval($registro->lineal);
+            $compuestoMeses[intval($registro->mes) - 1] = intval($registro->compuesto);
+        }
+
+        ///// NÚMERO DE INVERSIONES POR MES ///////
+        $countContratosMeses = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        $contratosMeses = Inversion::select(
+            DB::raw("DATE_FORMAT(created_at,'%m') as mes"),
+            DB::raw('count(*) as contratos'),
+            )
+            ->groupBy('mes')
+            ->whereDate('created_at', '>=', $from)
+            ->get();
+
+            foreach($contratosMeses as $registro) {
+                $countContratosMeses[intval($registro->mes) - 1] = intval($registro->contratos);
+            }
+
+        $data->countContratos = count($inversiones);
+        $data->countContratosMeses = $countContratosMeses;
+        $data->invertidoLineal = $invertidoLineal;
+        $data->invertidocompuesto = $invertidocompuesto;
+        $data->invertidoTotal = $invertidoTotal;
+        $data->linealMeses = $linealMeses;
+        $data->compuestoMeses = $compuestoMeses;
+
+        return response()->json($data);
+
     }
 }
