@@ -426,6 +426,8 @@
 <script src="{{ asset(mix('js/scripts/forms/form-validation.js')) }}"></script>
 <script>
     let html = document.querySelector('html');
+    let body = document.querySelector('body');
     html.classList.remove('dark-layout');
+    body.classList.remove('dark-layout');
 </script>
 @endsection
