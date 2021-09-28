@@ -30,9 +30,10 @@ class ContratoController extends Controller
                 } else {
                     $inversiones = [];
                 }
-            } /*else {
-                $inversiones = Inversion::all();
+            } else {
+                $inversiones = [];
             }
+        /*
         } else {
             $inversiones = Inversion::where('user_id', $user->id)->get();
         }

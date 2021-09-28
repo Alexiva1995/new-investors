@@ -16,19 +16,29 @@
 
 @section('content')
 
+<div class="capa-exterior">
+    <img class="margin" href="#" src="{{ asset('images/logo1.png') }}" alt="" width="100">
+    <div>
+        <h3 class="capa-interior">the new investor</h3>
+        <br>
+        <p class="capa-exterior2">Te damos la bienvenida a nuestro sistema de inversión, agradecemos diligenciar el
+            siguiente formulario para poder brindarte un mejor servicio y garantizar consignar tus rentabilidades
+            mensuales directamente a tu cuenta bancaria.</p>
+    </div>
+</div>
 <!-- Validation -->
 
-<section class="bs-validation" style="background-color: #FFFFFF !important;">
-    <div class="container row ">
+<section class="bs-validation py-5" style="background-color: #FFFFFF !important;">
+    <div class="container py-5">
         <form class="" id="formInvestor" name="formInvestor" method="POST" action="{{ route('inversiones.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="panel-body">
                 <div class="tab-content ">
                     <div class="tab-pane active " id="1">
                         <div class="">
-                            <div class=" container" style="background-color: #FFFFFF !important;">
+                            <div class="" style="background-color: #FFFFFF !important;">
                                 <div id="exTab2" class="container row">
-                                    <div class="panel panel-default row align-items-start mt-4 ">
+                                    <div class="panel panel-default row align-items-start">
                                         <div class="col-3 ">
                                             <a href="#" id="inf">1. Información Personal</a>
                                             <div class="line-mf"></div>
@@ -45,7 +55,7 @@
                                 </div>
                             </div>
 
-                            <div class="row  mt-3" style="margin-left: 30px !important;">
+                            <div class="row  mt-3">
                                 <div class="col-4 ">
                                     <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
                                     <input type="text" id="fullname" name="fullname" class=" form-control  {{ $errors->has('fullname') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Nombre Completo" aria-label="nombre y apellido" aria-describedby="nombre completo de la persona" required />
@@ -76,7 +86,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="margin-left: 30px !important;">
+                            <div class="row" >
                                 <div class="col-4 mb-1">
                                     <label class="form-label" for="ciudad_residencia">Ciudad de Residencia <span style="color: red;">*</span></label>
 
@@ -102,7 +112,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="margin-left: 30px !important;">
+                            <div class="row">
                                 <div class="col-4 mt-1">
                                     <label class="form-label" for="email">Correo electrónico <span style="color: red;">*</span></label>
                                     <input type="email" id="email" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Correo Electrónico" aria-label="john.doe@email.com" required />
@@ -118,8 +128,8 @@
 
                     <div class="tab-pane " id="2">
                         <div class="container" style="background-color: #FFFFFF !important;">
-                            <div id="exTab2" class="container row">
-                                <div class="panel panel-default row align-items-start mt-4 ">
+                            <div id="exTab2" class="row">
+                                <div class="panel panel-default row align-items-start">
                                     <div class="col-3 ">
                                         <a href="#" id="inft">1. Información Personal</a>
                                         <div class="line-mft"></div>
@@ -136,7 +146,7 @@
                             </div>
                         </div>
 
-                        <div class="row mt-4 " style="margin-left: 30px !important; margin-top:80px !important;">
+                        <div class="row mt-4 " >
                             <div class="col-4">
                                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
                                 <select class="form-select {{ $errors->has('banco') ? ' is-invalid' : '' }}" id="banco" required name="banco">
@@ -187,8 +197,8 @@
                     </div>
                     <div class="tab-pane " id="3">
                         <div class="container" style="background-color: #FFFFFF !important;">
-                            <div id="exTab2" class="container row">
-                                <div class="panel panel-default row mt-4">
+                            <div id="exTab2" class="row">
+                                <div class="panel panel-default row">
 
                                     <div class="col-3 ">
                                         <a href="#" id="inft">1. Información Personal</a>
@@ -210,7 +220,7 @@
 
                         <div id="Información-de-inversión">
                             <div class="container mt-4 mb-3 ">
-                                <div class="row" style="margin-left:5px !important;">
+                                <div class="row">
                                     <div class="col-4">
                                         <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
 
@@ -239,7 +249,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row " style="margin-left: 5px !important;">
+                                <div class="row ">
                                     <div class="col-4">
                                         <label class="form-label" for="referente">¿Como conoció nuestro sistema de
                                             Inversión? <span style="color: red;">*</span></label>
@@ -341,6 +351,26 @@
 
 </section>
 
+<footer class="footer-section">
+    <div class="copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 ">
+                    <div class="copyright-text">
+                        <img src="{{asset('images/logo1.png') }}" alt="" width="100">
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                    <div class="footer-menu">
+                        <p class="li nav-item w-100 mt-2 text-white" style="text-align: right">The New Investor 2021 | Todos los Derechos Reservados
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 <!-- /Validation -->
 @endsection
 @push('custom-scripts')
