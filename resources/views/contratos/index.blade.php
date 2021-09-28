@@ -198,6 +198,11 @@
 
 @push('custom-scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script>
+  let html = document.querySelector('html');
+  let body = document.querySelector('body');
+  html.classList.remove('dark-layout');
+  body.classList.remove('dark-layout');
+</script>
 
 @endpush
