@@ -454,4 +454,8 @@
 @section('page-script')
 <!-- Page js files -->
 <script src="{{ asset(mix('js/scripts/forms/form-validation.js')) }}"></script>
+<script>
+    let html = document.querySelector('html');
+    html.classList.remove('dark-layout');
+</script>
 @endsection
