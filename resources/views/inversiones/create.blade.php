@@ -18,21 +18,9 @@
 
 <!-- Validation -->
 
-<div class="capa-exterior">
-    <img class="margin" href="#" src="{{ asset('images/svg/Frame.svg') }}" alt="">
-    <div>
-        <h3 class="capa-interior">the new investor</h3>
-        <br>
-        <p class="capa-exterior2">Te damos la bienvenida a nuestro sistema de inversión, agradecemos diligenciar el
-            siguiente formulario para poder brindarte un mejor servicio y garantizar consignar tus rentabilidades
-            mensuales directamente a tu cuenta bancaria.</p>
-    </div>
-</div>
-
-
 <section class="bs-validation" style="background-color: #FFFFFF !important;">
     <div class="container row ">
-        <form class="" name=" formInvestor" method="POST" action="{{ route('inversiones.store') }}" enctype="multipart/form-data">
+        <form class="" id="formInvestor" name="formInvestor" method="POST" action="{{ route('inversiones.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="panel-body">
                 <div class="tab-content ">
@@ -335,7 +323,7 @@
                                         <div class="text-center">Accion</div>
                                         <div class="text-center">
                                             <button type="button" class="button clear btn btn-info btn-round" data-action="clear" id="limpiar">Limpiar</button>
-                                            <input type="submit" class="button btn btn-info btn-round" id="btnGuardar" value="Firmar">
+                                            <input type="button" class="button btn btn-info btn-round" id="btnGuardar" value="Firmar">
                                         </div>
                                     </div>
                                 </div>
@@ -353,28 +341,6 @@
 
 </section>
 
-<footer class="footer-section">
-    <div class="copyright-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 ">
-                    <div class="copyright-text">
-                        <img src="{{ asset('images/svg/Frame.svg') }}" alt="">
-                    </div>
-                </div>
-
-                <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                    <div class="footer-menu">
-                        <p class="li nav-item w-100 mt-2 text-white" style="text-align: right">The New Investor 2021 | Todos los Derechos Reservados
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
 <!-- /Validation -->
 @endsection
 @push('custom-scripts')
@@ -385,8 +351,6 @@
 
     $('.subir').click(function() {
 
-        // $('#inversion_id').val($('.subir').attr('inversion'));
-        $('#inversion_id').val(1);
         var myModal = new bootstrap.Modal(modal);
 
         myModal.show();
@@ -435,13 +399,11 @@
                 return false;
             }
             document.getElementById('imagen64').value = signaturePad.toDataURL();
-
+            
+            $('#formInvestor').submit();
         });
     })
 
-    function enviarForm() {
-        document.formInvestor.submit();
-    }
 </script>
 
 @endpush

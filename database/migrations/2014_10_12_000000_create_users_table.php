@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('fullname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->enum('state', ['En espera', 'Verificado', 'Rechazado']);
             $table->enum('tipo_documento', ['cedula_ciudadana', 'cedula_extranjera', 'pasaporte']);
             $table->bigInteger('num_documento');

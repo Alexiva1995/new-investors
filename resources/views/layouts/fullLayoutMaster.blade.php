@@ -46,9 +46,39 @@ data-asset-path="{{ asset('/')}}">
     <div class="content-wrapper">
       <div class="content-body">
 
+        <div class="capa-exterior">
+          <img class="margin" href="#" src="{{ asset('images/logo1.png') }}" alt="">
+          <div>
+              <h3 class="capa-interior">the new investor</h3>
+              <br>
+              <p class="capa-exterior2">Te damos la bienvenida a nuestro sistema de inversión, agradecemos diligenciar el
+                  siguiente formulario para poder brindarte un mejor servicio y garantizar consignar tus rentabilidades
+                  mensuales directamente a tu cuenta bancaria.</p>
+          </div>
+        </div>
         {{-- Include Startkit Content --}}
         @yield('content')
 
+        <footer class="footer-section">
+          <div class="copyright-area">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-xl-6 col-lg-6 ">
+                          <div class="copyright-text">
+                              <img src="{{asset('images/logo1.png') }}" alt="">
+                          </div>
+                      </div>
+      
+                      <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                          <div class="footer-menu">
+                              <p class="li nav-item w-100 mt-2 text-white" style="text-align: right">The New Investor 2021 | Todos los Derechos Reservados
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </footer>
       </div>
     </div>
   </div>

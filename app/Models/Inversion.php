@@ -21,7 +21,8 @@ class Inversion extends Model
         'comprobante_consignacion',
         'periodo_mes',
         'firma_cliente',
-        'firma_admin'
+        'firma_admin',
+        'status'
     ];
 
     public function getUser()

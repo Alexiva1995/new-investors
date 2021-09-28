@@ -18,9 +18,11 @@ class ContratoController extends Controller
     //
     public function index(Request $request)
     {
+        /*
         $user = Auth::user();
 
         if ($user->admin == 1) {
+        */
             if (isset($request->tipo_documento) && isset($request->num_documento)) {
                 $user = User::where('tipo_documento', $request->tipo_documento)->where('num_documento', $request->num_documento)->first();
                 if ($user != null) {
@@ -28,13 +30,13 @@ class ContratoController extends Controller
                 } else {
                     $inversiones = [];
                 }
-            } else {
+            } /*else {
                 $inversiones = Inversion::all();
             }
         } else {
             $inversiones = Inversion::where('user_id', $user->id)->get();
         }
-
+        */
         return view('contratos.index', compact('inversiones'));
     }
 

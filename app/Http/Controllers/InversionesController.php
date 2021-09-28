@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\InversionCreateRequest;
+use App\Notifications\firmado;
+use Illuminate\Support\Facades\Mail;
 
 class InversionesController extends Controller
 {
@@ -35,7 +37,7 @@ class InversionesController extends Controller
                 $name = "firma_cliente.png";
                 $firmante = "cliente";
             }
-
+            
             $contrato = Inversion::findOrFail($request->inversion_id);
      
             if ($firmante == "cliente") {
@@ -50,7 +52,7 @@ class InversionesController extends Controller
             }
             $contrato->save();
 
-            $user->notify(new \App\Notifications\firmado);
+            $user->notify(new firmado);
 
             DB::commit();
             return response()->json([
@@ -72,7 +74,6 @@ class InversionesController extends Controller
 
     public function store(InversionCreateRequest $request)
     {
-
         // dd($request->imagen64);
         try{
             DB::beginTransaction();
@@ -90,63 +91,43 @@ class InversionesController extends Controller
                 "tipo_cuenta" => $request->tipo_cuenta,
                 "num_cuenta" => $request->num_cuenta
             ]);
-
-            if($user){
-
-                $inversion = Inversion::create([
-                    "invertido" => $request->invertido,
-                    "tipo_interes" => $request->tipo_interes,
-                    "fecha_consignacion" => $request->fecha_consignacion,
-                    "referente" => $request->referente,
-                    "firma_cliente" => base64_encode($request->imagen64),                    
-                    "periodo_mes" => $request->periodo_mes,
-                    "terminos" => $request->terminos,
-                    "status" => "firma_cliente",
-                    "user_id" => $user->id
-                ]);
-
-                if ($request->hasFile('comprobante_consignacion')) {
-                    $file = $request->file('comprobante_consignacion');
-                    $name = time() . $file->getClientOriginalName();
-                    $ruta = $user->id . '/comprobantes/' . $name;
-                    
-                    Storage::disk('public')->put($ruta,  \File::get($file));
-                    
-                    $inversion->comprobante_consignacion = $ruta;
-                    $inversion->save();
-                }
-                if($inversion){
-                    DB::commit();
-                    return redirect()->route('home');
-
-                    
-
-                    // return response()->json([
-                    //     'message' => 'Inversión registrada exitosamente',
-                    //     'success' => true
-        
-                    // ], 200);
-                }else{
-                    DB::rollback();
-                    return response()->json([
-                        'message' => 'Error al crear la inversión',
-                        'success' => false
-                    ], 400);    
-                }
-            }else{
-                DB::rollback();
-                return response()->json([
-                    'message' => 'Error al crear el usuario',
-                    'success' => false
-                ], 400);
+            
+            $inversion = Inversion::create([
+                "invertido" => $request->invertido,
+                "tipo_interes" => $request->tipo_interes,
+                "fecha_consignacion" => $request->fecha_consignacion,
+                "referente" => $request->referente,
+                "firma_cliente" => $request->imagen64,               
+                "periodo_mes" => $request->periodo_mes,
+                "terminos" => $request->terminos,
+                "status" => "firma_cliente",
+                "user_id" => $user->id
+            ]);
+            
+            if ($request->hasFile('comprobante_consignacion')) {
+                $file = $request->file('comprobante_consignacion');
+                $name = time() . $file->getClientOriginalName();
+                $ruta = $user->id . '/comprobantes/' . $name;
+                
+                Storage::disk('public')->put($ruta,  \File::get($file));
+                
+                $inversion->comprobante_consignacion = $ruta;
+                $inversion->save();
             }
+            
+            Mail::send('Mails.firmadoEmail', ['user' => $user], function($message) use ($user) {
+                $message->subject('Firma Exitosa');
+                $message->to($user->email);
+            });
+            
+            DB::commit();
+
+            return redirect()->route('contratos.index');
+        
         } catch (\Throwable $th) {
             DB::rollback();
-            Log::error('InversionesController - firmar -> Error: '.$th);
-            return response()->json([
-                'message' => 'Error',
-                'success' => false
-            ], 400);
+            Log::error('InversionesController - store -> Error: '.$th);
+            abort(403);
         }
         // return back();
     }

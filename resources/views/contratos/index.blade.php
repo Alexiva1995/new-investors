@@ -1,5 +1,5 @@
 
-@extends('layouts/contentLayoutMaster')
+@extends('layouts/fullLayoutMaster')
 
 @section('title', 'Lista de contratos')
 
@@ -7,7 +7,7 @@
 <!-- Basic Tables start -->
 <div class="row" id="basic-table">
   <div class="col-12">
-    <div class="card">
+    <div class="card m-5">
     {{--
       <div class="card-header">
         <h4 class="card-title">Table Basic</h4>
@@ -15,7 +15,7 @@
       --}}
       <div class="card-body">
         
-        @if(Auth::user()->admin == 1)
+        {{--@if(Auth::user()->admin == 1)--}}
           <form method="get" action="{{route('contratos.index')}}">
               <div class="row">
                   <div class="col mb-1">
@@ -56,7 +56,7 @@
                   </div>
               </div>
           </form>
-        @endif
+        {{--@endif--}}
       
         <div class="table-responsive" style="height: 63vh;">
           <table class="table">
@@ -65,10 +65,11 @@
                 <th>Id</th>
                 <th>Tipo</th>
                 <th>Estado</th>
-                <th>Archivo</th>
+                <th>Acción</th>
               </tr>
             </thead>
             <tbody>
+              
               @forelse ($inversiones as $inversion)
                   <tr>
                     <td>{{$inversion->id}}</td>
@@ -93,14 +94,10 @@
                             <i data-feather="download" class="me-50"></i>
                             <span>Descargar</span>
                           </a>
+                          {{--
                           <a class="dropdown-item subir" inversion="{{$inversion->id}}">
                               <i data-feather="upload" class="me-50"></i>
                               <span>Subir</span>
-                          </a>
-                          {{--
-                          <a class="dropdown-item" href="#">
-                            <i data-feather="upload" class="me-50"></i>
-                            <span>Subir</span>
                           </a>
                           --}}
                           </form>
@@ -113,6 +110,7 @@
                     <td colspan="4">Sin Contratos</td>
                   </tr>
               @endforelse
+              
             </tbody>
           </table>
         </div>
@@ -123,6 +121,7 @@
 
   <!-- Vertical modal -->
     <!-- Modal -->
+    {{--
     <div
       class="modal fade"
       id="modal"
@@ -162,112 +161,12 @@
         </div>
       </div>
     </div>
-
+    --}}
     
 @endsection
 
 @push('custom-scripts')
-<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="text/javascript">
 
-  var modal = document.getElementById('modal')
-
-  $('.subir').click(function(){
-  
-    $('#inversion_id').val($('.subir').attr('inversion'));
-    var myModal = new bootstrap.Modal(modal);
-
-    myModal.show();
-
-  });
-
-  modal.addEventListener('shown.bs.modal', function (event) {
-    
-    var wrapper = document.getElementById("signature-pad");
-  
-    var canvas = wrapper.querySelector("canvas");
-    var signaturePad = new SignaturePad(canvas, {
-      backgroundColor: 'rgb(255, 255, 255)'
-    });
-    
-    function resizeCanvas() {
-    
-      var ratio =  Math.max(window.devicePixelRatio || 1, 1);
-    
-      canvas.width = canvas.offsetWidth * ratio;
-      canvas.height = canvas.offsetHeight * ratio;
-      canvas.getContext("2d").scale(ratio, ratio);
-    
-      signaturePad.clear();
-    }
-    
-    window.onresize = resizeCanvas;
-    resizeCanvas();
-
-    $('#limpiar').click(function(){
-      signaturePad.clear();
-    })
-
-    $('#btnGuardar').click(function(){
-  
-      event.preventDefault();
-      if (signaturePad.isEmpty()) {
-          const swalWithBootstrapButtons = Swal.mixin({
-              customClass: {
-                  confirmButton: 'btn btn-danger'
-              },
-              buttonsStyling: false
-          });
-          swalWithBootstrapButtons.fire({
-              title: "Debe realizar la firma!"
-          });
-      } else {
-          document.getElementById('imagen64').value = signaturePad.toDataURL();
-         //$("#loading").modal('show');
-          var datos = $('#formContrato').serialize();
-          $.ajax({
-              method: "GET",
-              url: "{{route('contratos.firmar')}}",
-              data: datos
-          }).done(function( response ) {
-          //$("#loading").modal('hide');
-          
-          if(response.success== true) {
-              const swalWithBootstrapButtons = Swal.mixin({
-                  customClass: {
-                      confirmButton: 'btn btn-success'
-                  },
-                  buttonsStyling: false
-              })
-              swalWithBootstrapButtons.fire({
-                  title: "Contrato creado exitosamente.",
-                  text: "Un asesor se encargará de validar la firma del contrato y pronto se habilitará el botón de Pago para que empieces a disfrutar los beneficios.",
-                  icon: "success",
-                  backdrop:true,
-                  allowOutsideClick: false
-              }).then(function(e) {
-                  location.href = "{{ route('contratos.index') }}";
-              });
-          } else {
-              const swalWithBootstrapButtons = Swal.mixin({
-                  customClass: {
-                      confirmButton: 'btn btn-danger'
-                  },
-                  buttonsStyling: false
-              })
-              swalWithBootstrapButtons.fire({
-                  title: "Opss! Algo no salio bien",
-                  text: "El contrato no se creó!",
-                  icon: "warning"
-                  });
-              }
-          });
-      }
-    });
-  })
-  
-  
-</script>
 
 @endpush
