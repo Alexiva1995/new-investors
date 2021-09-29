@@ -5,7 +5,7 @@
       "badgeClass": "badge badge-light-warning rounded-pill ms-auto me-1",
       "icon": "home",
       "slug": "dashboard",
-      "url": "/"
+      "url": "/dashboard"
     },
     {
       "name": "Usuarios",
