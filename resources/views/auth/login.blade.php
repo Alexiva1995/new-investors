@@ -97,7 +97,7 @@
               <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
             </div>
           </div>
-          <button type="submit" class="btn btn-ingresar w-100 mb-4" tabindex="4">Ingresar</button>
+          <button type="submit" class="btn btn-primary w-100 mb-4" tabindex="4">Ingresar</button>
         </form>
       </div>
     </div>
