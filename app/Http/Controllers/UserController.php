@@ -38,8 +38,7 @@ class UserController extends Controller
         // //    $timezone = Timezone::orderBy('list_utc','ASC')->get();
 
         $user = Auth::user();
-        $inv = Inversion::where('user_id', $user->id)->get();
-
+        $inv = Inversion::orderBy('id', 'desc')->get();
         return view('users.profile')
             ->with('user', $user)
             ->with('inv', $inv);        
