@@ -129,10 +129,10 @@
             <tr>
               <td style="width: 50%;">
                 {{-- <p class="text-center"><img src="{{public_path('custom/firma_administrador.png')}}" alt="" width="250"></p> --}}
-                <p class="text-center"><img src="{{utf8_decode($contract->firma_cliente)}}" alt="" width="250"></p>
+                <p class="text-center"><img src="{{base64_decode($contract->firma_cliente)}}" alt="" width="250"></p>
               </td>
               <td style="width: 50%;">
-                <p class="text-center"><img src="{{utf8_decode($contract->firma_cliente)}}" alt="" width="250"></p>
+                <p class="text-center"><img src="{{base64_decode($contract->firma_cliente)}}" alt="" width="250"></p>
               </td>
             </tr>
             <tr>

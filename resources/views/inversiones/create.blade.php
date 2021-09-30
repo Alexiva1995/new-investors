@@ -37,13 +37,13 @@
                     <div class="tab-pane active " id="1">
                         <div class="">
                             <div class="" style="background-color: #FFFFFF !important;">
-                                <div id="exTab2" class="container row">
-                                    <div class="panel panel-default row align-items-start">
-                                        <div class="col-3 ">
+                                <div id="exTab2" class="row">
+                                    <div class="panel panel-default d-flex justify-content-between">
+                                        <div class="col-4 ">
                                             <a href="#" id="inf">1. Información Personal</a>
                                             <div class="line-mf"></div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-4">
                                             <a id="inft" href="#"> 2. Información Bancaria</a>
                                             <div class="line-mft"></div>
                                         </div>
@@ -129,12 +129,12 @@
                     <div class="tab-pane " id="2">
                         <div class="container" style="background-color: #FFFFFF !important;">
                             <div id="exTab2" class="row">
-                                <div class="panel panel-default row align-items-start">
-                                    <div class="col-3 ">
+                                <div class="panel panel-default d-flex justify-content-between">
+                                    <div class="col-4 ">
                                         <a href="#" id="inft">1. Información Personal</a>
                                         <div class="line-mft"></div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <a id="inf" href="#"> 2. Información Bancaria</a>
                                         <div class="line-mf"></div>
                                     </div>
@@ -198,14 +198,14 @@
                     <div class="tab-pane " id="3">
                         <div class="container" style="background-color: #FFFFFF !important;">
                             <div id="exTab2" class="row">
-                                <div class="panel panel-default row">
+                                <div class="panel panel-default d-flex justify-content-between">
 
-                                    <div class="col-3 ">
+                                    <div class="col-4">
                                         <a href="#" id="inft">1. Información Personal</a>
                                         <div class="line-mft"></div>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <a id="inft" href="#"> 2. Información Bancaria</a>
                                         <div class="line-mft"></div>
                                     </div>
