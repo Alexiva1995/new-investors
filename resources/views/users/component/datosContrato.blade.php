@@ -50,8 +50,8 @@
                             </div>
 
                             <div class="col-12 col-md-6 mt-1">
-                                <label>Comprobante de consignación</label>
-                                <img style="width: 100%;" src="{{ asset('storage/' . $inversion->comprobante_consignacion) }}"
+                                <label class="mt-2 mb-1">Comprobante de consignación</label>
+                                <img style="width: 100%;" class="rounded" src="{{ asset('storage/' . $inversion->comprobante_consignacion) }}"
                                 alt="consignacion">            
                             </div>                             
                         </div>
