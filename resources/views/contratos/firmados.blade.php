@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap4.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css'))}}">
 
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">
 @endsection
@@ -16,7 +17,7 @@
 @section('page-style')
     <!-- Page css files -->
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
 @endsection
 
 
@@ -36,6 +37,7 @@
     <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
 
     <script src="{{ asset(mix('vendors/js/file-uploaders/dropzone.min.js')) }}"></script>
 @endsection
@@ -43,6 +45,7 @@
     {{-- Page js files --}}
     <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/forms/form-file-uploader.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/extensions/ext-component-sweet-alerts.js')) }}"></script>
 
 @endsection
 
@@ -139,7 +142,7 @@
                 //     }            
                     
                 // },
-                confirmButtonColor: '#00bb2d',
+                confirmButtonColor: '#00c2ef',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Finalizar',
                 preConfirm: (login) => {
@@ -172,11 +175,12 @@
                 .then((result) => {
     
                 if (result.isConfirmed) {
-                    Swal.fire(
-                    'Finalizado',
-                    'Contrato finalizado con exito.',
-                    'success'
-                    )
+                    Swal.fire({
+                    title: 'Finalizado',
+                    text: 'Contrato finalizado con exito.',
+                    icon: 'success',
+                    confirmButtonColor: '#00c2ef'
+                    })
                     location.reload(true);
                 }
                 })

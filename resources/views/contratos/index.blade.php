@@ -101,9 +101,9 @@
                           <i data-feather="more-vertical"></i>
                         </button>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="{{route('contratos.download_pdf', ['id' => $inversion->id])}}">
-                            <i data-feather="download" class="me-50"></i>
-                            <span>Descargar</span>
+                          <a class="dropdown-item" href="{{route('contratos.reenviar_pdf', ['id' => $inversion->id])}}">
+                            <i data-feather="send" class="me-50"></i>
+                            <span>Reenviar PDF</span>
                           </a>
                           {{--
                           <a class="dropdown-item subir" inversion="{{$inversion->id}}">

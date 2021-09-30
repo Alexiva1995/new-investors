@@ -48,7 +48,7 @@
       "slug": "formulario",
       "submenu": [
         {
-          "url": "contratos/",
+          "url": "inversiones/contratos",
           "name": "Buscar",
           "icon": "circle",
           "slug": "contratos/buscar"
