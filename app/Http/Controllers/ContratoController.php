@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ContratoController extends Controller
@@ -54,6 +55,34 @@ class ContratoController extends Controller
         //$html = $pdf->download('reporte-socios-'. Carbon::now()->format('d/m/Y').'.pdf');
 
         return $html;
+    }
+
+    public function reenviarPdf($id)
+    {
+        try{
+            $inversion = Inversion::findOrFail($id);
+            $email = $inversion->getUser->email;
+
+            $dompdf = PDF::loadView('pdf.contrato', compact('inversion'));
+
+            $dataEmail = [
+                'nombre' =>  strtok($inversion->getUser->fullname, " "),
+                'email' => $email
+            ];
+
+            Mail::send('mails.reenvioContrato', $dataEmail, function ($mail) use ($dompdf, $email) {
+                $mail->from('admin@ni.com', 'New Investor');
+                $mail->to($email);
+                $mail->subject("Reenvío de contrato");
+                $mail->attachData($dompdf->output(), 'contrato.pdf');
+            });
+
+            return redirect()->back()->with('msj-success','El PDF se reenvió correctamente');
+
+        } catch (\Throwable $th) {
+            Log::error('ContratoController - reenviarPdf -> Error: '.$th);
+        }
+
     }
 
     public function firmar(Request $request)
