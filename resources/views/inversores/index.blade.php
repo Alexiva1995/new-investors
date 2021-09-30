@@ -1,7 +1,7 @@
 
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Verficación de Contratos')
+@section('title', 'Verificación de Contratos')
 
 @section('vendor-style')
   {{-- vendor css files --}}
@@ -10,12 +10,15 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap4.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css'))}}">
 
 @endsection
 
 @section('page-style')
   <!-- Page css files -->
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">
+  <link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
+
 @endsection
 
 @section('content')
@@ -52,8 +55,11 @@
                       <i data-feather='more-vertical'></i>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="javascript:void(0)"  onclick="verContrato({{$inversion->id}})"
-                      ><i data-feather='user'></i> Ver contrato</a></li>
+                    <li>
+                      <a class="dropdown-item" target="_blank" href="{{route('inversion.generatePdf', ['id' => $inversion->id])}}">
+                        <i class="fa fa-file-pdf"></i> Ver contrato
+                      </a>                     
+                    </li>                      
                     <li><a class="dropdown-item" href="javascript:void(0)"  onclick="verificacion({{$inversion->id}})"
                       ><i data-feather='check-circle'></i> Verificacion</a></li>
                   </ul>
@@ -129,9 +135,9 @@
                   Swal.fire({
                     icon: 'success',
                     title: 'El contrato ha sido Firmado exitosamente!',
-                    confirmButtonText:
-                      '<a href="{{ route('firmados')}}" class="btn btn-primary">Aceptar</a>',
+                    confirmButtonColor: '#00c2ef'
                   })
+                  location.reload(true);
                 }
             });
         }
@@ -150,13 +156,13 @@
   <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
 
 @endsection
 @section('page-script')
   {{-- Page js files --}}
   <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/extensions/ext-component-sweet-alerts.js')) }}"></script>
 
 @endsection
 

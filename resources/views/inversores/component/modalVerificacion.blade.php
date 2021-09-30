@@ -20,7 +20,7 @@
             <div class="modal-footer">
                 {{-- <a href="{{ route('rechazar-inversor',2) }}" type="button" class="btn btn-danger">Rechazar</a> --}}
                 <a href="#" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</a>
-                <a href="javascript:void(0)"  onclick="aprobar()" type="button" class="btn btn-success">Aprobar</a>
+                <a href="javascript:void(0)"  onclick="aprobar()" type="button" class="btn" style="color:white; background-color: #00c2ef;">Aprobar</a>
             </div>
         </div>
     </div>
