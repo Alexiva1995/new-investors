@@ -27,10 +27,10 @@
       "slug": "inversiones/firmados"
     } ,
     {
-      "url": "inversiones/firmados",
+      "url": "inversiones/finalizados",
       "name": "Contratos Terminados",
       "icon": "file-text",
-      "slug": "inversiones/firmados"
+      "slug": ""
     } ,
   
     {

@@ -80,6 +80,7 @@ Route::group(['prefix' => 'inversiones'], function () {
     Route::get('rechazar-Inversor/{id}', [InversionesController::class, 'rechazarInversor'])->name('rechazar-inversor');
     Route::get('ver-inversor/{id}', [InversionesController::class, 'verInversor'])->name('ver-inversor');
     Route::get('firmados', [InversionesController::class, 'firmados'])->name('firmados');
+    Route::get('finalizados', [InversionesController::class, 'finalizados'])->name('finalizados');
 
 });
 Auth::routes(['verify' => true]);

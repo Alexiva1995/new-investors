@@ -197,5 +197,11 @@ class InversionesController extends Controller
 
         return view('contratos.firmados', compact('inv'));
     }
+       public function finalizados()
+    {
+        
+        $inversiones = Inversion::where('status', 'finalizado')->get();
+        return view('contratos.finalizados', compact('inversiones'));
+    }
 
 }
