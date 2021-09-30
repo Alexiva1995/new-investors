@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\InversionCreateRequest;
 use App\Notifications\firmado;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class InversionesController extends Controller
 {
@@ -115,10 +116,10 @@ class InversionesController extends Controller
                 $inversion->save();
             }
             
-            Mail::send('Mails.firmadoEmail', ['user' => $user], function($message) use ($user) {
-                $message->subject('Firma Exitosa');
-                $message->to($user->email);
-            });
+            // Mail::send('Mails.firmadoEmail', ['user' => $user], function($message) use ($user) {
+            //     $message->subject('Firma Exitosa');
+            //     $message->to($user->email);
+            // });
             
             DB::commit();
 
@@ -198,4 +199,47 @@ class InversionesController extends Controller
         return view('contratos.firmados', compact('inv'));
     }
 
+        /**
+     * Formulario para subir PDF
+     *
+     */
+    public function formPdf(Request $request)
+    {
+        try{
+            $validate = $request->validate([
+                'idInversion' => 'required',
+                'urlpdf' => ['nullable', 'max:4096']
+            ]);
+            
+            if($validate){      
+                $file = $request->urlpdf;
+                $nombre = time() . $file->getClientOriginalName();
+                $ruta = 'pdf-inversion/' . $request->idinversion . '/' . $nombre;
+                $contrato = Inversion::find($request->idinversion);
+                $contrato->url_pdf = $ruta;
+                $contrato->save();
+                $file->storeAs('public/pdf-inversion/'.$request->idinversion, $nombre);
+                return redirect()->back()->with('success', 'PDF Guardado Exitosamente');
+            }   
+
+        } catch (\Throwable $th) {
+            Log::error('InversionesController::formPdf -> Error: '.$th);
+            abort(403, "Ocurrio un error, contacte con el administrador");
+        }
+    }
+
+    public function generatePdf($id)
+    {
+        $contract = Inversion::findOrFail($id);
+        
+        $pdf = PDF::loadView('contratos.pdf', compact('contract'));
+
+        //$pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->setPaper('A4', 'portrait');
+        
+        $html = $pdf->stream();
+        //$html = $pdf->download('reporte-socios-'. Carbon::now()->format('d/m/Y').'.pdf');
+
+        return $html;
+    }  
 }

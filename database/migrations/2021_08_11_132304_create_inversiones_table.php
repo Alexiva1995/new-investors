@@ -24,8 +24,8 @@ class CreateInversionesTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             //tablas de contratos(old)
-            $table->longtext('firma_cliente')->nullable();
-            $table->longtext('firma_admin')->nullable();
+            $table->text('firma_cliente')->nullable();
+            $table->text('firma_admin')->nullable();
             $table->enum('status', ['por_firmar', 'firma_cliente', 'firmado', 'finalizado'])->default('por_firmar');
             $table->timestamps();
         });

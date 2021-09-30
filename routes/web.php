@@ -81,6 +81,10 @@ Route::group(['prefix' => 'inversiones'], function () {
     Route::get('ver-inversor/{id}', [InversionesController::class, 'verInversor'])->name('ver-inversor');
     Route::get('firmados', [InversionesController::class, 'firmados'])->name('firmados');
 
+    Route::post('/form-pdf', [InversionesController::class, 'formPdf'])->name('inversion.pdf');
+    Route::get('/generatePdf/{id}', [InversionesController::class, 'generatePdf'])->name('inversion.generatePdf');
+
+
 });
 Auth::routes(['verify' => true]);
 

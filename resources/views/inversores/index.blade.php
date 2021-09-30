@@ -52,8 +52,16 @@
                       <i data-feather='more-vertical'></i>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="javascript:void(0)"  onclick="verContrato({{$inversion->id}})"
-                      ><i data-feather='user'></i> Ver contrato</a></li>
+                    <li>
+                      <a class="dropdown-item" target="_blank" href="{{route('inversion.generatePdf', ['id' => $inversion->id])}}">
+                        <i class="fa fa-file-pdf"></i> Ver contrato
+                      </a>
+                      {{-- <a class="dropdown-item" href="javascript:void(0)"  onclick="verContrato({{$inversion->id}})"
+                        ><i data-feather='user'></i> Ver contrato
+                      </a> --}}
+                    </li>
+
+                      
                     <li><a class="dropdown-item" href="javascript:void(0)"  onclick="verificacion({{$inversion->id}})"
                       ><i data-feather='check-circle'></i> Verificacion</a></li>
                   </ul>
