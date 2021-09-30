@@ -5,7 +5,7 @@
     aria-labelledby="myModalLabel1660"
     aria-hidden="true"
     >
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-c entered">
         <div class="modal-content">
             <input type="hidden" id="idVerificacion">
             <div class="modal-header">
@@ -14,7 +14,7 @@
             </div>
             <div class="modal-body">
                 {{-- src="{{ asset('storage/10/comprobantes/1632585581avatar.jpg' ) }}" --}}
-                <img id="imagen_url" style="width: 100%;" src="{{ asset('storage/10/comprobantes/1632585581avatar.jpg' ) }}"
+                <img id="imagen_url" style="width: 100%;" src=""
                     alt="consignacion">
             </div>
             <div class="modal-footer">

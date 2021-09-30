@@ -205,8 +205,8 @@
                 @endif
               </td>
               <td style="width: 50%;">
-                @if($inversion->contrato != null && $inversion->contrato->firma_cliente	) 
-                  <img width="300" src="{{public_path('storage/'.$inversion->contrato->firma_cliente	)}}" alt=""> 
+                @if($inversion != null && $inversion->firma_cliente	) 
+                  <img width="300" src="{{base64_decode($inversion->firma_cliente)}}" alt=""> 
                 @endif
               </td>
             </tr>
@@ -216,7 +216,7 @@
             </tr>
             <tr>
               <td>Nombre:</td>
-              <td>Nombre:</td>
+              <td>Nombre: {{$inversion->getUser->fullname}}</td>
             </tr>
             <tr>
               <td>C.C</td>
