@@ -98,7 +98,7 @@ class InversionesController extends Controller
                 "tipo_interes" => $request->tipo_interes,
                 "fecha_consignacion" => $request->fecha_consignacion,
                 "referente" => $request->referente,
-                "firma_cliente" => $request->imagen64,               
+                "firma_cliente" => base64_encode($request->imagen64),               
                 "periodo_mes" => $request->periodo_mes,
                 "terminos" => $request->terminos,
                 "status" => "firma_cliente",
