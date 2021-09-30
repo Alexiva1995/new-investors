@@ -26,6 +26,12 @@
       "icon": "file-text",
       "slug": "inversiones/firmados"
     } ,
+    {
+      "url": "inversiones/firmados",
+      "name": "Contratos Terminados",
+      "icon": "file-text",
+      "slug": "inversiones/firmados"
+    } ,
   
     {
       "name": "Inversiones",
@@ -38,15 +44,7 @@
           "name": "Nueva inversion",
           "icon": "circle",
           "slug": "inversiones/create"
-        }
-      ]
-    },
-    {
-      "name": "Contratos",
-      "url": "",
-      "icon": "file-text",
-      "slug": "formulario",
-      "submenu": [
+        },
         {
           "url": "contratos/",
           "name": "Buscar",
