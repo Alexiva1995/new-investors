@@ -72,6 +72,7 @@
                                         <th>ID</th>
                                         <th>Nombre</th>
                                         <th>Email</th>
+                                        <th>Monto</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,6 +81,7 @@
                                         <td>{{$contrato->id}}</td>
                                         <td>{{$contrato->getUser->fullname}}</td>
                                         <td>{{$contrato->getUser->email}}</td>
+                                        <td>{{$contrato->invertido}} $</td>
                                     </tr>
                                     @endforeach
                                     
