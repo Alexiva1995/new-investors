@@ -14,6 +14,7 @@ return [
     "Nueva inversion" => "Nueva inversion",
     "Firma del Investor" => "Firma del Investor",
     "Contratos Verificados" => "Contratos Verificados",
+    "Contratos Terminados" => "Contratos Terminados",
     "Contratos" => "Contratos",
     "Inversores" => "Inversores",
     "Buscar" => "Buscar",

@@ -137,7 +137,7 @@ class ContratoController extends Controller
         
         $inversiones = Inversion::all();
         return view('contratos.FirmaInversor', compact('inversiones'));
-    }
+    } 
 
     public function finalizar(Request $request)
     {
