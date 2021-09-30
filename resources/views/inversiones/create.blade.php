@@ -47,7 +47,7 @@
                     <div class="tab-pane active " id="1">
                         <div class="">
                             <div class="" style="background-color: #FFFFFF !important;">
-                                <div id="exTab2" class="container row">
+                                <div id="exTab2" class="row">
                                     <div class="panel panel-default row align-items-start">
                                         <div class="col-4 ">
                                             <a href="#" id="inf">1. Información Personal</a>
@@ -137,7 +137,7 @@
 
 
                     <div class="tab-pane " id="2">
-                        <div class="container" style="background-color: #FFFFFF !important;">
+                        <div class="" style="background-color: #FFFFFF !important;">
                             <div id="exTab2" class="row">
                                 <div class="panel panel-default row align-items-start">
                                     <div class="col-4 ">
@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class="tab-pane " id="3">
-                        <div class="container" style="background-color: #FFFFFF !important;">
+                        <div class="" style="background-color: #FFFFFF !important;">
                             <div id="exTab2" class="row">
                                 <div class="panel panel-default row align-items-start">
                                     <div class="col-4">
@@ -228,7 +228,7 @@
                         </div>
 
                         <div id="Información-de-inversión">
-                            <div class="container mt-4 mb-3 ">
+                            <div class=" mt-4 mb-3 ">
                                 <div class="row">
                                     <div class="col-4">
                                         <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
