@@ -79,7 +79,7 @@
                             <div class="row  mt-3">
                                 <div class="col-4 ">
                                     <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
-                                    <input type="text" id="fullname" name="fullname" class=" form-control  {{ $errors->has('fullname') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Nombre Completo" aria-label="nombre y apellido" aria-describedby="nombre completo de la persona" required />
+                                    <input type="text" id="fullname" name="fullname" class=" form-control  {{ $errors->has('fullname') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Nombre Completo" aria-label="nombre y apellido" aria-describedby="nombre completo de la persona" required value="{{old('fullname')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu nombre y apellido.</div>
                                 </div>
@@ -88,9 +88,9 @@
                                     <label class="form-label" for="tipo_documento">Tipo Documento de Identidad <span style="color: red;">*</span></label>
                                     <select class="form-select {{ $errors->has('tipo_documento') ? ' is-invalid' : '' }}" id="tipo_documento" required name="tipo_documento">
                                         <option value="">Seleccionar</option>
-                                        <option value="cedula_ciudadana">Cédula de ciudadania</option>
-                                        <option value="cedula_extranjera">Cédula de Extranjeria</option>
-                                        <option value="pasaporte">Pasaporte</option>
+                                        <option value="cedula_ciudadana" @if(old('tipo_documento') == "cedula_ciudadana") selected @endif>Cédula de ciudadania</option>
+                                        <option value="cedula_extranjera" @if(old('tipo_documento') == "cedula_extranjera") selected @endif>Cédula de Extranjeria</option>
+                                        <option value="pasaporte" @if(old('tipo_documento') == "pasaporte") selected @endif>Pasaporte</option>
                                     </select>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingrese el tipo de documento</div>
@@ -100,7 +100,7 @@
                                 <div class="col-4 mb-1">
                                     <label class="form-label" for="num_documento"> Documento de Identidad <span style="color: red;">*</span></label>
 
-                                    <input type="text" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required />
+                                    <input type="text" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required value="{{old('num_documento')}}" />
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Numero de Documento de Identidad.
                                     </div>
@@ -111,7 +111,7 @@
                                 <div class="col-4 mb-1">
                                     <label class="form-label" for="ciudad_residencia">Ciudad de Residencia <span style="color: red;">*</span></label>
 
-                                    <input type="text" id="ciudad_residencia" name="ciudad_residencia" class="form-control {{ $errors->has('ciudad_residencia') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Ciudad de Residencia" aria-label="Ciudad de Residencia" aria-describedby="ciudad de residencia" required />
+                                    <input type="text" id="ciudad_residencia" name="ciudad_residencia" class="form-control {{ $errors->has('ciudad_residencia') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Ciudad de Residencia" aria-label="Ciudad de Residencia" aria-describedby="ciudad de residencia" required value="{{old('ciudad_residencia')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Ciudad de Residencia.</div>
                                 </div>
@@ -119,7 +119,7 @@
                                 <div class="col-4 mb-1">
                                     <label class="form-label" for="direccion_residencia">Dirección de Residencia <span style="color: red;">*</span></label>
 
-                                    <input type="text" id="direccion_residencia" name="direccion_residencia" class="form-control {{ $errors->has('direccion_residencia') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Dirección de Residencia " aria-label="Dirección de Residencia " aria-describedby="basic-addon-name" required />
+                                    <input type="text" id="direccion_residencia" name="direccion_residencia" class="form-control {{ $errors->has('direccion_residencia') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Dirección de Residencia " aria-label="Dirección de Residencia " aria-describedby="basic-addon-name" required value="{{old('direccion_residencia')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Dirección de Residencia .</div>
                                 </div>
@@ -127,7 +127,7 @@
                                 <div class="col-4 mb-1">
                                     <label class="form-label input-phone" for="celular">Numero de Celular <span style="color: red;">*</span></label>
 
-                                    <input type="text" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required />
+                                    <input type="text" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required value="{{old('celular')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Numero de Celular.</div>
                                 </div>
@@ -136,7 +136,7 @@
                             <div class="row">
                                 <div class="col-4 mt-1">
                                     <label class="form-label" for="email">Correo electrónico <span style="color: red;">*</span></label>
-                                    <input type="email" id="email" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Correo Electrónico" aria-label="john.doe@email.com" required />
+                                    <input type="email" id="email" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Correo Electrónico" aria-label="john.doe@email.com" required value="{{old('email')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Correo electrónico.</div>
                                 </div>
@@ -172,18 +172,18 @@
                                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
                                 <select class="form-select {{ $errors->has('banco') ? ' is-invalid' : '' }}" id="banco" required name="banco">
                                     <option value="">Selecciona un Banco</option>
-                                    <option value="Bancolombia">Bancolombia</option>
-                                    <option value="NEQUI de Bancolombia">NEQUI de Bancolombia</option>
-                                    <option value="Banco Av Villas">Banco Av Villas</option>
-                                    <option value="Davivienda">Davivienda</option>
-                                    <option value="Banco de Bogotá">Banco de Bogotá</option>
-                                    <option value="Banco Popular">Banco Popular</option>
-                                    <option value="Banco de Occidente">Banco de Occidente</option>
-                                    <option value="Banco Colpatria">Banco Colpatria</option>
-                                    <option value="Banco BBVA">Banco BBVA</option>
-                                    <option value="Banco Caja social">Banco Caja social</option>
-                                    <option value="GNB Sudameris">GNB Sudameris</option>
-                                    <option value="Banco Agrario">Banco Agrario</option>
+                                    <option value="Bancolombia" @if(old('banco') == "Bancolombia") selected @endif>Bancolombia</option>
+                                    <option value="NEQUI de Bancolombia" @if(old('banco') == "NEQUI de Bancolombia") selected @endif>NEQUI de Bancolombia</option>
+                                    <option value="Banco Av Villas" @if(old('banco') == "Banco Av Villas") selected @endif>Banco Av Villas</option>
+                                    <option value="Davivienda" @if(old('banco') == "Davivienda") selected @endif>Davivienda</option>
+                                    <option value="Banco de Bogotá" @if(old('banco') == "Banco de Bogotá") selected @endif>Banco de Bogotá</option>
+                                    <option value="Banco Popular" @if(old('banco') == "Banco Popular") selected @endif>Banco Popular</option>
+                                    <option value="Banco de Occidente" @if(old('banco') == "Banco de Occidente") selected @endif>Banco de Occidente</option>
+                                    <option value="Banco Colpatria" @if(old('banco') == "Banco Colpatria") selected @endif>Banco Colpatria</option>
+                                    <option value="Banco BBVA" @if(old('banco') == "Banco BBVA") selected @endif>Banco BBVA</option>
+                                    <option value="Banco Caja social" @if(old('banco') == "Banco Caja social") selected @endif>Banco Caja social</option>
+                                    <option value="GNB Sudameris" @if(old('banco') == "GNB Sudameris") selected @endif>GNB Sudameris</option>
+                                    <option value="Banco Agrario" @if(old('banco') == "Banco Agrario") selected @endif>Banco Agrario</option>
                                 </select>
                                 <div class="valid-feedback">valido!</div>
                                 <div class="invalid-feedback">Por favor ingrese el banco</div>
@@ -192,8 +192,8 @@
                                 <label class="form-label" for="tipo_cuenta">Tipo de Cuenta <span style="color: red;">*</span></label>
                                 <select class="form-select {{ $errors->has('tipo_cuenta') ? ' is-invalid' : '' }}" id="tipo_cuenta" required name="tipo_cuenta">
                                     <option value="">Selecciona </option>
-                                    <option value="ahorro">AHORROS</option>
-                                    <option value="corriente">CORRIENTE</option>
+                                    <option value="ahorro" @if(old('tipo_cuenta') == "ahorro") selected @endif>AHORROS</option>
+                                    <option value="corriente" @if(old('tipo_cuenta') == "corriente") selected @endif>CORRIENTE</option>
                                 </select>
                                 <div class="valid-feedback">valido!</div>
                                 <div class="invalid-feedback">Por favor ingrese el tipo de cuenta</div>
@@ -201,7 +201,7 @@
                             <div class="col-4">
                                 <label class="form-label" for="num_cuenta">Numero de Cuenta Bancaria <span style="color: red;">*</span></label>
 
-                                <input type="text" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="Documento de indentidad" aria-describedby="numero de cuenta" required />
+                                <input type="text" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="Documento de indentidad" aria-describedby="numero de cuenta" required value="{{old('num_cuenta')}}"/>
                                 <div class="valid-feedback">valido!</div>
                                 <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
                             </div>
@@ -244,7 +244,7 @@
                                     <div class="col-4">
                                         <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
 
-                                        <input type="text" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required />
+                                        <input type="text" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required value="{{old('invertido')}}"/>
                                         <div class="valid-feedback">valido!</div>
                                         <div class="invalid-feedback">Por favor ingresa tu Valor a Administrar.</div>
                                     </div>
@@ -252,18 +252,20 @@
 
                                     <div class="col-4">
                                         <label class="form-label">Tipo de interes <span style="color: red;">*</span></label>
-                                        <select class="form-select {{ $errors->has('tipo_interes') ? ' is-invalid' : '' }}" id="tipo_interes1" name="tipo_interes" required>
+                                        <select class="form-select {{ $errors->has('tipo_interes') ? ' is-invalid' : '' }}" id="tipo_interes1" name="tipo_interes" required >
                                             <option value="">Seleccionar</option>
-                                            <option class="form-check-input" type="radio" name="tipo_interes" id="tipo_interes2" value="compuesto" value="1">LINEAL</option>
-                                            <option class="form-check-input" type="radio" name="tipo_interes" id="tipo_interes2" value="compuesto" value="2">COMPUESTO</option>
+                                            <option class="form-check-input" value="lineal" @if(old('tipo_interes') == "lineal") selected @endif>LINEAL</option>
+                                            <option class="form-check-input" value="compuesto" @if(old('tipo_interes') == "compuesto") selected @endif>COMPUESTO</option>
                                         </select>
+                                        <div class="valid-feedback">valido!</div>
+                                        <div class="invalid-feedback">Por favor ingresa el tipo de interes.</div>
                                     </div>
 
 
                                     <div class="col-4 mb-3">
                                         <label class="form-label" for="fecha_consignacion">Fecha de Consignación <span style="color: red;">*</span></label>
 
-                                        <input type="date" id="fecha_consignacion" name="fecha_consignacion" class="form-control {{ $errors->has('fecha_consignacion') ? ' is-invalid' : '' }}" placeholder="Fecha de Consignación " aria-label="Fecha de Consignación" aria-describedby="Fecha de Consignaciónr" required />
+                                        <input type="date" id="fecha_consignacion" name="fecha_consignacion" class="form-control {{ $errors->has('fecha_consignacion') ? ' is-invalid' : '' }}" placeholder="Fecha de Consignación " aria-label="Fecha de Consignación" aria-describedby="Fecha de Consignaciónr" required value="{{old('fecha_consignacion')}}"/>
                                         <div class="valid-feedback">valido!</div>
                                         <div class="invalid-feedback">Por favor ingresa tu Fecha de Consignación.</div>
                                     </div>
@@ -273,16 +275,7 @@
                                     <div class="col-4">
                                         <label class="form-label" for="referente">¿Como conoció nuestro sistema de
                                             Inversión? <span style="color: red;">*</span></label>
-                                        <select class="form-select {{ $errors->has('referente') ? ' is-invalid' : '' }}" id="referente" name="referente" required>
-                                            <option value="">Elegir</option>
-                                            <option value="GERSON OSORIO">GERSON OSORIO</option>
-                                            <option value="PAOLA SOTELO">PAOLA SOTELO</option>
-                                            <option value="ANGEL MENDOZA">ANGEL MENDOZA</option>
-                                            <option value="CAMILO BARBOSA">CAMILO BARBOSA</option>
-                                            <option value="IVAN SALAZAR">IVAN SALAZAR</option>
-                                            <option value="ALEX C.">ALEX C.</option>
-                                            <option value="ALEJANDRA C.">ALEJANDRA C.</option>
-                                        </select>
+                                        <input class="form-control {{ $errors->has('referente') ? ' is-invalid' : '' }}" id="referente" name="referente" required value="{{old('referente')}}">
                                         <div class="valid-feedback">valido!</div>
                                         <div class="invalid-feedback">Por favor ingresa Como conoció nuestro sistema de
                                             Inversión.</div>
@@ -292,7 +285,12 @@
                                     <div class="col-4 ">
                                         <label for="comprobante_consignacion" class="form-label">subir comprobante de
                                             consignación <span style="color: red;">*</span></label>
-                                        <input class="form-control" type="file" id="comprobante_consignacion" name="comprobante_consignacion" />
+                                        <input class="form-control {{ $errors->has('comprobante_consignacion') ? ' is-invalid' : '' }}" type="file" id="comprobante_consignacion" name="comprobante_consignacion" value="{{old('comprobante_consignacion')}}"/>
+                                        <div class="valid-feedback">valido!</div>
+                                        <div class="invalid-feedback">Por favor sube tu comprobante de consignacion.</div>
+                                        @if($errors->first() != null && !$errors->has('comprobante_consignacion'))
+                                        <div class="text-danger">Por favor vuelva a subir su comprobante de consignacion.</div>
+                                        @endif
                                     </div>
 
                                     <input class="form-control" type="file" id="firma_cliente" name="firma_cliente" style="display:none;" />
@@ -303,8 +301,8 @@
                                             periodo del mes? <span style="color: red;">*</span></label>
                                         <select class="form-select {{ $errors->has('periodo_mes') ? ' is-invalid' : '' }}" id="periodo_mes" name="periodo_mes" required>
                                             <option value="">Elegir</option>
-                                            <option value="1">del 1 al 15</option>
-                                            <option value="2">del 16 al 30 o (31)</option>>
+                                            <option value="1" @if(old('periodo_mes') == "1") selected @endif>del 1 al 15</option>
+                                            <option value="2" @if(old('periodo_mes') == "2") selected @endif>del 16 al 30 o (31)</option>>
                                         </select>
                                         <div class="valid-feedback">valido!</div>
                                         <div class="invalid-feedback">Por favor ingresa el periodo del mes.</div>

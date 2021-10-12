@@ -42,9 +42,9 @@ class sendform extends Notification
     {
         
         return (new MailMessage)
-        ->subject('Invercion Exitosa')
-        ->view('Mails.sendForm')
-        ->salutation('New_Investors');
+        ->subject('Inversión Exitosa')
+        ->view('Mails.sendForm', ['user' => $notifiable]);
+        //->salutation('New_Investors');
     }
 
     /**

@@ -6,19 +6,23 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\Inversion;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Storage;
 
 class firmado extends Notification
 {
     use Queueable;
-
+    public $inversor;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Inversion $inversor)
     {
         //
+        $this->inversor = $inversor;
     }
 
     /**
@@ -40,10 +44,23 @@ class firmado extends Notification
      */
     public function toMail($notifiable)
     {
+        $ruta = public_path('storage/contratos/'.$this->inversor->id.'/contrato.pdf');
+        
+        if (!Storage::disk( 'public' )->exists( 'contratos/' .$this->inversor->id)) {
+            Storage::disk('public')->makeDirectory('contratos/' .$this->inversor->id);
+        }
+
+        $pdf = PDF::loadView('pdf.contrato', ['inversion' => $this->inversor]);
+
+        $pdf->setPaper('A4', 'portrait');
+        
+        $pdf->save($ruta);
+        //$html = $pdf->stream();
+
         return (new MailMessage)
         ->subject('Firma Exitosa')
         ->view('Mails.firmadoEmail')
-        ->salutation('New_Investors');
+        ->attach($ruta);
     }
     
 

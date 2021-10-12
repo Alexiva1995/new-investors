@@ -14,13 +14,13 @@ use App\Http\Requests\InversionCreateRequest;
 use App\Notifications\firmado;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Notifications\sendform;
 
 class InversionesController extends Controller
 {
 
     public function create()
     {
-
         return view('/inversiones/create');
     }
 
@@ -115,7 +115,7 @@ class InversionesController extends Controller
                 $inversion->comprobante_consignacion = $ruta;
                 $inversion->save();
             }
-            
+            $user->notify(new sendform);
             // Mail::send('Mails.firmadoEmail', ['user' => $user], function($message) use ($user) {
             //     $message->subject('Firma Exitosa');
             //     $message->to($user->email);
@@ -153,6 +153,9 @@ class InversionesController extends Controller
         $inversor = Inversion::where('id', $id)->first();
         $inversor->status = 'firmado';
         $inversor->save();
+        
+        $user = User::find($inversor->user_id);
+        $user->notify(new firmado($inversor));
 
         $inv = Inversion::where('status', '<>', 'finalizado')->get();
         return view('contratos.firmados', compact('inv'));
@@ -236,11 +239,10 @@ class InversionesController extends Controller
 
     public function generatePdf($id)
     {
-        $contract = Inversion::findOrFail($id);
+        $inversion = Inversion::findOrFail($id);
         
-        $pdf = PDF::loadView('contratos.pdf', compact('contract'));
+        $pdf = PDF::loadView('pdf.contrato', compact('inversion'));
 
-        //$pdf->getDomPDF()->set_option("enable_php", true);
         $pdf->setPaper('A4', 'portrait');
         
         $html = $pdf->stream();

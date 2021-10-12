@@ -58,7 +58,7 @@
     div[style*="margin: 16px 0;"] { margin: 0 !important; }
 </style>
 </head>
-<body style="background-color: #000; margin: 0 !important; padding: 0 !important;">
+<body style=" margin: 0 !important; padding: 0 !important;">
 
 
 <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
@@ -72,7 +72,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="480" >
                 <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                        <h1 style="display: block;  font-family: 'Lato', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;">new_investor</h1>
+                      <img href="#" src="{{ $message->embed(public_path().'/img/logo1.png')}}" alt="" width="100">
                     </td>
                 </tr>
             </table>
@@ -97,7 +97,7 @@
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p style="margin: 0;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti corrupti labore pariatur impedit doloribus quam cupiditate, laborum atque itaque. Cupiditate, nisi quaerat? Libero laudantium, nam magnam fuga optio error repudiandae. </p>
+                  <p style="margin: 0;">"Estaremos revisando su inversión y nos pondremos en contacto con usted."</p>
                 </td>
               </tr>
               <!-- BULLETPROOF BUTTON -->
@@ -122,6 +122,7 @@
                 
               
     <!-- SUPPORT CALLOUT -->
+    {{--
     <tr>
         <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="480" >
@@ -135,6 +136,7 @@
             </table>
         </td>
     </tr>
+    --}}
     <!-- FOOTER -->
     <tr>
         <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
@@ -143,6 +145,7 @@
              
               
               <!-- ADDRESS -->
+              
               <tr>
                 <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
                   <p style="margin: 0;"> © 2021 New_Investor. All rights reserved. </p>

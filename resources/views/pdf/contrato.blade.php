@@ -175,11 +175,11 @@
           <tbody>
             <tr>
               <th style="width: 75%;">Monto de Efectivo Entregado en pesos colombianos:</th>
-              <td style="width: 25%;"><p class="text-right">$25.000.000 COP</p></td>
+              <td style="width: 25%;"><p class="text-right">{{number_format($inversion->invertido * 3800)}} COP</p></td>
             </tr>
             <tr>
               <th style="width: 75%;">Monto En Dólares (aplica para inversiones internacionales):</th>
-              <td style="width: 25%;"><p class="text-right">$6700 USD</p></td>
+              <td style="width: 25%;"><p class="text-right">$ {{number_format($inversion->invertido)}} USD</p></td>
             </tr>
           </tbody>
         </table>
@@ -187,9 +187,11 @@
         <p>
           El monto equivalente en dólares americanos (USD) está conforme a lo dispuesto en el artículo 40 de la resolución externa No. 1 de 2018 expedida por la junta directiva del Banco de la República de Colombia, la metodología establecida por el Banco de la República mediante circular reglamentaria DODM –146, el artículo 11.2.1.4.15 del decreto 2555 del 2010 y la resolución No. 0416 del 2006 de la Superintendencia Financiera de Colombia para la fecha de suscripción del presente anexo.
         </p>
-
+        @php
+        setlocale(LC_ALL, 'es');
+        @endphp
         <p>
-          Se suscribe al día 10 del mes de MAYO del año 2021 en dos ejemplares del mismo tenor con destino a cada una de las partes.
+          Se suscribe al día {{\Carbon\Carbon::now()->format('d')}} del mes de {{strftime("%B", \Carbon\Carbon::createFromFormat('!m',\Carbon\Carbon::now()->format('m'))->getTimestamp())}} del año {{\Carbon\Carbon::now()->format('Y')}} en dos ejemplares del mismo tenor con destino a cada una de las partes.
         </p>
 
         <table class="" style="width: 100%;">
