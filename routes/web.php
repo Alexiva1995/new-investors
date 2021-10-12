@@ -30,7 +30,26 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/clear', function() {
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('route:clear');
+    // Mail::send('correo.subcripcion', ['data' => []], function ($correo2)
+    //     {
+    //         $correo2->subject('Limpio el sistema');
+    //         $correo2->to('cgonzalez.byob@gmail.com');
+    //     });
+    return 'DONE'; //Return anything
+});
+Route::get('/optimize', function() {
+    $exitCode = Artisan::call('optimize');
+    return 'DONE'; //Return anything
+});
+Route::get('/storage-link', function() {
+    $exitCode = Artisan::call('storage:link');
+    return 'DONE'; //Return anything
+});
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 Route::middleware(['auth', 'admin'])->group(function () {

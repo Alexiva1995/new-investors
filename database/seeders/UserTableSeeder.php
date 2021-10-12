@@ -38,6 +38,7 @@ class UserTableSeeder extends Seeder
 
 
         //Test1
+        /*
         User::create([
             'fullname' => 'Test1',
             'email' => 'test1@ni.com',
@@ -84,5 +85,6 @@ class UserTableSeeder extends Seeder
             'tipo_cuenta' => 'corriente',
             'num_cuenta' => '1111-0000-000000000000',
         ]);
+        */
     }
 }

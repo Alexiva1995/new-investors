@@ -1,17 +1,29 @@
 
 @extends('layouts/fullLayoutMaster')
 
+@section('page-style')
+    <style>
+        .panel.panel-default.row.align-items-start {
+            text-align: center;
+        }
+        .tab-pane {
+            padding: 0px 40px;
+        }
+
+        .header{
+            position: relative;
+            background-color: black;
+        }
+
+    </style>
+@endsection
+
 @section('title', 'Lista de contratos')
 
 @section('content')
-<div class="capa-exterior">
-  <img class="margin" href="#" src="{{ asset('images/logo1.png') }}" alt="" width="100">
-  <div>
-      <h3 class="capa-interior">the new investor</h3>
-      <br>
-      <p class="capa-exterior2">Te damos la bienvenida a nuestro sistema de inversión, agradecemos diligenciar el
-          siguiente formulario para poder brindarte un mejor servicio y garantizar consignar tus rentabilidades
-          mensuales directamente a tu cuenta bancaria.</p>
+<div class="header">
+  <div class="d-flex justify-content-center align-items-center py-4">
+      <img href="#" src="{{ asset('images/logo1.png') }}" alt="" width="100">
   </div>
 </div>
 
