@@ -70,8 +70,7 @@ class ContratoController extends Controller
                 'email' => $email
             ];
 
-            Mail::send('mails.reenvioContrato', $dataEmail, function ($mail) use ($dompdf, $email) {
-                $mail->from('admin@ni.com', 'New Investor');
+            Mail::send('Mails.reenvioContrato', $dataEmail, function ($mail) use ($dompdf, $email) {
                 $mail->to($email);
                 $mail->subject("Reenvío de contrato");
                 $mail->attachData($dompdf->output(), 'contrato.pdf');
@@ -81,6 +80,7 @@ class ContratoController extends Controller
 
         } catch (\Throwable $th) {
             Log::error('ContratoController - reenviarPdf -> Error: '.$th);
+            abort(403);
         }
 
     }

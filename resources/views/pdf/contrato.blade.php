@@ -12,7 +12,55 @@
     {{--<link href="{{public_path('css/core.css')}}" rel="stylesheet"> --}}
     <title>Contrato</title>
   </head>
+  <style>
+    /** Define the margins of your page **/
+    @page {
+        margin: 100px 50px;
+    }
+
+    header {
+        position: fixed;
+        top: -60px;
+        left: 0px;
+        right: 0px;
+        height: 50px;
+        /** Extra personal styles **/
+    
+        color: white;
+        text-align: center;
+        line-height: 35px;
+        margin-bottom: 1000px;
+    }
+
+    footer {
+        position: fixed; 
+        bottom: -60px; 
+        left: 0px; 
+        right: 0px;
+        height: 50px; 
+
+        /** Extra personal styles 
+        text-align: center;
+        line-height: 35px;
+        **/
+    }
+  </style>
   <body>
+
+      <!-- Define header and footer blocks before your content -->
+      <header>
+        <img src="{{public_path('/images/logo2.png')}}" alt="" width="70">  
+        
+      </header>
+      
+      <footer>
+          <img class="float-left" src="{{public_path('/images/logo2.png')}}" alt="" width="70">  
+
+          <img class="float-right" src="{{public_path('/images/logo2.png')}}" alt="" width="70"> 
+
+          
+      </footer>
+
         <h1 class="h5 text-center">CONTRATO DE MANDATO PARA LA ADMINISTRACION DE PORTAFOLIOS DE VALORES</h1>
         <p>PARTES:</p>
         <div>MANDATARIO</div>
@@ -171,16 +219,16 @@
         <p><b>PORTAFOLIO RECURSOS</b></p>
         <p><b>EN DINERO:</b></p>
 
-        <table class="" style="width: 100%;">
+        <table class="table">
           <tbody>
-            <tr>
-              <th style="width: 75%;">Monto de Efectivo Entregado en pesos colombianos:</th>
-              <td style="width: 25%;"><p class="text-right">{{number_format($inversion->invertido * 3800)}} COP</p></td>
-            </tr>
-            <tr>
-              <th style="width: 75%;">Monto En Dólares (aplica para inversiones internacionales):</th>
-              <td style="width: 25%;"><p class="text-right">$ {{number_format($inversion->invertido)}} USD</p></td>
-            </tr>
+              <tr>
+                  <th style="width: 65%;" class=""><p><b>Monto de Efectivo Entregado en pesos colombianos:</b></p></th>
+                  <td style="width: 45%;"><p class="text-right">{{number_format($inversion->invertido * 3800)}} COP</p></td>
+              </tr>
+              <tr>
+                <th style="width: 75%;" class=""><p><b>Monto En Dólares (aplica para inversiones internacionales):</b></p></th>
+                <td style="width: 25%;">$ {{number_format($inversion->invertido)}} USD</td>
+              </tr>
           </tbody>
         </table>
 
@@ -194,7 +242,7 @@
           Se suscribe al día {{\Carbon\Carbon::now()->format('d')}} del mes de {{strftime("%B", \Carbon\Carbon::createFromFormat('!m',\Carbon\Carbon::now()->format('m'))->getTimestamp())}} del año {{\Carbon\Carbon::now()->format('Y')}} en dos ejemplares del mismo tenor con destino a cada una de las partes.
         </p>
 
-        <table class="" style="width: 100%;">
+        <table class="">
           <tbody>
             <tr>
               <th><p class="text-center"><b>POR EL MANDATARIO:</b></p></th>
@@ -213,16 +261,16 @@
               </td>
             </tr>
             <tr>
-              <td><p class="text-center">___________________________________</p></td>
-              <td><p class="text-center">___________________________________</p></td>
+              <td class="text-center"><span class="text-center">___________________________________</span></td>
+              <td class="text-center"><span class="text-center">___________________________________</span></td>
             </tr>
             <tr>
-              <td>Nombre:</td>
+              <td>Nombre: Gerson Osorio Moncada</td>
               <td>Nombre: {{$inversion->getUser->fullname}}</td>
             </tr>
             <tr>
-              <td>C.C</td>
-              <td>C.C</td>
+              <td>C.C 1073508892</td>
+              <td>C.C {{$inversion->getUser->num_documento}}</td>
             </tr>
           </tbody>
         </table>

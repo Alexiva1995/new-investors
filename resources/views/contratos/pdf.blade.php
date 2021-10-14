@@ -14,10 +14,11 @@
 
     <style>
         /** Define the margins of your page **/
+        /*
         @page {
             margin: 100px 50px;
         }
-
+        */
         header {
             position: fixed;
             top: -60px;
@@ -49,21 +50,14 @@
   <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <img src="{{public_path('/images/logo2.png')}}" alt="" width="70">  
+            <img src="{{public_path('/images/logo2.png')}}" alt="" width="50">  
             
         </header>
         
         <footer>
-            <img class="float-left" src="{{public_path('/images/logo2.png')}}" alt="" width="70">  
+            <img class="float-left" src="{{public_path('/images/logo2.png')}}" alt="" width="50">  
 
-            <img class="float-right" src="{{public_path('/images/logo2.png')}}" alt="" width="70">  
-
-            <div style="font-size: 0.7em;" class="text-center">
-                SATCV SOCIEDAD ANONIMA <br>
-                Calles: Vicente Rocafuerte 3-47 entre Grijalva y Borrero <br>
-                Teléfono: 0991145742/0960815241 <br>
-                Ruc: 1091788388001
-            </div>
+            <img class="float-right" src="{{public_path('/images/logo2.png')}}" alt="" width="50"> 
 
             
         </footer>

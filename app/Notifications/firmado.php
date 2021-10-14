@@ -44,23 +44,13 @@ class firmado extends Notification
      */
     public function toMail($notifiable)
     {
-        $ruta = public_path('storage/contratos/'.$this->inversor->id.'/contrato.pdf');
-        
-        if (!Storage::disk( 'public' )->exists( 'contratos/' .$this->inversor->id)) {
-            Storage::disk('public')->makeDirectory('contratos/' .$this->inversor->id);
-        }
 
         $pdf = PDF::loadView('pdf.contrato', ['inversion' => $this->inversor]);
-
-        $pdf->setPaper('A4', 'portrait');
-        
-        $pdf->save($ruta);
-        //$html = $pdf->stream();
 
         return (new MailMessage)
         ->subject('Firma Exitosa')
         ->view('Mails.firmadoEmail')
-        ->attach($ruta);
+        ->attachData($pdf->output(), 'contrato.pdf');
     }
     
 
