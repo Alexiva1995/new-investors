@@ -97,9 +97,22 @@
             url: 'getImage'+'/'+id,
                 type: 'GET',
                 success: function (json) {
-                  $('#modalVerificacion').modal('toggle')
-                  $('#imagen_url').attr("src", url+'storage/'+json.url_imagen);
-                  $('#idVerificacion').attr("value", id)
+
+                  if(json.url_imagen.indexOf('.pdf') > -1){
+                    $('#imagen_url').addClass("d-none");
+                    $('#url_comprobante').removeClass("d-none");
+                    $('#modalVerificacion').modal('toggle')
+                    $('#url_comprobante').attr("href", url+'storage/'+json.url_imagen);
+                    $('#url_comprobante').text(json.url_imagen);
+                    $('#idVerificacion').attr("value", id)
+                  }else{
+                    $('#imagen_url').removeClass("d-none");
+                    $('#url_comprobante').addClass("d-none");
+                    $('#modalVerificacion').modal('toggle')
+                    $('#imagen_url').attr("src", url+'storage/'+json.url_imagen);
+                    $('#idVerificacion').attr("value", id)
+                  }
+                  
                 }
             });
         }

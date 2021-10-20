@@ -100,7 +100,7 @@
                                 <div class="col-4 mb-1">
                                     <label class="form-label" for="num_documento"> Documento de Identidad <span style="color: red;">*</span></label>
 
-                                    <input type="text" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required value="{{old('num_documento')}}" />
+                                    <input type="number" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required value="{{old('num_documento')}}" />
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Numero de Documento de Identidad.
                                     </div>
@@ -127,7 +127,7 @@
                                 <div class="col-4 mb-1">
                                     <label class="form-label input-phone" for="celular">Numero de Celular <span style="color: red;">*</span></label>
 
-                                    <input type="text" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required value="{{old('celular')}}"/>
+                                    <input type="number" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required value="{{old('celular')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Numero de Celular.</div>
                                 </div>
@@ -201,7 +201,7 @@
                             <div class="col-4">
                                 <label class="form-label" for="num_cuenta">Numero de Cuenta Bancaria <span style="color: red;">*</span></label>
 
-                                <input type="text" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="Documento de indentidad" aria-describedby="numero de cuenta" required value="{{old('num_cuenta')}}"/>
+                                <input type="number" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="Documento de indentidad" aria-describedby="numero de cuenta" required value="{{old('num_cuenta')}}"/>
                                 <div class="valid-feedback">valido!</div>
                                 <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
                             </div>
@@ -244,7 +244,7 @@
                                     <div class="col-4">
                                         <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
 
-                                        <input type="text" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required value="{{old('invertido')}}"/>
+                                        <input type="number" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required value="{{old('invertido')}}"/>
                                         <div class="valid-feedback">valido!</div>
                                         <div class="invalid-feedback">Por favor ingresa tu Valor a Administrar.</div>
                                     </div>
@@ -285,7 +285,7 @@
                                     <div class="col-4 ">
                                         <label for="comprobante_consignacion" class="form-label">subir comprobante de
                                             consignación <span style="color: red;">*</span></label>
-                                        <input class="form-control {{ $errors->has('comprobante_consignacion') ? ' is-invalid' : '' }}" type="file" id="comprobante_consignacion" name="comprobante_consignacion" value="{{old('comprobante_consignacion')}}"/>
+                                        <input class="form-control {{ $errors->has('comprobante_consignacion') ? ' is-invalid' : '' }}" type="file" id="comprobante_consignacion" name="comprobante_consignacion" value="{{old('comprobante_consignacion')}}" accept="image/*,.pdf"/>
                                         <div class="valid-feedback">valido!</div>
                                         <div class="invalid-feedback">Por favor sube tu comprobante de consignacion.</div>
                                         @if($errors->first() != null && !$errors->has('comprobante_consignacion'))

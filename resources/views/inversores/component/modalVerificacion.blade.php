@@ -16,6 +16,7 @@
                 {{-- src="{{ asset('storage/10/comprobantes/1632585581avatar.jpg' ) }}" --}}
                 <img id="imagen_url" style="width: 100%;" src=""
                     alt="consignacion">
+                <a class="d-block text-center" id="url_comprobante" target="_blank"></a>
             </div>
             <div class="modal-footer">
                 {{-- <a href="{{ route('rechazar-inversor',2) }}" type="button" class="btn btn-danger">Rechazar</a> --}}

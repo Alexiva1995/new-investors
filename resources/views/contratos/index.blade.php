@@ -98,11 +98,11 @@
                     <td>{{$inversion->id}}</td>
                     <td>{{$inversion->getUser->tipo_documento}}</td>
                     <td>
-                      @if($inversion->contrato == null || $inversion->contrato->status == "por_firmar")
+                      @if($inversion->status == "por_firmar")
                         <span class="badge rounded-pill badge-light-danger me-1">Por firmar</span>
-                      @elseif($inversion->contrato->status == "firma_cliente")
+                      @elseif($inversion->status == "firma_cliente")
                         <span class="badge rounded-pill badge-light-warning me-1">Espera</span>
-                      @elseif($inversion->contrato->status == "firmado")
+                      @elseif($inversion->status == "firmado")
                       <span class="badge rounded-pill badge-light-success me-1">Firmado</span>
                       @endif
                       
