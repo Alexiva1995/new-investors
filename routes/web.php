@@ -57,6 +57,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/test',function(){
         return view('test/create');
     });
+
+    Route::post('agregarFirma', [DashboardController::class, 'agregarFirma'])->name('agregarFirma');
 });
 Route::get('/',[InversionesController::class, 'create'])->name('home');
 

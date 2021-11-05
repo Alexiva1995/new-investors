@@ -50,7 +50,7 @@
 <!-- Validation -->
 
 <section class="bs-validation py-5" style="background-color: #FFFFFF !important;">
-    <div class="container py-5">
+    <div class="py-5">
         <form class="" id="formInvestor" name="formInvestor" method="POST" action="{{ route('inversiones.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="panel-body">
@@ -58,18 +58,18 @@
                     <div class="tab-pane active " id="1">
                         <div class="">
                             <div class="" style="background-color: #FFFFFF !important;">
-                                <div id="exTab2" class="row">
+                                <div id="exTab2">
                                     <div class="panel panel-default row align-items-start">
-                                        <div class="col-4 ">
-                                            <a href="#" id="inf">1. Información Personal</a>
+                                        <div class="col-6 col-md-4">
+                                            <a href="#" id="inf">  1 . Información Personal</a>
                                             <div class="line-mf"></div>
                                         </div>
-                                        <div class="col-4">
-                                            <a id="inft" href="#"> 2. Información Bancaria</a>
+                                        <div class="col-6 col-md-4">
+                                            <a id="inft" href="#">2 . Información Bancaria</a>
                                             <div class="line-mft"></div>
                                         </div>
-                                        <div class="col-4">
-                                            <a id="inft" href="#"> 3. Información de inversión</a>
+                                        <div class="col-6 col-md-4">
+                                            <a id="inft" href="#">3. Información de inversión</a>
                                             <div class="line-mft"></div>
                                         </div>
                                     </div>
@@ -77,14 +77,14 @@
                             </div>
 
                             <div class="row  mt-3">
-                                <div class="col-4 ">
+                                <div class="col-12 col-sm-6 col-md-4">
                                     <label class="form-label" for="fullname">Nombre Completo <span style="color: red;">*</span></label>
                                     <input type="text" id="fullname" name="fullname" class=" form-control  {{ $errors->has('fullname') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Nombre Completo" aria-label="nombre y apellido" aria-describedby="nombre completo de la persona" required value="{{old('fullname')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu nombre y apellido.</div>
                                 </div>
 
-                                <div class="col-4 mb-3 ">
+                                <div class="col-12 col-sm-6 col-md-4">
                                     <label class="form-label" for="tipo_documento">Tipo Documento de Identidad <span style="color: red;">*</span></label>
                                     <select class="form-select {{ $errors->has('tipo_documento') ? ' is-invalid' : '' }}" id="tipo_documento" required name="tipo_documento">
                                         <option value="">Seleccionar</option>
@@ -97,7 +97,7 @@
                                 </div>
 
 
-                                <div class="col-4 mb-1">
+                                <div class="col-12 col-sm-6 col-md-4 mb-1">
                                     <label class="form-label" for="num_documento"> Documento de Identidad <span style="color: red;">*</span></label>
 
                                     <input type="number" id="num_documento" name="num_documento" class="form-control {{ $errors->has('num_documento') ? ' is-invalid' : '' }}" placeholder="Ingresa tu número de documento" aria-label="Documento de indentidad" aria-describedby="numero del documento de identidad" required value="{{old('num_documento')}}" />
@@ -105,10 +105,8 @@
                                     <div class="invalid-feedback">Por favor ingresa tu Numero de Documento de Identidad.
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row" >
-                                <div class="col-4 mb-1">
+                         
+                                <div class="col-12 col-sm-6 col-md-4 mb-1">
                                     <label class="form-label" for="ciudad_residencia">Ciudad de Residencia <span style="color: red;">*</span></label>
 
                                     <input type="text" id="ciudad_residencia" name="ciudad_residencia" class="form-control {{ $errors->has('ciudad_residencia') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Ciudad de Residencia" aria-label="Ciudad de Residencia" aria-describedby="ciudad de residencia" required value="{{old('ciudad_residencia')}}"/>
@@ -116,7 +114,7 @@
                                     <div class="invalid-feedback">Por favor ingresa tu Ciudad de Residencia.</div>
                                 </div>
 
-                                <div class="col-4 mb-1">
+                                <div class="col-12 col-sm-6 col-md-4 mb-1">
                                     <label class="form-label" for="direccion_residencia">Dirección de Residencia <span style="color: red;">*</span></label>
 
                                     <input type="text" id="direccion_residencia" name="direccion_residencia" class="form-control {{ $errors->has('direccion_residencia') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Dirección de Residencia " aria-label="Dirección de Residencia " aria-describedby="basic-addon-name" required value="{{old('direccion_residencia')}}"/>
@@ -124,17 +122,15 @@
                                     <div class="invalid-feedback">Por favor ingresa tu Dirección de Residencia .</div>
                                 </div>
 
-                                <div class="col-4 mb-1">
+                                <div class="col-12 col-sm-6 col-md-4 mb-1">
                                     <label class="form-label input-phone" for="celular">Numero de Celular <span style="color: red;">*</span></label>
 
                                     <input type="number" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required value="{{old('celular')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Numero de Celular.</div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-4 mt-1">
+                            
+                                <div class="col-12 col-sm-6 col-md-4 mb-1">
                                     <label class="form-label" for="email">Correo electrónico <span style="color: red;">*</span></label>
                                     <input type="email" id="email" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Correo Electrónico" aria-label="john.doe@email.com" required value="{{old('email')}}"/>
                                     <div class="valid-feedback">valido!</div>
@@ -149,18 +145,18 @@
 
                     <div class="tab-pane " id="2">
                         <div class="" style="background-color: #FFFFFF !important;">
-                            <div id="exTab2" class="row">
+                            <div id="exTab2" class="">
                                 <div class="panel panel-default row align-items-start">
-                                    <div class="col-4 ">
-                                        <a href="#" id="inft">1. Información Personal</a>
+                                    <div class="col-6 col-md-4">
+                                        <a href="#" id="inft">  1 . Información Personal</a>
                                         <div class="line-mft"></div>
                                     </div>
-                                    <div class="col-4">
-                                        <a id="inf" href="#"> 2. Información Bancaria</a>
+                                    <div class="col-6 col-md-4">
+                                        <a id="inf" href="#">2. Información Bancaria</a>
                                         <div class="line-mf"></div>
                                     </div>
-                                    <div class="col-4">
-                                        <a id="inft" href="#"> 3. Información de inversión</a>
+                                    <div class="col-6 col-md-4">
+                                        <a id="inft" href="#">3. Información de inversión</a>
                                         <div class="line-mft"></div>
                                     </div>
                                 </div>
@@ -168,7 +164,7 @@
                         </div>
 
                         <div class="row mt-4 " >
-                            <div class="col-4">
+                            <div class="col-12 col-sm-6 col-md-4">
                                 <label class="form-label" for="banco">Banco<span style="color: red;">*</span> </label>
                                 <select class="form-select {{ $errors->has('banco') ? ' is-invalid' : '' }}" id="banco" required name="banco">
                                     <option value="">Selecciona un Banco</option>
@@ -188,7 +184,7 @@
                                 <div class="valid-feedback">valido!</div>
                                 <div class="invalid-feedback">Por favor ingrese el banco</div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-6 col-md-4">
                                 <label class="form-label" for="tipo_cuenta">Tipo de Cuenta <span style="color: red;">*</span></label>
                                 <select class="form-select {{ $errors->has('tipo_cuenta') ? ' is-invalid' : '' }}" id="tipo_cuenta" required name="tipo_cuenta">
                                     <option value="">Selecciona </option>
@@ -198,19 +194,19 @@
                                 <div class="valid-feedback">valido!</div>
                                 <div class="invalid-feedback">Por favor ingrese el tipo de cuenta</div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-6 col-md-4">
                                 <label class="form-label" for="num_cuenta">Numero de Cuenta Bancaria <span style="color: red;">*</span></label>
 
                                 <input type="number" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="Documento de indentidad" aria-describedby="numero de cuenta" required value="{{old('num_cuenta')}}"/>
                                 <div class="valid-feedback">valido!</div>
-                                <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
+                                <div class="invalid-feedback">Por favor ingresa tu numero de cuenta.</div>
                             </div>
 
                             <div class="row " style="margin-left: 30px !important;">
-                                <div class="col-10">
+                                <div class="col-6 col-sm-8 col-md-9 col-lg-10">
                                     <button class="btn-int  active mb-5 mt-5" href="#1" data-toggle="tab">Atras</button>
                                 </div>
-                                <div class="col">
+                                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                                     <a class="btn btn-primarys text-white mb-5 mt-5" href="#3" data-toggle="tab">Siguiente</a>
                                 </div>
                             </div>
@@ -218,20 +214,20 @@
                     </div>
                     <div class="tab-pane " id="3">
                         <div class="" style="background-color: #FFFFFF !important;">
-                            <div id="exTab2" class="row">
+                            <div id="exTab2" class="">
                                 <div class="panel panel-default row align-items-start">
-                                    <div class="col-4">
-                                        <a href="#" id="inft">1. Información Personal</a>
+                                    <div class="col-6 col-md-4">
+                                        <a href="#" id="inft"> 1 . Información Personal</a>
                                         <div class="line-mft"></div>
                                     </div>
 
-                                    <div class="col-4">
-                                        <a id="inft" href="#"> 2. Información Bancaria</a>
+                                    <div class="col-6 col-md-4">
+                                        <a id="inft" href="#">2. Información Bancaria</a>
                                         <div class="line-mft"></div>
                                     </div>
 
-                                    <div class="col-4">
-                                        <a id="inf" href="#"> 3. Información de inversión</a>
+                                    <div class="col-6 col-md-4">
+                                        <a id="inf" href="#">3. Información de inversión</a>
                                         <div class="line-mf"></div>
                                     </div>
                                 </div>
@@ -241,7 +237,7 @@
                         <div id="Información-de-inversión">
                             <div class=" mt-4 mb-3 ">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col-md-4">
                                         <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
 
                                         <input type="number" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required value="{{old('invertido')}}"/>
@@ -250,7 +246,7 @@
                                     </div>
 
 
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col-md-4">
                                         <label class="form-label">Tipo de interes <span style="color: red;">*</span></label>
                                         <select class="form-select {{ $errors->has('tipo_interes') ? ' is-invalid' : '' }}" id="tipo_interes1" name="tipo_interes" required >
                                             <option value="">Seleccionar</option>
@@ -262,17 +258,15 @@
                                     </div>
 
 
-                                    <div class="col-4 mb-3">
+                                    <div class="col-12 col-sm-6 col-md-4">
                                         <label class="form-label" for="fecha_consignacion">Fecha de Consignación <span style="color: red;">*</span></label>
 
                                         <input type="date" id="fecha_consignacion" name="fecha_consignacion" class="form-control {{ $errors->has('fecha_consignacion') ? ' is-invalid' : '' }}" placeholder="Fecha de Consignación " aria-label="Fecha de Consignación" aria-describedby="Fecha de Consignaciónr" required value="{{old('fecha_consignacion')}}"/>
                                         <div class="valid-feedback">valido!</div>
                                         <div class="invalid-feedback">Por favor ingresa tu Fecha de Consignación.</div>
                                     </div>
-                                </div>
-
-                                <div class="row ">
-                                    <div class="col-4">
+                                
+                                    <div class="col-12 col-sm-6 col-md-4">
                                         <label class="form-label" for="referente">¿Como conoció nuestro sistema de
                                             Inversión? <span style="color: red;">*</span></label>
                                         <input class="form-control {{ $errors->has('referente') ? ' is-invalid' : '' }}" id="referente" name="referente" required value="{{old('referente')}}">
@@ -282,7 +276,7 @@
                                     </div>
 
 
-                                    <div class="col-4 ">
+                                    <div class="col-12 col-sm-6 col-md-4">
                                         <label for="comprobante_consignacion" class="form-label">subir comprobante de
                                             consignación <span style="color: red;">*</span></label>
                                         <input class="form-control {{ $errors->has('comprobante_consignacion') ? ' is-invalid' : '' }}" type="file" id="comprobante_consignacion" name="comprobante_consignacion" value="{{old('comprobante_consignacion')}}" accept="image/*,.pdf"/>
@@ -296,7 +290,7 @@
                                     <input class="form-control" type="file" id="firma_cliente" name="firma_cliente" style="display:none;" />
 
 
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col-md-4">
                                         <label class="form-label" for="periodo_mes">¿La consignación se realizó en cual
                                             periodo del mes? <span style="color: red;">*</span></label>
                                         <select class="form-select {{ $errors->has('periodo_mes') ? ' is-invalid' : '' }}" id="periodo_mes" name="periodo_mes" required>
@@ -320,11 +314,11 @@
                         </div>
 
                         <div class="row" style="margin-left: 30px !important;">
-                            <div class="col-10">
+                            <div class="col-6 col-sm-8 col-md-9 col-lg-10">
                                 <button class="btn-int  active mb-5 mt-5" href="#2" data-toggle="tab">Atras</button>
                             </div>
 
-                            <div class="col-2">
+                            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                                 <button type="button" class="subir btn btn-primarys text-white mb-5 mt-5">Firmar</button>
                             </div>
                         </div>

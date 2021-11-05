@@ -66,6 +66,38 @@
                 </div>
               </td>
             </tr>
+
+            <div 
+            class="modal fade modal-secondary text-start" 
+            id="modalVerificacion" 
+            tabindex="-1" 
+            aria-labelledby="myModalLabel1660"
+            aria-hidden="true"
+            >
+            <div class="modal-dialog modal-dialog-c entered">
+                <div class="modal-content">
+                    
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel1660">Subir archivo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{route('edit-inversor', ['id' => $inversion->id])}}">
+                        <input type="hidden" id="idVerificacion" name="id">
+                    <div class="modal-body">
+                        {{-- src="{{ asset('storage/10/comprobantes/1632585581avatar.jpg' ) }}" --}}
+                        <img id="imagen_url" style="width: 100%;" src=""
+                            alt="consignacion">
+                        <a class="d-block text-center" id="url_comprobante" target="_blank"></a>
+                    </div>
+                    <div class="modal-footer">
+                        {{-- <a href="{{ route('rechazar-inversor',2) }}" type="button" class="btn btn-danger">Rechazar</a> --}}
+                        <a href="#" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</a>
+                        <button type="submit" class="btn" style="color:white; background-color: #00c2ef;">Aprobar</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+           </div>
             @endforeach
           </tbody>
         </table>
@@ -74,10 +106,7 @@
   </div>
   <!-- Modal to add new record -->
 
-
-@include('inversores.component.modalVerificacion')
 @include('inversores.component.modalContrato')
-</>
 </section>
 <!--/ Basic table -->
 
@@ -189,7 +218,8 @@
   </script>
 --}}
   <script>
-    $('#myTable').DataTable({
+    $('#myTable').DataTable(  
+    {
         processing: true,
         responsive: true,
         order: [[ 0, "desc" ]],
@@ -219,6 +249,29 @@
                 sortDescending: ": Ordenar descendente"
             }
         },
+        dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      buttons: [
+        {
+          extend: 'collection',
+          className: 'btn btn-outline-secondary dropdown-toggle me-2',
+          text: feather.icons['share'].toSvg({ class: 'font-small-4 me-50' }) + 'Export',
+          buttons: [
+            {
+              extend: 'excel',
+              text: feather.icons['file'].toSvg({ class: 'font-small-4 me-50' }) + 'Excel',
+              className: 'dropdown-item',
+              exportOptions: { columns: [0, 1, 2, 3, 4, 5] }
+            }
+          ],
+          init: function (api, node, config) {
+            $(node).removeClass('btn-secondary');
+            $(node).parent().removeClass('btn-group');
+            setTimeout(function () {
+              $(node).closest('.dt-buttons').removeClass('btn-group').addClass('d-inline-flex');
+            }, 50);
+          }
+        }
+      ]
     })
   </script>
 @endpush

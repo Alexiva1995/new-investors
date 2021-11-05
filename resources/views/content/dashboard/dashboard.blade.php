@@ -97,6 +97,14 @@
         <div class="col-6">
             <div class="card card-tiny-line-stats">
                 <div class="card-body pb-50">
+                    <h2>Establecer firma:</h2>
+                    <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#modalFirma">Agregar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card card-tiny-line-stats">
+                <div class="card-body pb-50">
                     <h6>Total Capital</h6>
                     <h2 class="fw-bolder mb-1"><span id="totalCapital">0</span> $</h2>
                 </div>
@@ -104,6 +112,28 @@
         </div>
     </div>
     
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalFirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agrega tu firma digital</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{route('agregarFirma')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <input type="file" accept="image/png, image/jpeg" name="firma" class="form-control">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
 </section>
 <!-- Dashboard Analytics end -->
 

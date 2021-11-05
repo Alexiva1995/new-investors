@@ -110,7 +110,7 @@ class InversionesController extends Controller
                 $name = time() . $file->getClientOriginalName();
                 $ruta = $user->id . '/comprobantes/' . $name;
                 
-                Storage::disk('public')->put($ruta,  \File::get($file));
+                $file->move(public_path('storage') .'/'.$user->id.'/comprobantes/', $name);
                 
                 $inversion->comprobante_consignacion = $ruta;
                 $inversion->save();
@@ -150,6 +150,7 @@ class InversionesController extends Controller
     }
 
     public function editInversor($id){
+
         $inversor = Inversion::where('id', $id)->first();
         $inversor->status = 'firmado';
         $inversor->save();
@@ -158,7 +159,7 @@ class InversionesController extends Controller
         $user->notify(new firmado($inversor));
 
         $inv = Inversion::where('status', '<>', 'finalizado')->get();
-        return view('contratos.firmados', compact('inv'));
+        return view('contratos.firmados', compact('inv'))->with('msj-success', 'La inversión ha sido aprobado exitosamente');
     }
 
     public function rechazarInversor($id){
@@ -166,7 +167,7 @@ class InversionesController extends Controller
         $inversor->status = 'rechazado';
         $inversor->save();
         
-        $msj = "La inversión se ha aprobado satisfactoriamente";
+        $msj = "La inversion ha sido rechazada";
         return response()->json(['msj', $msj]);
     }
 
@@ -240,8 +241,11 @@ class InversionesController extends Controller
     public function generatePdf($id)
     {
         $inversion = Inversion::findOrFail($id);
+        //FIRMA DEL ADMIN
+        $firmaAdmin = asset('storage/adminFirma/'.collect(\File::allFiles(public_path('storage/adminFirma/')))->reverse()->first()->getRelativePathname());
         
-        $pdf = PDF::loadView('pdf.contrato', compact('inversion'));
+        /////
+        $pdf = PDF::loadView('pdf.contrato', compact('inversion', 'firmaAdmin'));
 
         $pdf->setPaper('A4', 'portrait');
         

@@ -250,9 +250,7 @@
             </tr>
             <tr>
               <td style="width: 50%;">
-                @if($inversion->contrato != null && $inversion->contrato->firma_admin) 
-                  <img width="300" src="{{public_path('storage/'.$inversion->contrato->firma_admin)}}" alt=""> 
-                @endif
+                <img width="300" src="{{$firmaAdmin}}" alt=""> 
               </td>
               <td style="width: 50%;">
                 @if($inversion != null && $inversion->firma_cliente	) 

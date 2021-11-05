@@ -79,7 +79,51 @@ data-asset-path="{{ asset('/')}}">
         });
       }
     })
+    
   </script>
+  @if (Session::has('msj-success'))
+  <script>
+      toastr.success("{{Session::get('msj-success')}}", '¡Notificacion!', { "progressBar": true });
+  </script>
+  @endif
+  
+  @if (Session::has('msj-info'))
+      <script>
+          toastr.info("{{Session::get('msj-info')}}", '¡Aviso!', { "progressBar": true });
+      </script>
+  @endif
+  
+  @if (Session::has('msj-warning'))
+
+      <script>
+          toastr.warning("{{Session::get('msj-warning')}}", '¡Advertencia!', { "progressBar": true });
+      </script>
+
+  @endif
+  
+  @if (Session::has('msj-danger'))
+
+      <script>
+          toastr.error("{{Session::get('msj-danger')}}", '¡Error!', { "progressBar": true });
+      </script>
+
+  @endif
+  
+  {{-- mensajes de errores --}}
+  @if ($errors->any())
+  <script>
+      let msjErrors = '<ul>';
+  </script>
+          @foreach ($errors->all() as $error)
+          <script>msjErrors = msjErrors+'<li>{{ $error }}</li>';</script>
+          @endforeach
+      <script>
+          msjErrors = msjErrors+'</ul>';
+          toastr.error(msjErrors, '¡Error!', { "progressBar": true });
+      </script>
+ 
+  @endif
   @stack('custom-scripts')
+ 
 </body>
 </html>

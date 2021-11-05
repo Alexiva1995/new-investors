@@ -1,4 +1,5 @@
 <!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
 @if($configData['direction'] === 'rtl' && isset($configData['direction']))
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors-rtl.min.css')) }}" />
 @else
@@ -20,6 +21,8 @@
 <link rel="stylesheet" href="{{ asset(mix('css/base/core/menu/menu-types/vertical-menu.css')) }}" />
 @endif
 {{----}}
+<link rel="stylesheet" href="{{ asset('vendors/css/extensions/toastr.min.css') }}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}" />
 {{-- Page Styles --}}
 @yield('page-style')
 
