@@ -49,14 +49,14 @@
 
       <!-- Define header and footer blocks before your content -->
       <header>
-        <img src="{{public_path('/images/logo2.png')}}" alt="" width="70">  
+        <img src="{{asset('/images/logo2.png')}}" alt="" width="70">  
         
       </header>
       
       <footer>
-          <img class="float-left" src="{{public_path('/images/logo2.png')}}" alt="" width="70">  
+          <img class="float-left" src="{{asset('/images/logo2.png')}}" alt="" width="70">  
 
-          <img class="float-right" src="{{public_path('/images/logo2.png')}}" alt="" width="70"> 
+          <img class="float-right" src="{{asset('/images/logo2.png')}}" alt="" width="70"> 
 
           
       </footer>
