@@ -125,7 +125,7 @@
                                 <div class="col-12 col-sm-6 col-md-4 mb-1">
                                     <label class="form-label input-phone" for="celular">Numero de Celular <span style="color: red;">*</span></label>
 
-                                    <input type="number" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required value="{{old('celular')}}"/>
+                                    <input type="text" id="celular" name="celular" class="form-control {{ $errors->has('celular') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Número de Celular" aria-label="Numero de Celular" aria-describedby="basic-addon-name" required value="{{old('celular')}}"/>
                                     <div class="valid-feedback">valido!</div>
                                     <div class="invalid-feedback">Por favor ingresa tu Numero de Celular.</div>
                                 </div>
@@ -134,7 +134,9 @@
                                     <label class="form-label" for="email">Correo electrónico <span style="color: red;">*</span></label>
                                     <input type="email" id="email" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Ingresa tu Correo Electrónico" aria-label="john.doe@email.com" required value="{{old('email')}}"/>
                                     <div class="valid-feedback">valido!</div>
-                                    <div class="invalid-feedback">Por favor ingresa tu Correo electrónico.</div>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -238,7 +240,7 @@
                             <div class=" mt-4 mb-3 ">
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-md-4">
-                                        <label class="form-label" for="invertido">Valor a Administrar <span style="color: red;">*</span></label>
+                                        <label class="form-label" for="invertido">Valor a Administrar (COP)<span style="color: red;">*</span></label>
 
                                         <input type="number" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required value="{{old('invertido')}}"/>
                                         <div class="valid-feedback">valido!</div>
@@ -338,7 +340,7 @@
                                 <div id="signature-pad" class="signature-pad" style="margin: 0px auto;">
                                     <div class="signature-pad--body">
                                         <p>Colocar tu firma aqui</p>
-                                        <canvas style="border: 1px solid #000; width: 100%;"></canvas>
+                                        <canvas style="border: 1px solid #000; width: 100%; height: 150px;"></canvas>
                                         <input type="hidden" id="imagen64" name="imagen64">
                                     </div>
                                     <div class="signature-pad--footer">
@@ -405,7 +407,7 @@
 
         var canvas = wrapper.querySelector("canvas");
         var signaturePad = new SignaturePad(canvas, {
-            backgroundColor: 'rgb(255, 255, 255)'
+            backgroundColor: 'rgb(255, 255, 255)',
         });
 
         function resizeCanvas() {

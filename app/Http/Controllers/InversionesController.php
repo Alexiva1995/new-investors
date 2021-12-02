@@ -15,6 +15,7 @@ use App\Notifications\firmado;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Notifications\sendform;
+use Carbon\Carbon;
 
 class InversionesController extends Controller
 {
@@ -92,9 +93,10 @@ class InversionesController extends Controller
                 "tipo_cuenta" => $request->tipo_cuenta,
                 "num_cuenta" => $request->num_cuenta
             ]);
+            $invertido = ($request->invertido / 3800);
             
             $inversion = Inversion::create([
-                "invertido" => $request->invertido,
+                "invertido" => $invertido,
                 "tipo_interes" => $request->tipo_interes,
                 "fecha_consignacion" => $request->fecha_consignacion,
                 "referente" => $request->referente,
@@ -240,6 +242,7 @@ class InversionesController extends Controller
 
     public function generatePdf($id)
     {
+        set_time_limit(300);
         $inversion = Inversion::findOrFail($id);
         //FIRMA DEL ADMIN
         $firmaAdmin = asset('storage/adminFirma/'.collect(\File::allFiles(public_path('storage/adminFirma/')))->reverse()->first()->getRelativePathname());
@@ -249,8 +252,8 @@ class InversionesController extends Controller
 
         $pdf->setPaper('A4', 'portrait');
         
-        $html = $pdf->stream();
-        //$html = $pdf->download('reporte-socios-'. Carbon::now()->format('d/m/Y').'.pdf');
+        //$html = $pdf->stream();
+        $html = $pdf->download('contrato-'. Carbon::now()->format('d/m/Y').'.pdf');
 
         return $html;
     }  

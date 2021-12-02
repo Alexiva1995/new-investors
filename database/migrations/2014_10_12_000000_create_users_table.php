@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('ciudad_residencia');
             $table->enum('admin', [0, 1])->default(0)->comment('permite saber si un usuario es admin o no');
             $table->string('direccion_residencia')->nullable();
-            $table->bigInteger('celular')->nullable();
+            $table->string('celular');
             $table->string('banco'); //ESPEREMOS A VER SI VAN A HABER MAS BANCOS PARA AGREGAR UNA FOREIGN y UNA TABLA BANK
             $table->enum('tipo_cuenta', ['corriente', 'ahorro']);
             $table->string('num_cuenta');
