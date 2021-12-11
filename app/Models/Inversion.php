@@ -29,4 +29,9 @@ class Inversion extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+    public function monto()
+    {
+        return $this->invertido * 3800;
+    }
 }

@@ -28,10 +28,11 @@
         <div class="card">
             <div class="card-content">
                 <div class="card-body card-dashboard">
+            
                     <div class="table-responsive">
-                        <table class="table w-100 nowrap scroll-horizontal-vertical myTable table-striped w-100" id="myTable">
+                        <table class="table myTable" id="myTable">
 
-                            <thead class="">
+                          <thead class="">
                             <tr class=" text-center text-dark
                                 bg-purple-alt2">
                                 <th>Id</th>
@@ -39,37 +40,43 @@
                                 <th>Nº Documento</th>
                                 <th>Correo</th>
                                 <th>Fecha</th>
-                                <th>Contrato</th>
+                                <th>Monto</th>
+                                <th>Num. cuenta</th>
+                                <th>entidad bancaria</th>
+                                <th>Fecha consignacion</th>
                                 <th>Acción</th>
-                                </tr>
-                            </thead>
+                              </tr>
+                          </thead>
 
-                            <tbody>
-                                @forelse ($inv as $item)
-                                    <tr class="text-center">
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->getUser->fullname }}</td>
-                                        <td>{{ $item->getUser->num_documento}}</td>
-                                        <td>{{ $item->getUser->email }}</td>
-                                        <td>{{date('M-d-Y', strtotime($item->created_at))}}</td>                                            
-                                        <td>{{ $item->id }}</td>
-                                        <td>
-                                            {{-- <a  class="btn text-bold-600 retirar"
-                                                style="background-color: red; color:white;" 
-                                                contrato_id="{{$item->id}}">
-                                                <i class="fas fa-edit"></i>
-                                            </a> --}}
-                                            <button type="button" class="btn btn-danger retirar" contrato_id="{{$item->id}}">
-                                                Finalizar
-                                            </button>
-                                        </td>
+                          <tbody>
+                              @forelse ($inv as $item)
+                                  <tr class="text-center">
+                                      <td>{{ $item->id }}</td>
+                                      <td>{{ $item->getUser->fullname }}</td>
+                                      <td>{{ $item->getUser->num_documento}}</td>
+                                      <td>{{ $item->getUser->email }}</td>
+                                      <td>{{date('M-d-Y', strtotime($item->created_at))}}</td>                                            
+                                      <td>{{ number_format($item->invertido, 2) }}</td>
+                                      <td>{{ $item->getUser->num_cuenta }}</td>
+                                      <td>{{ $item->getUser->banco }}</td>
+                                      <td>{{ $item->fecha_consignacion }}</td>
+                                      <td>
+                                          {{-- <a  class="btn text-bold-600 retirar"
+                                              style="background-color: red; color:white;" 
+                                              contrato_id="{{$item->id}}">
+                                              <i class="fas fa-edit"></i>
+                                          </a> --}}
+                                          <button type="button" class="btn btn-danger retirar" contrato_id="{{$item->id}}">
+                                              Finalizar
+                                          </button>
+                                      </td>
+                                  </tr>
+                              @empty
+                                  <tr class="text-center">
+                                      <td colspan="7">Sin Contratos</td>
                                     </tr>
-                                @empty
-                                    <tr class="text-center">
-                                        <td colspan="7">Sin Contratos</td>
-                                      </tr>
-                                @endforelse
-                            </tbody>
+                              @endforelse
+                          </tbody>
                         </table>
                     </div>
                 </div>
@@ -87,8 +94,9 @@
   {{-- vendor files --}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
+  {{--
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap4.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap4.min.js')) }}"></script>--}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/jszip.min.js')) }}"></script>
@@ -118,8 +126,10 @@
   </script>
 --}}
   <script>
+  
     $('#myTable').DataTable(  
     {
+        //scrollX: true,
         processing: true,
         responsive: true,
         order: [[ 0, "desc" ]],

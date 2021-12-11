@@ -42,7 +42,29 @@
     </div>
 </div> --}}
 
+{{----}}
+
 <div class="header">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background: black;">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link @if(Request::is('/')) active @endif" aria-current="page" href="{{route('home')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('contratos.index')}}">Buscador</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('login')}}">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
     <div class="d-flex justify-content-center align-items-center py-4">
         <img href="#" src="{{ asset('images/logo1.png') }}" alt="" width="100">
     </div>
@@ -199,7 +221,7 @@
                             <div class="col-12 col-sm-6 col-md-4">
                                 <label class="form-label" for="num_cuenta">Numero de Cuenta Bancaria <span style="color: red;">*</span></label>
 
-                                <input type="number" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="Documento de indentidad" aria-describedby="numero de cuenta" required value="{{old('num_cuenta')}}"/>
+                                <input type="number" id="num_cuenta" name="num_cuenta" class="form-control {{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" placeholder="Ingresa el número de Cuenta" aria-label="numero de cuenta" aria-describedby="numero de cuenta" required value="{{old('num_cuenta')}}"/>
                                 <div class="valid-feedback">valido!</div>
                                 <div class="invalid-feedback">Por favor ingresa tu numero de cuenta.</div>
                             </div>

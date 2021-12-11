@@ -62,14 +62,16 @@ class ContratoController extends Controller
         try{
             $inversion = Inversion::findOrFail($id);
             $email = $inversion->getUser->email;
+            
+            $firmaAdmin = asset('storage/adminFirma/'.collect(\File::allFiles(public_path('storage/adminFirma/')))->reverse()->first()->getRelativePathname());
 
-            $dompdf = PDF::loadView('pdf.contrato', compact('inversion'));
-
+            $dompdf = PDF::loadView('pdf.contrato', compact('inversion', 'firmaAdmin'));
+            
             $dataEmail = [
                 'nombre' =>  strtok($inversion->getUser->fullname, " "),
                 'email' => $email
             ];
-
+            
             Mail::send('Mails.reenvioContrato', $dataEmail, function ($mail) use ($dompdf, $email) {
                 $mail->to($email);
                 $mail->subject("Reenvío de contrato");

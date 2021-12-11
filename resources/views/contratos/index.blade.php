@@ -21,6 +21,28 @@
 @section('title', 'Lista de contratos')
 
 @section('content')
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background: black;">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{route('home')}}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link @if(Request::is('inversiones/contratos')) active @endif" href="{{route('contratos.index')}}">Buscador</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('login')}}">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="header">
   <div class="d-flex justify-content-center align-items-center py-4">
       <img href="#" src="{{ asset('images/logo1.png') }}" alt="" width="100">

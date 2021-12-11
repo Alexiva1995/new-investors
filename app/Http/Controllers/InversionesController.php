@@ -93,10 +93,11 @@ class InversionesController extends Controller
                 "tipo_cuenta" => $request->tipo_cuenta,
                 "num_cuenta" => $request->num_cuenta
             ]);
-            $invertido = ($request->invertido / 3800);
+            //$invertido = ($request->invertido / 3800);
+            
             
             $inversion = Inversion::create([
-                "invertido" => $invertido,
+                "invertido" => $request->invertido,
                 "tipo_interes" => $request->tipo_interes,
                 "fecha_consignacion" => $request->fecha_consignacion,
                 "referente" => $request->referente,
@@ -106,7 +107,7 @@ class InversionesController extends Controller
                 "status" => "firma_cliente",
                 "user_id" => $user->id
             ]);
-            
+        
             if ($request->hasFile('comprobante_consignacion')) {
                 $file = $request->file('comprobante_consignacion');
                 $name = time() . $file->getClientOriginalName();
@@ -231,7 +232,7 @@ class InversionesController extends Controller
                 $contrato->url_pdf = $ruta;
                 $contrato->save();
                 $file->storeAs('public/pdf-inversion/'.$request->idinversion, $nombre);
-                return redirect()->back()->with('success', 'PDF Guardado Exitosamente');
+                return redirect()->back()->with('msj-success', 'PDF Guardado Exitosamente');
             }   
 
         } catch (\Throwable $th) {

@@ -81,7 +81,7 @@
                                         <td>{{$contrato->id}}</td>
                                         <td>{{$contrato->getUser->fullname}}</td>
                                         <td>{{$contrato->getUser->email}}</td>
-                                        <td>{{$contrato->invertido}} $</td>
+                                        <td>{{number_format($contrato->invertido, 2)}} </td>
                                     </tr>
                                     @endforeach
                                     

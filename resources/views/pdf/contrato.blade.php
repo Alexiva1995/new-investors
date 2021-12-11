@@ -122,6 +122,14 @@
                   <th style="width: 35%;" class="">Correo electrónico:</th>
                   <td style="width: 65%;">{{$inversion->getUser->email}}</td>
                 </tr>
+                <tr>
+                  <th style="width: 35%;" class="">Entidad bancaria:</th>
+                  <td style="width: 65%;">{{$inversion->getUser->banco}}</td>
+                </tr>
+                <tr>
+                  <th style="width: 35%;" class="">Cuenta bancaria:</th>
+                  <td style="width: 65%;">{{$inversion->getUser->num_cuenta}}</td>
+                </tr>
             </tbody>
         </table>
          
@@ -223,11 +231,11 @@
           <tbody>
               <tr>
                   <th style="width: 65%;" class=""><p><b>Monto de Efectivo Entregado en pesos colombianos:</b></p></th>
-                  <td style="width: 45%;"><p class="text-right">{{number_format($inversion->invertido * 3800)}} COP</p></td>
+                  <td style="width: 45%;"><p class="text-right">{{number_format($inversion->invertido)}} COP</p></td>
               </tr>
               <tr>
                 <th style="width: 75%;" class=""><p><b>Monto En Dólares (aplica para inversiones internacionales):</b></p></th>
-                <td style="width: 25%;">$ {{number_format($inversion->invertido)}} USD</td>
+                <td style="width: 25%;">$ {{number_format($inversion->invertido / 3800)}} USD</td>
               </tr>
           </tbody>
         </table>

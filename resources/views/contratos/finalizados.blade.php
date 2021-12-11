@@ -27,7 +27,7 @@
 					                  <tr>
 					                    <td>{{$inv->id}}</td>
 					                    <td>{{$inv->getUser->fullname}}</td>
-					                    <td>{{$inv->invertido}}</td>
+					                    <td>{{number_format($inv->invertido, 2)}}</td>
 					                    <td>{{$inv->getUser->email}}</td>
 					                    <td>{{date('M-d-Y', strtotime($inv->created_at))}}</td>
 					                    <td>{{$inv->status}}</td>
