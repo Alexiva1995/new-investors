@@ -98,6 +98,7 @@ class InversionesController extends Controller
             
             $inversion = Inversion::create([
                 "invertido" => $request->invertido,
+                "usd" => $request->usd,
                 "tipo_interes" => $request->tipo_interes,
                 "fecha_consignacion" => $request->fecha_consignacion,
                 "referente" => $request->referente,

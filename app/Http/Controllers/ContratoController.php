@@ -179,6 +179,10 @@ class ContratoController extends Controller
         $invertidocompuesto = $inversiones->where('tipo_interes', 'compuesto')->sum('invertido');
         $invertidoTotal = $invertidoLineal + $invertidocompuesto;
 
+        $invertidoLinealUSD = $inversiones->where('tipo_interes', 'lineal')->sum('usd');
+        $invertidocompuestoUSD = $inversiones->where('tipo_interes', 'compuesto')->sum('usd');
+        $invertidoTotalUSD = $invertidoLinealUSD + $invertidocompuestoUSD;
+
         /////INVERSION DIVIDIDO POR 12 MESES Y POR LINEAL/COMPUESTO///////
         $linealMeses = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
         $compuestoMeses = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
@@ -221,6 +225,7 @@ class ContratoController extends Controller
         $data->invertidoLineal = $invertidoLineal;
         $data->invertidocompuesto = $invertidocompuesto;
         $data->invertidoTotal = $invertidoTotal;
+        $data->invertidoTotalUSD = $invertidoTotalUSD;
         $data->linealMeses = $linealMeses;
         $data->compuestoMeses = $compuestoMeses;
 

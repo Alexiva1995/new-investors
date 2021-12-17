@@ -34,7 +34,8 @@
               <th>id</th>
               <th>Nombre</th>
               <th>N° Documento</th>
-              <th>Monto</th>
+              <th>Monto (COP)</th>
+              <th>Monto (USD)</th>
               <th>Correo</th>
               <th>Fecha</th>
               <th>Acción</th>
@@ -47,6 +48,7 @@
               <td>{{$inversion->getUser->fullname}}</td>
               <td>{{number_format($inversion->getUser->num_documento,0,",",".")}}</td>
               <td>{{number_format($inversion->invertido,2,",",".")}}</td>
+              <td>$ {{number_format($inversion->usd,2,",",".")}}</td>
               <td>{{$inversion->getUser->email}}</td>
               <td>{{$inversion->created_at->format('Y/m/d')}}</td>
               <td>

@@ -22,7 +22,8 @@ class Inversion extends Model
         'periodo_mes',
         'firma_cliente',
         'firma_admin',
-        'status'
+        'status',
+        'usd'
     ];
 
     public function getUser()

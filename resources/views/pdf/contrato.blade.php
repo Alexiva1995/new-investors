@@ -235,7 +235,7 @@
               </tr>
               <tr>
                 <th style="width: 75%;" class=""><p><b>Monto En Dólares (aplica para inversiones internacionales):</b></p></th>
-                <td style="width: 25%;">$ {{number_format($inversion->invertido / 3800)}} USD</td>
+                <td style="width: 25%;">$ {{number_format($inversion->usd)}} USD</td>
               </tr>
           </tbody>
         </table>

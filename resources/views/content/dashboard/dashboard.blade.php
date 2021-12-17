@@ -72,7 +72,8 @@
                                         <th>ID</th>
                                         <th>Nombre</th>
                                         <th>Email</th>
-                                        <th>Monto</th>
+                                        <th>Monto (COP)</th>
+                                        <th>Monto (USD)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,6 +83,7 @@
                                         <td>{{$contrato->getUser->fullname}}</td>
                                         <td>{{$contrato->getUser->email}}</td>
                                         <td>{{number_format($contrato->invertido, 2)}} </td>
+                                        <td>$ {{number_format($contrato->usd, 2)}} </td>
                                     </tr>
                                     @endforeach
                                     
@@ -106,7 +108,15 @@
             <div class="card card-tiny-line-stats">
                 <div class="card-body pb-50">
                     <h6>Total Capital</h6>
-                    <h2 class="fw-bolder mb-1"><span id="totalCapital">0</span> $</h2>
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <h2 class="fw-bolder mb-1">COP: <span id="totalCapital">0</span></h2>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <h2 class="fw-bolder mb-1">USD: <span id="totalCapitalUSD">0</span></h2>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -145,7 +155,8 @@
         let totalContratos = document.querySelector('#totalContratos');
         let montosMeses = document.querySelector('#montosMes');
         let totalCapital = document.querySelector('#totalCapital');
-
+        let totalCapitalUSD = document.querySelector('#totalCapitalUSD');
+        
         contratosMesOptions = {
             chart: {
                 height: 100,
@@ -328,9 +339,10 @@
             .then(response => response.text())
             .then(resultText => (
                 data = JSON.parse(resultText),
-                console.log(data),
                 totalContratos.innerHTML = data.countContratos,
                 totalCapital.innerHTML = data.invertidoTotal.toFixed(2),
+                totalCapitalUSD.innerHTML = data.invertidoTotalUSD.toFixed(2),
+                
                 montosMes.updateOptions({
                     series: [{
                             data: data.linealMeses
@@ -352,6 +364,8 @@
             });
         }
 
+        
+
 </script>
 @endsection
 
@@ -370,4 +384,13 @@
 <!-- Page js files -->
 <script src="{{ asset(mix('js/scripts/pages/dashboard-analytics.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/pages/app-invoice-list.js')) }}"></script>
+<script>
+    //datataables ordenes
+    $('.myTable').DataTable({
+        responsive: true,
+        order: [
+            [0, "desc"]
+        ],
+    })
+</script>
 @endsection

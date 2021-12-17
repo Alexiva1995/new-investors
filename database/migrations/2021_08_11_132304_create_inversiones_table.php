@@ -16,6 +16,7 @@ class CreateInversionesTable extends Migration
         Schema::create('inversiones', function (Blueprint $table) {
             $table->id();
             $table->double('invertido');
+            $table->double('usd');
             $table->enum('tipo_interes', ['lineal', 'compuesto'])->nullable();
             $table->date('fecha_consignacion')->nullable();
             $table->string('referente');

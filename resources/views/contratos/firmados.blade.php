@@ -40,7 +40,8 @@
                                 <th>Nº Documento</th>
                                 <th>Correo</th>
                                 <th>Fecha</th>
-                                <th>Monto</th>
+                                <th>Monto (COP)</th>
+                                <th>Monto (USD)</th>
                                 <th>Num. cuenta</th>
                                 <th>entidad bancaria</th>
                                 <th>Fecha consignacion</th>
@@ -56,7 +57,8 @@
                                       <td>{{ $item->getUser->num_documento}}</td>
                                       <td>{{ $item->getUser->email }}</td>
                                       <td>{{date('M-d-Y', strtotime($item->created_at))}}</td>                                            
-                                      <td>{{ number_format($item->invertido, 2) }}</td>
+                                      <td>{{number_format($item->invertido,2,",",".")}}</td>
+                                      <td>$ {{number_format($item->usd,2,",",".")}}</td>
                                       <td>{{ $item->getUser->num_cuenta }}</td>
                                       <td>{{ $item->getUser->banco }}</td>
                                       <td>{{ $item->fecha_consignacion }}</td>

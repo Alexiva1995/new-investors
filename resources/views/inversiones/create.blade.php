@@ -267,6 +267,8 @@
                                         <input type="number" id="invertido" name="invertido" class="form-control {{ $errors->has('invertido') ? ' is-invalid' : '' }}" placeholder="Valor a Administrar" aria-label="Valor a Administrar" aria-describedby="Valor a Administrar" required value="{{old('invertido')}}"/>
                                         <div class="valid-feedback">valido!</div>
                                         <div class="invalid-feedback">Por favor ingresa tu Valor a Administrar.</div>
+
+                                        <input type="hidden" id="usd" name="usd" class="form-control" value="{{old('usd')}}"/>
                                     </div>
 
 
@@ -495,5 +497,20 @@
     let body = document.querySelector('body');
     html.classList.remove('dark-layout');
     body.classList.remove('dark-layout');
+    let usd = 0;
+
+    window.trmApi
+    .latest()
+    .then((data) => 
+        usd = data.valor
+    )
+    .catch((error) => console.log(error));
+
+    $('#invertido').change(function(){
+  
+        let valor = $(this).val() / usd;
+        $('#usd').val(valor);
+    })
+
 </script>
 @endsection

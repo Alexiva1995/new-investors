@@ -1,5 +1,7 @@
 (function (window, undefined) {
   'use strict';
+  const TrmApi = require("trm-api").default;
+  window.trmApi = new TrmApi('b9SPYI00gk1joEN8rT5ocdTwd');
 
   /*
   NOTE:

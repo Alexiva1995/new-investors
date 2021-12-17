@@ -16,7 +16,8 @@
 					              <tr>
 					                <th>Id</th>
 					                <th>Nombre</th>
-					                <th>Invertido</th>
+					                <th>Monto (COP)</th>
+                                	<th>Monto (USD)</th>
 					                <th>Correo</th>
 					                <th>Fecha</th>
 					                <th>Estado</th>
@@ -27,7 +28,8 @@
 					                  <tr>
 					                    <td>{{$inv->id}}</td>
 					                    <td>{{$inv->getUser->fullname}}</td>
-					                    <td>{{number_format($inv->invertido, 2)}}</td>
+					                    <td>{{number_format($inv->invertido,2,",",".")}}</td>
+                                      	<td>$ {{number_format($inv->usd,2,",",".")}}</td>
 					                    <td>{{$inv->getUser->email}}</td>
 					                    <td>{{date('M-d-Y', strtotime($inv->created_at))}}</td>
 					                    <td>{{$inv->status}}</td>
